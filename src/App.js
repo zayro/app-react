@@ -1,23 +1,32 @@
-import React from 'react';
+import React from "react"
 
-import Main from "./route/index";
-import MenuNavbar from "./components/MenuNavbar";
-import { connect } from "react-redux";
+import RoutePath from "./route/index"
+import MenuNavbar from "./components/MenuNavbar"
+//import MenuNavbar from "./components/MenuNavbar_bootstrap"
+import { connect } from "react-redux"
+import { QueryClient, QueryClientProvider } from "react-query"
+//import { ReactQueryDevtools } from "react-query/devtools"
 
+import Container from "@material-ui/core/Container"
+
+const quertCliente = new QueryClient({
+  defaultOptions: {
+    queries: { retry: 0, refetchOnWindowFocus: false },
+  },
+})
 function App() {
   return (
+    <div>
+      <QueryClientProvider client={quertCliente}>
+        <MenuNavbar></MenuNavbar>
+        <Container component="main" maxWidth="md">
+          <RoutePath />
+        </Container>
 
-    <div>  
-      <MenuNavbar>        
-      </MenuNavbar>
-
-      <Main />
-
-      
-
-</div>
-      
-  );
+        {/* <ReactQueryDevtools initialIsOpen /> */}
+      </QueryClientProvider>
+    </div>
+  )
 }
 
-export default connect()(App);
+export default connect()(App)
