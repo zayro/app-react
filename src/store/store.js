@@ -1,11 +1,10 @@
 import { createStore } from "redux"
-import { reducer, initialState } from "./redux"
+import { reducer } from "./redux"
 import LocalService from "../services/secureStorage"
 const instance = new LocalService()
 
 const store = createStore(
   reducer,
-  initialState,
   window.devToolsExtension && window.devToolsExtension()
 )
 

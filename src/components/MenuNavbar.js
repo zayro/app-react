@@ -112,7 +112,7 @@ export default function MenuNavbar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Bienvenido
           </Typography>
         </Toolbar>
       </AppBar>
