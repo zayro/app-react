@@ -10,5 +10,8 @@
   "prettier.printWidth": 160,
   "editor.wordWrapColumn": 160,
   "editor.wordWrap": "wordWrapColumn",
-  "editor.renderWhitespace": "all"
+  "editor.renderWhitespace": "all",
+  "files.associations": {
+    "*.js": "javascriptreact"
+  }
 }

@@ -1,10 +1,16 @@
 import React from "react"
 import { Switch, Route, Redirect } from "react-router-dom"
 
-import SignIn from "../components/SignIn"
 import Home from "../components/home"
 import Welcome from "../components/welcome"
 import ListUser from "../components/ListUsers"
+
+// Views
+import SignIn from "../views/SignIn"
+import dataGrid from "../views/dataGrid"
+import dataTable from "../views/dataTable"
+
+import BasicSearch from "../views/MaterialTable"
 
 import Auth from "../services/Auth"
 
@@ -36,6 +42,10 @@ const RoutePath = () => (
       <Route path="/about" component={Welcome} />
       <Route path="/ListUser" component={ListUser} />
       <Route path="/welcome" component={Welcome} />
+      <Route path="/dataGrid" component={dataGrid} />
+      <Route path="/dataTable" component={dataTable} />
+      <Route path="/BasicSearch" component={BasicSearch} />
+
       <PrivateRoute path="/protected" component={ListUser} />
     </Switch>
   </div>
