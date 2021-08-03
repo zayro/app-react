@@ -1,5 +1,5 @@
 {
-  "editor.cursorStyle": "underline",
+  "editor.cursorStyle": "underline-thin",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
@@ -13,5 +13,9 @@
   "editor.renderWhitespace": "all",
   "files.associations": {
     "*.js": "javascriptreact"
-  }
+  },
+  "turboConsoleLog.wrapLogMessage": true,
+  "editor.cursorBlinking": "expand",
+  "prettier.withNodeModules": true,
+  "prettier.jsxSingleQuote": true
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import { useUsers } from "../hook/useUsers"
+import { useUsers } from "../api/useUsers"
 
 function ListUser() {
   const query = useUsers()

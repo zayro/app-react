@@ -5,7 +5,7 @@ import MenuNavbar from "./components/MenuNavbar"
 //import MenuNavbar from "./components/MenuNavbar_bootstrap"
 import { connect, useSelector } from "react-redux"
 import { QueryClient, QueryClientProvider } from "react-query"
-//import { ReactQueryDevtools } from "react-query/devtools"
+import { ReactQueryDevtools } from "react-query/devtools"
 
 import Container from "@material-ui/core/Container"
 
@@ -29,7 +29,7 @@ function App() {
           <RoutePath />
         </Container>
 
-        {/* <ReactQueryDevtools initialIsOpen /> */}
+        {<ReactQueryDevtools initialIsOpen />}
       </QueryClientProvider>
     </div>
   )

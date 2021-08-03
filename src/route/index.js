@@ -10,7 +10,7 @@ import SignIn from "../views/SignIn"
 import dataGrid from "../views/dataGrid"
 import dataTable from "../views/dataTable"
 
-import BasicSearch from "../views/MaterialTable"
+import BasicSearch from "../views/product/table"
 
 import Auth from "../services/Auth"
 

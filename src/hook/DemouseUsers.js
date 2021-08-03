@@ -11,7 +11,7 @@ async function fecthUsers() {
 function useUsersFetch() {
   return useQuery("users", fecthUsers, { staleTime: 1000 })
 }
-
+/* ------------------------------------------------------------------          */
 const getUsers = async () => {
   const { data } = await axios.get("https://reqres.in/api/users?page=2")
   return data

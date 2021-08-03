@@ -1,20 +1,35 @@
 import axios from "axios"
-// import store from '@/store';
-import LocalService from "./secureStorage"
 
-const storage = new LocalService()
+// import store from '@/store';
+
+import LocalService from "../services/secureStorage"
+
+const instance = new LocalService()
 
 const URL = "http://127.0.0.1:4000/api/v1"
 //const URL = 'https://jsonplaceholder.typicode.com/';
 
-const http = axios.create({
-  baseURL: URL,
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-    Authorization: `Bearer ${window.localStorage.getItem("accessToken")}`,
-  },
-})
+let http
+
+if (instance.getJsonValue("dataInfo")) {
+  const token = instance.getJsonValue("dataInfo").config.login.token
+  http = axios.create({
+    baseURL: URL,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token} `,
+    },
+  })
+} else {
+  http = axios.create({
+    baseURL: URL,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  })
+}
 
 http.interceptors.response.use(
   res => res,

@@ -9,11 +9,7 @@ let initialStateDefault = {
   menu: [
     {
       id: 1,
-      nombre: "Read a bit",
-    },
-    {
-      id: 2,
-      nombre: "Do laundry",
+      nombre: "menu",
     },
   ],
   config: {
@@ -24,10 +20,10 @@ let initialStateDefault = {
 /* Not security */
 /*
 if (instance.getJsonValueDefault("dataInfo")) {
-  initialState = instance.getJsonValueDefault("dataInfo")
+initialState = instance.getJsonValueDefault("dataInfo")
 } else {
-  initialState = initialStateDefault
-  instance.setJsonValueDefaul("dataInfo", initialState)
+initialState = initialStateDefault
+instance.setJsonValueDefaul("dataInfo", initialState)
 }
 */
 
