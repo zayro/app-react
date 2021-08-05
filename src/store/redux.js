@@ -6,6 +6,7 @@ const instance = new LocalService()
 let initialState = {}
 
 let initialStateDefault = {
+  token: "",
   menu: [
     {
       id: 1,
@@ -50,7 +51,9 @@ const menu = (state = initialState.menu, action) => {
       return state.filter(data => data.id !== action.payload.id)
     case "EDIT_MENU":
       return state.map(data =>
-        data.id === data.id ? { ...data, editing: !data.editing } : data
+        data.id === action.payload.id
+          ? { ...data, editing: !data.editing }
+          : data
       )
     case "UPDATE_MENU":
       return state.map(post => {
@@ -78,7 +81,9 @@ const config = (state = initialState.config, action) => {
       return state.filter(data => data.id !== action.payload.id)
     case "EDIT_CONFIG":
       return state.map(data =>
-        data.id === data.id ? { ...data, editing: !data.editing } : data
+        data.id === action.payload.id
+          ? { ...data, editing: !data.editing }
+          : data
       )
 
     default:
@@ -86,6 +91,14 @@ const config = (state = initialState.config, action) => {
   }
 }
 
+const token = (state = initialState.token, action) => {
+  switch (action.type) {
+    case "ADD_TOKEN":
+      return action.payload
+    default:
+      return state
+  }
+}
 // Actions
 const add_menu = data => ({
   type: "ADD_MENU",
@@ -100,6 +113,7 @@ const delete_menu = data => ({
 const reducer = combineReducers({
   config,
   menu,
+  token,
 })
 
 export { reducer, add_menu, delete_menu, initialState }

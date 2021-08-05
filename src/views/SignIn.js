@@ -72,13 +72,26 @@ function SignIn() {
     password: "",
   })
 
-  const addToken = data => {
+  const addConfig = data => {
     dispatch({
       type: "ADD_CONFIG",
       payload: { login: data },
     })
   }
 
+  const addToken = data => {
+    dispatch({
+      type: "ADD_TOKEN",
+      payload: data,
+    })
+  }
+
+  const addAuth = data => {
+    dispatch({
+      type: "ADD_CONFIG",
+      payload: { user: data },
+    })
+  }
   // send information
   const handleSubmit = event => {
     event.preventDefault()
@@ -96,7 +109,9 @@ function SignIn() {
       .then(function (response) {
         console.log(response)
 
-        addToken(response.data)
+        addConfig(response.data)
+        addToken(response.data.token)
+        addAuth({ auth: true })
         swal({
           title: "Exitoso!",
           text: `ingreso exitosamente`,

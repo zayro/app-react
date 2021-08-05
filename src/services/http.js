@@ -12,7 +12,10 @@ const URL = "http://127.0.0.1:4000/api/v1"
 let http
 
 if (instance.getJsonValue("dataInfo")) {
-  const token = instance.getJsonValue("dataInfo").config.login.token
+  const token =
+    typeof instance.getJsonValue("dataInfo").config.login !== "undefined"
+      ? instance.getJsonValue("dataInfo").config.login.token
+      : ""
   http = axios.create({
     baseURL: URL,
     headers: {

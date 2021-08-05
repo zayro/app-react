@@ -54,7 +54,7 @@ export default function FormDialogProduct({
           </Button>
           <Button
             type="submit"
-            onClick={form == "insert" ? handleSubmit : handleSubmitEdit}
+            onClick={form === "insert" ? handleSubmit : handleSubmitEdit}
             color="primary"
           >
             Accept

@@ -1,11 +1,13 @@
 import { createStore } from "redux"
 import { reducer } from "./redux"
+import { devToolsEnhancer } from "redux-devtools-extension"
 import LocalService from "../services/secureStorage"
 const instance = new LocalService()
 
 const store = createStore(
   reducer,
-  window.devToolsExtension && window.devToolsExtension()
+  devToolsEnhancer()
+  // Specify name here, actionsBlacklist, actionsCreators and other options if needed
 )
 
 store.subscribe(() => {

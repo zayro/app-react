@@ -14,13 +14,16 @@ import BasicSearch from "../views/product/table"
 
 import Auth from "../services/Auth"
 
+const instance = new Auth()
+
 // eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ component: Component, ...rest }) => {
+  console.log("console.log(Auth.getAuth());", instance.getAuth())
   return (
     <Route
       {...rest}
       render={props =>
-        Auth.getAuth() ? (
+        instance.getAuth() ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -44,7 +47,7 @@ const RoutePath = () => (
       <Route path="/welcome" component={Welcome} />
       <Route path="/dataGrid" component={dataGrid} />
       <Route path="/dataTable" component={dataTable} />
-      <Route path="/BasicSearch" component={BasicSearch} />
+      <PrivateRoute path="/BasicSearch" component={BasicSearch} />
 
       <PrivateRoute path="/protected" component={ListUser} />
     </Switch>
