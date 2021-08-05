@@ -15,10 +15,12 @@ export default class JwtService {
    */
   getToken() {
     const dataInfo = instance.getJsonValue("dataInfo")
-    //dataInfo.hasOwnProperty("token")
 
-    if (Object.prototype.hasOwnProperty.call(dataInfo, "token")) {
-      return dataInfo.token
+    //dataInfo.hasOwnProperty("token")
+    //Object.prototype.hasOwnProperty.call(dataInfo, "token")
+
+    if (dataInfo !== null) {
+      return dataInfo.token === "" ? null : dataInfo.token
     } else {
       return null
     }
@@ -69,7 +71,7 @@ export default class JwtService {
         return date
       }
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 

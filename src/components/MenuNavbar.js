@@ -16,10 +16,16 @@ import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
 import InboxIcon from "@material-ui/icons/MoveToInbox"
+import Icon from "@material-ui/core/icon"
 //import MailIcon from "@material-ui/icons/Mail"
-import Button from "@material-ui/core/Button"
+//import Button from "@material-ui/core/Button"
 
+import Auth from "../services/Auth"
+
+// Route
 import { useHistory } from "react-router-dom"
+
+import { useDispatch } from "react-redux"
 
 //import "../style/navBar.css"
 
@@ -90,6 +96,8 @@ export default function MenuNavbar() {
   const history = useHistory()
   const classes = useStyles()
   const theme = useTheme()
+  const dispatch = useDispatch()
+
   const [open, setOpen] = React.useState(false)
 
   const handleDrawerOpen = () => {
@@ -98,6 +106,15 @@ export default function MenuNavbar() {
 
   const handleDrawerClose = () => {
     setOpen(false)
+  }
+
+  const singOff = () => {
+    dispatch({
+      type: "DELETE_ALL_CONFIG",
+      payload: {},
+    })
+    Auth.signout()
+    history.push("/login")
   }
 
   const routeMenu = menu => {
@@ -142,7 +159,15 @@ export default function MenuNavbar() {
           <Typography variant="h6" className={classes.title}>
             Bienvenido
           </Typography>
-          <Button color="inherit">Login</Button>
+          <IconButton
+            aria-label="display more actions"
+            edge="end"
+            color="inherit"
+            onClick={singOff}
+          >
+            <Icon>power_settings_new</Icon>
+          </IconButton>
+          {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
 

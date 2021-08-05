@@ -6,6 +6,8 @@ class authGuard {
   constructor(isAuthenticated = false) {
     const jwtValidate = new JwtService()
 
+    //console.log("jwtValidate.isTokenExpired()", jwtValidate.isTokenExpired())
+
     if (jwtValidate.isTokenExpired()) {
       this.isAuthenticated = true
     } else {
@@ -17,10 +19,13 @@ class authGuard {
     this.isAuthenticated = true
   }
 
-  signout() {
+  static signout() {
+    console.log("Close Sesion")
     this.isAuthenticated = false
+    localStorage.clear()
     sessionStorage.clear()
   }
+
   getAuth() {
     return this.isAuthenticated
   }

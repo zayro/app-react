@@ -40,6 +40,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 const RoutePath = () => (
   <div>
     <Switch>
+      <Route exact path="/" component={SignIn} />
       <Route exact path="/login" component={SignIn} />
       <Route exact path="/home" component={Home} />
       <Route path="/about" component={Welcome} />

@@ -85,7 +85,8 @@ const config = (state = initialState.config, action) => {
           ? { ...data, editing: !data.editing }
           : data
       )
-
+    case "DELETE_ALL_CONFIG":
+      return initialStateDefault.config
     default:
       return state
   }
