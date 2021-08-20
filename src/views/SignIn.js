@@ -25,6 +25,13 @@ import http from "../services/http"
 // Store
 import { connect, useSelector, useDispatch } from "react-redux"
 
+import jwt from "../services/jwt"
+
+import Auth from "../services/Auth"
+
+const token = new jwt()
+const instance = new Auth()
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -112,6 +119,8 @@ function SignIn() {
         addConfig(response.data)
         addToken(response.data.token)
         addAuth({ auth: true })
+        token.getToken()
+        instance.getAuth()
         swal({
           title: "Exitoso!",
           text: `ingreso exitosamente`,

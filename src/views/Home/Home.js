@@ -1,467 +1,593 @@
 import React from "react"
-import clsx from "clsx"
-import PropTypes from "prop-types"
-import AppBar from "@material-ui/core/AppBar"
-import Toolbar from "@material-ui/core/Toolbar"
-import Typography from "@material-ui/core/Typography"
-import { makeStyles } from "@material-ui/core/styles"
-import CssBaseline from "@material-ui/core/CssBaseline"
-import useScrollTrigger from "@material-ui/core/useScrollTrigger"
-import Box from "@material-ui/core/Box"
-import Container from "@material-ui/core/Container"
-import Fab from "@material-ui/core/Fab"
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp"
-import Zoom from "@material-ui/core/Zoom"
-import Slide from "@material-ui/core/Slide"
-import Link from "@material-ui/core/Link"
-import Grid from "@material-ui/core/Grid"
-import Paper from "@material-ui/core/Paper"
 
-import Card from "@material-ui/core/Card"
-import CardActions from "@material-ui/core/CardActions"
-import CardContent from "@material-ui/core/CardContent"
-import Button from "@material-ui/core/Button"
-
-import List from "@material-ui/core/List"
-import Divider from "@material-ui/core/Divider"
-import IconButton from "@material-ui/core/IconButton"
-import MenuIcon from "@material-ui/icons/Menu"
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
-import ChevronRightIcon from "@material-ui/icons/ChevronRight"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemIcon from "@material-ui/core/ListItemIcon"
-import ListItemText from "@material-ui/core/ListItemText"
-import InboxIcon from "@material-ui/icons/MoveToInbox"
-import Icon from "@material-ui/core/icon"
-import Drawer from "@material-ui/core/Drawer"
-
-import { Link as Scroll, Element, Events } from "react-scroll"
-
-import hero from "../../assets/img/home/hero.svg"
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    position: "fixed",
-    minHeight: "100vh",
-  },
-  GridMenu: {
-    flexGrow: 1,
-  },
-  fullScreen: {
-    height: "80vh",
-    //border: "3px solid green",
-  },
-  link: {
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-  AppLogo: {
-    margin: "auto",
-    width: "50%",
-    //border: "3px solid green",
-    textAlign: "center",
-    padding: "10px",
-  },
-  imgHome: {
-    margin: "auto",
-    width: "50%",
-  },
-  container: {
-    marginTop: "100px",
-    background: "none",
-  },
-  bullet: {
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 14,
-  },
-  body: {
-    background: "none",
-    backgroundColor: "transparent",
-  },
-  appBar: {
-    background: "none",
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: "none",
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: "flex",
-    alignItems: "center",
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-  sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-    },
-  },
-  sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    },
-  },
-}))
-
-HideOnScroll.propTypes = {
-  children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-}
-
-function HideOnScroll(props) {
-  const { children, window } = props
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({ target: window ? window() : undefined })
-
-  if (!trigger) {
-    return (
-      <Slide appear={false} direction="down" in={!trigger}>
-        {children}
-      </Slide>
-    )
-  } else {
-    return false
-  }
-}
-
-ScrollTop.propTypes = {
-  children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-}
-function ScrollTop(props) {
-  const { children, window } = props
-  const classes = useStyles()
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 100,
-  })
-
-  const handleClick = event => {
-    const anchor = (event.target.ownerDocument || document).querySelector(
-      "#back-to-top-anchor"
-    )
-
-    if (anchor) {
-      anchor.scrollIntoView({ behavior: "smooth", block: "center" })
-    }
-  }
-
+export default function Home() {
   return (
-    <Zoom in={trigger}>
-      <div onClick={handleClick} role="presentation" className={classes.root}>
-        {children}
-      </div>
-    </Zoom>
-  )
-}
-
-const width = window.innerWidth > 0 ? window.innerWidth : 240
-const drawerWidth = width
-
-export default function Home(props) {
-  const classes = useStyles()
-  const theme = useStyles()
-
-  const [open, setOpen] = React.useState(false)
-
-  const handleDrawerOpen = () => {
-    setOpen(true)
-  }
-
-  const handleDrawerClose = () => {
-    setOpen(false)
-  }
-
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar color="inherit" elevation={0}>
-        <HideOnScroll {...props}>
-          <Typography variant="h2" align="center">
-            Company
-          </Typography>
-        </HideOnScroll>
-        <Toolbar>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
+    <div>
+      <div id="preloader" />
+      {/*==========================
+  Hero Section
+  ============================*/}
+      <section id="hero">
+        <div className="hero-container">
+          <div className="wow fadeIn">
+            <div className="hero-logo">
+              <img
+                className
+                src="Home/img/avataaars.svg"
+                alt="ProOnliPc"
+                width={200}
+              />
+            </div>
+            <h1>Welcome to ProOnliPc studios</h1>
+            <h2>
+              We create{" "}
+              <span className="rotating">
+                beautiful graphics, functional websites, working mobile apps
+              </span>
+            </h2>
+            <div className="actions">
+              <a href="#about" className="btn-get-started">
+                Login
+              </a>
+              <a href="#services" className="btn-services">
+                SignUp
+              </a>
+            </div>
           </div>
-
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-            alignContent="center"
-            spacing={4}
-            className={classes.sectionDesktop}
-          >
-            <Grid item>
-              <Typography className={classes.link}>
-                <Scroll to="place-to-visit" smooth={true}>
-                  <IconButton>
-                    <Link>Container</Link>
-                  </IconButton>
-                </Scroll>
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography className={classes.link}>
-                <Link>Feature</Link>
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography className={classes.link}>
-                <Link>Services</Link>
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography className={classes.link}>
-                <Link>Contact</Link>
-              </Typography>
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
         </div>
-        <Divider />
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-      </main>
-      <Container>
-        <Element name="test1" className="element">
-          <Box mx="auto" mt={5} className={classes.fullScreen}>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-              alignContent="center"
-              spacing={1}
-            >
-              <Grid item xs={12}>
-                <Box mt={5}>
-                  <Paper elevation={1} />
-                  <Typography variant="h4" align="center">
-                    Super Simple Bootstrap HTML5 Template For Business, SaaS and
-                    Apps
-                  </Typography>
-                  <Paper />
-                </Box>
-              </Grid>
-              <Grid className={classes.AppLogo} item xs={12}>
-                <img src={hero} className={classes.imgHome} alt="logo" />
-              </Grid>
-            </Grid>
-          </Box>
-        </Element>
-        <Element name="test2" className="element">
-          <Box mt={10}>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-              alignContent="center"
-              spacing={1}
-            >
-              <Grid item xs={12}>
-                <Card variant="outlined">
-                  <CardContent>
-                    <Typography color="textSecondary" gutterBottom>
-                      Word of the Day
-                    </Typography>
-                    <Typography variant="subtitle1">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Nobis praesentium ratione quam reprehenderit repellendus.
-                      Nobis rerum repellat doloribus hic reprehenderit nostrum
-                      quia, eos atque veniam autem eligendi in adipisci at?
-                    </Typography>
-                    <Typography variant="body1" color="textSecondary">
-                      adjective
-                    </Typography>
-                    <Typography variant="body2">
-                      well meaning and kindly.
-                      <br />
-                      {'"a benevolent smile"'}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">Learn More</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-              <Grid item xs={12}>
-                <Card variant="outlined">
-                  <CardContent>
-                    <Typography color="textSecondary" gutterBottom>
-                      Word of the Day
-                    </Typography>
-                    <Typography variant="subtitle1">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Nobis praesentium ratione quam reprehenderit repellendus.
-                      Nobis rerum repellat doloribus hic reprehenderit nostrum
-                      quia, eos atque veniam autem eligendi in adipisci at?
-                    </Typography>
-                    <Typography variant="body1" color="textSecondary">
-                      adjective
-                    </Typography>
-                    <Typography variant="body2">
-                      well meaning and kindly.
-                      <br />
-                      {'"a benevolent smile"'}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">Learn More</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-              <Grid item xs={12}>
-                <Card variant="outlined">
-                  <CardContent>
-                    <Typography color="textSecondary" gutterBottom>
-                      Word of the Day
-                    </Typography>
-                    <Typography variant="subtitle1">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Nobis praesentium ratione quam reprehenderit repellendus.
-                      Nobis rerum repellat doloribus hic reprehenderit nostrum
-                      quia, eos atque veniam autem eligendi in adipisci at?
-                    </Typography>
-                    <Typography variant="body1" color="textSecondary">
-                      adjective
-                    </Typography>
-                    <Typography variant="body2">
-                      well meaning and kindly.
-                      <br />
-                      {'"a benevolent smile"'}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">Learn More</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            </Grid>
-          </Box>
-        </Element>
-      </Container>
+      </section>
+      {/*==========================
+  Sección de encabezado
+  ============================*/}
+      <header id="header">
+        <div className="container">
+          <div id="logo" className="pull-left">
+            {/*             <a href="#hero">
+              <img src="Home/img/logo.png" alt="" title />
+            </a> */}
+            {/* Descomenta abajo si prefieres usar una imagen de texto */}
+            <h3>
+              <a href="#hero">WebApp</a>
+            </h3>
+          </div>
+          <nav id="nav-menu-container">
+            <ul className="nav-menu">
+              <li className="menu-active">
+                <a href="#hero">Home</a>
+              </li>
+              <li>
+                <a href="#about">About Us</a>
+              </li>
+              <li>
+                <a href="#services">Services</a>
+              </li>
+              <li>
+                <a href="#portfolio">Portfolio</a>
+              </li>
 
-      <ScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
-    </React.Fragment>
+              <li>
+                <a href="#team">Team</a>
+              </li>
+
+              <li>
+                <a href="#contact">Contact Us</a>
+              </li>
+            </ul>
+          </nav>
+          {/* #nav-menu-container */}
+        </div>
+      </header>
+      {/* #header */}
+      {/*==========================
+  About Section
+  ============================*/}
+      <section id="about" className="fullpage">
+        <div className="container  wow fadeInUp">
+          <div className="row">
+            <div className="col-md-12">
+              <h3 className="section-title">About Us</h3>
+              <div className="section-title-divider" />
+              <p className="section-description">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="container about-container wow fadeInUp">
+          <div className="row">
+            <div className="col-md-6 col-md-push-6 about-content">
+              <h2 className="about-title">
+                We provide great services and ideass
+              </h2>
+              <p className="about-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate
+              </p>
+              <p className="about-text">
+                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                aute irure dolor in reprehenderit in voluptate velit esse cillum
+                dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum
+              </p>
+              <p className="about-text">
+                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                aute irure dolor in reprehenderit in voluptate velit esse cillum
+                dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/*==========================
+  Services Section
+  ============================*/}
+      <section id="services">
+        <div className="container wow fadeInUp">
+          <div className="row">
+            <div className="col-md-12">
+              <h3 className="section-title">Our Services</h3>
+              <div className="section-title-divider" />
+              <p className="section-description">
+                At vero eos et accusamus et iusto odio dignissimos ducimus qui
+                blanditiis praesentium
+              </p>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-4 service-item">
+              <div className="service-icon">
+                <i className="fa fa-desktop" />
+              </div>
+              <h4 className="service-title">
+                <a href>Lorem Ipsum</a>
+              </h4>
+              <p className="service-description">
+                Voluptatum deleniti atque corrupti quos dolores et quas
+                molestias excepturi sint occaecati cupiditate non provident
+              </p>
+            </div>
+            <div className="col-md-4 service-item">
+              <div className="service-icon">
+                <i className="fa fa-bar-chart" />
+              </div>
+              <h4 className="service-title">
+                <a href>Dolor Sitema</a>
+              </h4>
+              <p className="service-description">
+                Minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat tarad limino ata
+              </p>
+            </div>
+            <div className="col-md-4 service-item">
+              <div className="service-icon">
+                <i className="fa fa-paper-plane" />
+              </div>
+              <h4 className="service-title">
+                <a href>Sed ut perspiciatis</a>
+              </h4>
+              <p className="service-description">
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur
+              </p>
+            </div>
+            <div className="col-md-4 service-item">
+              <div className="service-icon">
+                <i className="fa fa-photo" />
+              </div>
+              <h4 className="service-title">
+                <a href>Magni Dolores</a>
+              </h4>
+              <p className="service-description">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt mollit anim id est laborum
+              </p>
+            </div>
+            <div className="col-md-4 service-item">
+              <div className="service-icon">
+                <i className="fa fa-road" />
+              </div>
+              <h4 className="service-title">
+                <a href>Nemo Enim</a>
+              </h4>
+              <p className="service-description">
+                At vero eos et accusamus et iusto odio dignissimos ducimus qui
+                blanditiis praesentium voluptatum deleniti atque
+              </p>
+            </div>
+            <div className="col-md-4 service-item">
+              <div className="service-icon">
+                <i className="fa fa-shopping-bag" />
+              </div>
+              <h4 className="service-title">
+                <a href>Eiusmod Tempor</a>
+              </h4>
+              <p className="service-description">
+                Et harum quidem rerum facilis est et expedita distinctio. Nam
+                libero tempore, cum soluta nobis est eligendi
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/*==========================
+  Subscrbe Section
+  ============================*/}
+      <section id="subscribe">
+        <div className="container wow fadeInUp">
+          <div className="row">
+            <div className="col-md-8">
+              <h3 className="subscribe-title">Subscribe For Updates</h3>
+              <p className="subscribe-text">
+                Join our 1000+ subscribers and get access to the latest tools,
+                freebies, product announcements and much more!
+              </p>
+            </div>
+            <div className="col-md-4 subscribe-btn-container">
+              <a className="subscribe-btn" href="#">
+                Subscribe Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/*==========================
+  Porfolio Section
+  ============================*/}
+      <section id="portfolio">
+        <div className="container wow fadeInUp">
+          <div className="row">
+            <div className="col-md-12">
+              <h3 className="section-title">Portfolio</h3>
+              <div className="section-title-divider" />
+              <p className="section-description">
+                Si stante, hoc natura videlicet vult, salvam esse se, quod
+                concedimus ses haec dicturum fuisse
+              </p>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-3">
+              <a
+                className="portfolio-item"
+                style={{ backgroundImage: "url(Home/img/portfolio-1.jpg)" }}
+                href
+              >
+                <div className="details">
+                  <h4>Portfolio 1</h4>
+                  <span>Alored dono par</span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-3">
+              <a
+                className="portfolio-item"
+                style={{ backgroundImage: "url(Home/img/portfolio-2.jpg)" }}
+                href
+              >
+                <div className="details">
+                  <h4>Portfolio 2</h4>
+                  <span>Alored dono par</span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-3">
+              <a
+                className="portfolio-item"
+                style={{ backgroundImage: "url(Home/img/portfolio-3.jpg)" }}
+                href
+              >
+                <div className="details">
+                  <h4>Portfolio 3</h4>
+                  <span>Alored dono par</span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-3">
+              <a
+                className="portfolio-item"
+                style={{ backgroundImage: "url(Home/img/portfolio-4.jpg)" }}
+                href
+              >
+                <div className="details">
+                  <h4>Portfolio 4</h4>
+                  <span>Alored dono par</span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-3">
+              <a
+                className="portfolio-item"
+                style={{ backgroundImage: "url(Home/img/portfolio-5.jpg)" }}
+                href
+              >
+                <div className="details">
+                  <h4>Portfolio 5</h4>
+                  <span>Alored dono par</span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-3">
+              <a
+                className="portfolio-item"
+                style={{ backgroundImage: "url(Home/img/portfolio-6.jpg)" }}
+                href
+              >
+                <div className="details">
+                  <h4>Portfolio 6</h4>
+                  <span>Alored dono par</span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-3">
+              <a
+                className="portfolio-item"
+                style={{ backgroundImage: "url(Home/img/portfolio-7.jpg)" }}
+                href
+              >
+                <div className="details">
+                  <h4>Portfolio 7</h4>
+                  <span>Alored dono par</span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-3">
+              <a
+                className="portfolio-item"
+                style={{ backgroundImage: "url(Home/img/portfolio-8.jpg)" }}
+                href
+              >
+                <div className="details">
+                  <h4>Portfolio 8</h4>
+                  <span>Alored dono par</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/*==========================
+  Team Section
+  ============================*/}
+      <section id="team" className="fullpage">
+        <div className="container wow fadeInUp">
+          <div className="row">
+            <div className="col-md-12">
+              <h3 className="section-title">Our Team</h3>
+              <div className="section-title-divider" />
+              <p className="section-description">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque
+              </p>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-3">
+              <div className="member">
+                <div className="pic">
+                  <img src="Home/img/team-1.jpg" alt="" />
+                </div>
+                <h4>Walter White</h4>
+                <span>Chief Executive Officer</span>
+                <div className="social">
+                  <a href>
+                    <i className="fa fa-twitter" />
+                  </a>
+                  <a href>
+                    <i className="fa fa-facebook" />
+                  </a>
+                  <a href>
+                    <i className="fa fa-google-plus" />
+                  </a>
+                  <a href>
+                    <i className="fa fa-linkedin" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="member">
+                <div className="pic">
+                  <img src="Home/img/team-2.jpg" alt="" />
+                </div>
+                <h4>Sarah Jhinson</h4>
+                <span>Product Manager</span>
+                <div className="social">
+                  <a href="">
+                    <i className="fa fa-twitter" />
+                  </a>
+                  <a href="">
+                    <i className="fa fa-facebook" />
+                  </a>
+                  <a href="">
+                    <i className="fa fa-google-plus" />
+                  </a>
+                  <a href="">
+                    <i className="fa fa-linkedin" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="member">
+                <div className="pic">
+                  <img src="Home/img/team-3.jpg" alt="" />
+                </div>
+                <h4>William Anderson</h4>
+                <span>CTO</span>
+                <div className="social">
+                  <a href="">
+                    <i className="fa fa-twitter" />
+                  </a>
+                  <a href="">
+                    <i className="fa fa-facebook" />
+                  </a>
+                  <a href="">
+                    <i className="fa fa-google-plus" />
+                  </a>
+                  <a href="">
+                    <i className="fa fa-linkedin" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="member">
+                <div className="pic">
+                  <img src="Home/img/team-4.jpg" alt="" />
+                </div>
+                <h4>Amanda Jepson</h4>
+                <span>Accountant</span>
+                <div className="social">
+                  <a href="">
+                    <i className="fa fa-twitter" />
+                  </a>
+                  <a href="">
+                    <i className="fa fa-facebook" />
+                  </a>
+                  <a href="">
+                    <i className="fa fa-google-plus" />
+                  </a>
+                  <a href="">
+                    <i className="fa fa-linkedin" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/*==========================
+  Contact Section
+  ============================*/}
+      <section id="contact" className="fullpage">
+        <div className="container wow fadeInUp">
+          <div className="row">
+            <div className="col-md-12">
+              <h3 className="section-title">Contact Us</h3>
+              <div className="section-title-divider" />
+              <p className="section-description">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque
+              </p>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-3 col-md-push-2">
+              <div className="info">
+                <div>
+                  <i className="fa fa-map-marker" />
+                  <p>
+                    A108 Adam Street
+                    <br />
+                    New York, NY 535022
+                  </p>
+                </div>
+                <div>
+                  <i className="fa fa-envelope" />
+                  <p>info@example.com</p>
+                </div>
+                <div>
+                  <i className="fa fa-phone" />
+                  <p>+1 5589 55488 55s</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-5 col-md-push-2">
+              <div className="form">
+                <div id="sendmessage">
+                  Your message has been sent. Thank you!
+                </div>
+                <div id="errormessage" />
+                <form action method="post" role="form" className="contactForm">
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      name="name"
+                      className="form-control"
+                      id="name"
+                      placeholder="Your Name"
+                      data-rule="minlen:4"
+                      data-msg="Por favor ingrese al menos 4 caracteres"
+                    />
+                    <div className="validation" />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="email"
+                      className="form-control"
+                      name="email"
+                      id="email"
+                      placeholder="Your Email"
+                      data-rule="email"
+                      data-msg="Ingresa un Correo Valido"
+                    />
+                    <div className="validation" />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="subject"
+                      id="subject"
+                      placeholder="Subject"
+                      data-rule="minlen:4"
+                      data-msg="Por favor ingrese al menos 8 caracteres del tema"
+                    />
+                    <div className="validation" />
+                  </div>
+                  <div className="form-group">
+                    <textarea
+                      className="form-control"
+                      name="message"
+                      rows={5}
+                      data-rule="required"
+                      data-msg="Por favor escribe algo para nosotros"
+                      placeholder="Message"
+                      defaultValue={""}
+                    />
+                    <div className="validation" />
+                  </div>
+                  <div className="text-center">
+                    <button type="submit">Enviar mensaje</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/*==========================
+  Footer
+============================*/}
+      <footer id="footer">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="copyright">
+                © Copyright <strong>ProOnliPc Theme</strong>. All Rights
+                Reserved
+              </div>
+              <div className="credits">
+                Templates by{" "}
+                <a href="https://www.youtube.com/channel/UCDH0DJaVLkCDtl_YN9hhByw?view_as=subscriber">
+                  ProOnliPc
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      {/* #footer */}
+      <a href="#" className="back-to-top">
+        <i className="fa fa-chevron-up" />
+      </a>
+    </div>
   )
 }

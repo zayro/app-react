@@ -67,4 +67,11 @@ This section has moved here: <https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: <https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify>
 
-### `npm install react@latest react-dom@latest` update React
+### update React
+
+- `npm install react@latest react-dom@latest`
+
+## execute scss
+
+- `sass source/stylesheets/index.scss build/stylesheets/index.css`
+- `sass ./style.scss ./style.css`

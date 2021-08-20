@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "type": "extensionHost",
+      "request": "launch",
+      "name": "Iniciar extensión",
+      "runtimeExecutable": "${execPath}",
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
+      "outFiles": ["${workspaceFolder}/out/**/*.js"],
+      "preLaunchTask": "npm"
+    },
+    {
+      "type": "pwa-chrome",
+      "name": "http://localhost:3000",
+      "request": "launch",
+      "url": "http://localhost:3000"
+    }
+  ]
+}

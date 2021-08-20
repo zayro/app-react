@@ -96,6 +96,8 @@ export default function MenuNavbar() {
   const history = useHistory()
   const classes = useStyles()
   const theme = useTheme()
+
+  const auth = new Auth()
   const dispatch = useDispatch()
 
   const [open, setOpen] = React.useState(false)
@@ -113,7 +115,7 @@ export default function MenuNavbar() {
       type: "DELETE_ALL_CONFIG",
       payload: {},
     })
-    Auth.signout()
+    auth.signout()
     history.push("/login")
   }
 

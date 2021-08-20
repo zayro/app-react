@@ -18,6 +18,7 @@ store.subscribe(() => {
   console.log("store.subscribe", store.getState())
 
   if (instance.getJsonValue("dataInfo")) {
+    console.log("%c update info Storage", "color: yellow; font-size: 14px")
     instance.setJsonValue("dataInfo", store.getState())
   }
 })

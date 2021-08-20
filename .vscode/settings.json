@@ -14,8 +14,10 @@
   "files.associations": {
     "*.js": "javascriptreact"
   },
-  "turboConsoleLog.wrapLogMessage": true,
   "editor.cursorBlinking": "expand",
   "prettier.withNodeModules": true,
-  "prettier.jsxSingleQuote": true
+  "prettier.jsxSingleQuote": true,
+  "turboConsoleLog.quote": "`",
+  "turboConsoleLog.insertEnclosingFunction": false,
+  "turboConsoleLog.logMessagePrefix": "*"
 }

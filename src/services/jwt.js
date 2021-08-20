@@ -15,6 +15,7 @@ export default class JwtService {
    */
   getToken() {
     const dataInfo = instance.getJsonValue("dataInfo")
+    console.log(`* ~ file: jwt.js ~ line 18 ~ JwtService ~ dataInfo`, dataInfo)
 
     //dataInfo.hasOwnProperty("token")
     //Object.prototype.hasOwnProperty.call(dataInfo, "token")
@@ -24,6 +25,19 @@ export default class JwtService {
     } else {
       return null
     }
+  }
+
+  /**
+   *
+   * @param {Token} info
+   */
+
+  getTokenDecode() {
+    if (this.getToken() === null) {
+      return false
+    }
+
+    return jwt_decode(this.getToken())
   }
 
   /**

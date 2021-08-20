@@ -9,6 +9,16 @@ import DialogTitle from "@material-ui/core/DialogTitle"
 
 import PropTypes from "prop-types"
 
+FormDialogProduct.propTypes = {
+  open: PropTypes.bool.isRequired,
+  form: PropTypes.string.isRequired,
+  datos: PropTypes.any.isRequired,
+  handleClose: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  handleSubmitEdit: PropTypes.func,
+  handleInputChange: PropTypes.func,
+}
+
 export default function FormDialogProduct({
   open,
   form,
@@ -63,14 +73,4 @@ export default function FormDialogProduct({
       </Dialog>
     </div>
   )
-}
-
-FormDialogProduct.propTypes = {
-  open: PropTypes.bool.isRequired,
-  form: PropTypes.string.isRequired,
-  datos: PropTypes.any.isRequired,
-  handleClose: PropTypes.func,
-  handleSubmit: PropTypes.func,
-  handleSubmitEdit: PropTypes.func,
-  handleInputChange: PropTypes.func,
 }

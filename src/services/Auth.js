@@ -1,33 +1,37 @@
 import JwtService from "../services/jwt"
-
+const jwtValidate = new JwtService()
 class authGuard {
   //  let isAuthenticated = false;
 
-  constructor(isAuthenticated = false) {
-    const jwtValidate = new JwtService()
-
+  constructor() {
     //console.log("jwtValidate.isTokenExpired()", jwtValidate.isTokenExpired())
-
-    if (jwtValidate.isTokenExpired()) {
-      this.isAuthenticated = true
-    } else {
-      this.isAuthenticated = isAuthenticated
-    }
+    console.log("ingreso al constructor authGuard ")
+    console.log(
+      `:rocket: ~ file: Auth.js ~ line 12 ~ authGuard ~ constructor ~ jwtValidate.isTokenExpired()`,
+      jwtValidate.isTokenExpired()
+    )
   }
 
   authenticate() {
     this.isAuthenticated = true
   }
 
-  static signout() {
-    console.log("Close Sesion")
+  signout() {
+    console.log("%c Close Sesion", "color: red; font-size: 14px")
     this.isAuthenticated = false
     localStorage.clear()
     sessionStorage.clear()
   }
 
   getAuth() {
-    return this.isAuthenticated
+    if (jwtValidate.isTokenExpired()) {
+      console.log("Sesion Auth")
+
+      return true
+    } else {
+      this.signout()
+      return false
+    }
   }
 }
 
