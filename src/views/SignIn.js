@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 // Route
 import { Redirect } from "react-router-dom"
 
@@ -15,6 +15,8 @@ import Box from "@material-ui/core/Box"
 import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/core/styles"
 import Container from "@material-ui/core/Container"
+
+import Loading from "../components/loading"
 
 // library
 import swal from "sweetalert"
@@ -54,7 +56,9 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    width: theme.spacing(10),
+    height: theme.spacing(10),
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -73,6 +77,8 @@ function SignIn() {
 
   // add style
   const classes = useStyles()
+
+  const [open, setOpen] = useState(false)
 
   const [datos, setDatos] = useState({
     username: "",
@@ -99,10 +105,19 @@ function SignIn() {
       payload: { user: data },
     })
   }
+
+  const handlerLoad = (valueDefault = false) => {
+    console.log(`* ~ file: SignIn.js ~ line 112 ~ valueDefault`, valueDefault)
+    setOpen(!open)
+  }
+  useEffect(() => {}, [])
+
   // send information
   const handleSubmit = event => {
     event.preventDefault()
-    console.log("enviando datos...", datos)
+    handlerLoad(true)
+
+    //setTimeout(() => {}, 9000)
     http
       .request({
         method: "post",
@@ -115,7 +130,7 @@ function SignIn() {
       })
       .then(function (response) {
         console.log(response)
-
+        handlerLoad()
         addConfig(response.data)
         addToken(response.data.token)
         addAuth({ auth: true })
@@ -133,6 +148,7 @@ function SignIn() {
       })
       .catch(function (error) {
         console.log(error)
+        handlerLoad()
         swal({
           title: "opps ",
           text: `ocurrio un problema!`,
@@ -141,6 +157,8 @@ function SignIn() {
           timer: 3000,
         })
       })
+
+    console.log("enviando datos...", datos)
   }
   // capture data to form
   const handleInputChange = event => {
@@ -160,7 +178,7 @@ function SignIn() {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}></Avatar>
@@ -200,11 +218,11 @@ function SignIn() {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
+            color="secondary"
             className={classes.submit}
             onClick={handleSubmit}
           >
-            Sign In
+            Send
           </Button>
           <Grid container>
             <Grid item xs>
@@ -223,6 +241,7 @@ function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
+      <Loading openLoad={open}></Loading>
     </Container>
   )
 }

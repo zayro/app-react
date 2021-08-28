@@ -75,3 +75,5 @@ This section has moved here: <https://facebook.github.io/create-react-app/docs/t
 
 - `sass source/stylesheets/index.scss build/stylesheets/index.css`
 - `sass ./style.scss ./style.css`
+
+- <https://ed.team/blog/personaliza-el-scroll-de-tu-web-solo-con-css>

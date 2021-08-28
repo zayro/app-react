@@ -167,10 +167,20 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px 0;
   height: 90px;
 }
+#header .btn-services {
+  border: 2px solid #fff;
+  color: #fff;
+}
+#header .btn-services:hover {
+  background: #1ABC9C;
+  border: 2px solid #1ABC9C;
+}
 #header #logo {
   float: left;
 }
-#header #logo h1, #header #logo h2, #header #logo h3 {
+#header #logo h1,
+#header #logo h2,
+#header #logo h3 {
   font-size: 36px;
   margin: 0;
   padding: 6px 0;
@@ -179,7 +189,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: 3px;
 }
-#header #logo h1 a, #header #logo h1 a:hover {
+#header #logo h1 a,
+#header #logo h1 a:hover {
   color: #fff;
 }
 #header #logo img {
@@ -191,7 +202,9 @@ h1, h2, h3, h4, h5, h6 {
   #header {
     height: 80px;
   }
-  #header #logo h1, #header #logo h2, #header #logo h3 {
+  #header #logo h1,
+#header #logo h2,
+#header #logo h3 {
     font-size: 26px;
   }
   #header #logo img {

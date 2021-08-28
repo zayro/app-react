@@ -7,6 +7,23 @@ import { connect, useSelector } from "react-redux"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
+import { orange } from "@material-ui/core/colors"
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#2C3E50",
+    },
+    secondary: {
+      main: "#1ABC9C",
+    },
+  },
+  status: {
+    danger: orange,
+  },
+})
+
 const quertCliente = new QueryClient({
   defaultOptions: {
     queries: { retry: 0, refetchOnWindowFocus: false },
@@ -20,7 +37,7 @@ function App() {
     menu = <MenuNavbar></MenuNavbar>
   }
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <QueryClientProvider client={quertCliente}>
         {menu}
 
@@ -28,7 +45,7 @@ function App() {
 
         {<ReactQueryDevtools initialIsOpen={false} />}
       </QueryClientProvider>
-    </div>
+    </ThemeProvider>
   )
 }
 

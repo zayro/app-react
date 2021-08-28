@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import MaterialTable from "material-table"
-import CircularProgress from "@material-ui/core/CircularProgress"
-import LinearProgress from "@material-ui/core/LinearProgress"
+//import CircularProgress from "@material-ui/core/CircularProgress"
+//import LinearProgress from "@material-ui/core/LinearProgress"
 import { useMutation, useQueryClient } from "react-query"
 
 // Store
@@ -12,6 +12,8 @@ import FormDialogProduct from "./formDialog"
 
 // Api Users
 import { useUsers, postUsers, putUsers, deleteUsers } from "../../api/users"
+
+import Loading from "../../components/loading"
 
 function BasicSearch() {
   const query = useUsers()
@@ -124,21 +126,11 @@ function BasicSearch() {
   }
 
   if (query.isLoading) {
-    return (
-      <div style={{ marginTop: "10%", marginLeft: "50%" }}>
-        <CircularProgress size={250} />
-        <p>Cargando datos</p>
-      </div>
-    )
+    return <Loading openLoad={true}></Loading>
   }
 
   if (query.isFetching) {
-    return (
-      <div style={{ marginTop: "10%" }}>
-        <LinearProgress />
-        <p>Cargando datos</p>
-      </div>
-    )
+    return <Loading openLoad={true}></Loading>
   }
 
   return (

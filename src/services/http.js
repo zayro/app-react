@@ -65,6 +65,7 @@ http.interceptors.response.use(
   },
   error => {
     // Do something with response error
+    console.log(" *********** Handler Error *********** ")
 
     return Promise.reject(error)
   }
