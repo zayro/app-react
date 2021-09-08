@@ -10,6 +10,7 @@ class authGuard {
       `:rocket: ~ file: Auth.js ~ line 12 ~ authGuard ~ constructor ~ jwtValidate.isTokenExpired()`,
       jwtValidate.isTokenExpired()
     )
+    this.tokenDecode = jwtValidate.getTokenDecode()
   }
 
   authenticate() {
@@ -26,7 +27,6 @@ class authGuard {
   getAuth() {
     if (jwtValidate.isTokenExpired()) {
       console.log("Sesion Auth")
-
       return true
     } else {
       this.signout()

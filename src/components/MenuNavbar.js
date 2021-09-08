@@ -1,33 +1,25 @@
-import React from "react"
-import clsx from "clsx"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
-import Drawer from "@material-ui/core/Drawer"
-import CssBaseline from "@material-ui/core/CssBaseline"
 import AppBar from "@material-ui/core/AppBar"
-import Toolbar from "@material-ui/core/Toolbar"
-import List from "@material-ui/core/List"
-import Typography from "@material-ui/core/Typography"
+import CssBaseline from "@material-ui/core/CssBaseline"
 import Divider from "@material-ui/core/Divider"
+import Drawer from "@material-ui/core/Drawer"
+import Icon from "@material-ui/core/icon"
 import IconButton from "@material-ui/core/IconButton"
-import MenuIcon from "@material-ui/icons/Menu"
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
-import ChevronRightIcon from "@material-ui/icons/ChevronRight"
+import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
-import ListItemText from "@material-ui/core/ListItemText"
-import InboxIcon from "@material-ui/icons/MoveToInbox"
-import Icon from "@material-ui/core/icon"
+import { makeStyles, useTheme } from "@material-ui/core/styles"
+import Toolbar from "@material-ui/core/Toolbar"
+import Typography from "@material-ui/core/Typography"
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
+import ChevronRightIcon from "@material-ui/icons/ChevronRight"
+import MenuIcon from "@material-ui/icons/Menu"
+import clsx from "clsx"
+import React from "react"
+import { useDispatch } from "react-redux"
+import { Link, useHistory } from "react-router-dom"
 //import MailIcon from "@material-ui/icons/Mail"
 //import Button from "@material-ui/core/Button"
-
 import Auth from "../services/Auth"
-
-// Route
-import { useHistory } from "react-router-dom"
-
-import { useDispatch } from "react-redux"
-
-//import "../style/navBar.css"
 
 const width = window.innerWidth > 0 ? window.innerWidth : 240
 const drawerWidth = width
@@ -76,7 +68,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -117,25 +109,6 @@ export default function MenuNavbar() {
     })
     auth.signout()
     history.push("/login")
-  }
-
-  const routeMenu = menu => {
-    switch (menu) {
-      case "welcome":
-        history.push(`/welcome`)
-        setOpen(false)
-
-        break
-      case "table":
-        history.push(`/BasicSearch`)
-        setOpen(false)
-
-        break
-
-      default:
-        console.log("default")
-        break
-    }
   }
 
   return (
@@ -193,20 +166,24 @@ export default function MenuNavbar() {
           </IconButton>
         </div>
         <Divider />
+
         <List>
-          <ListItem button onClick={() => routeMenu("welcome")}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Home"} />
-          </ListItem>
-          <ListItem button onClick={() => routeMenu("table")}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Table"} />
-          </ListItem>
+          {auth.tokenDecode.menu.map((item, i) => (
+            <ListItem key={i} button onClick={() => setOpen(false)}>
+              <ListItemIcon>
+                <Icon>{item.icon}</Icon>
+              </ListItemIcon>
+              <Link
+                to={item.link}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                {item.menu}
+              </Link>
+            </ListItem>
+          ))}
         </List>
+
+        {/* {JSON.stringify(auth.tokenDecode.menu)} */}
       </Drawer>
       <main
         className={clsx(classes.content, {

@@ -1,35 +1,30 @@
-import React, { useState, useEffect } from "react"
-// Route
-import { Redirect } from "react-router-dom"
-
 // Material Ui
 import Avatar from "@material-ui/core/Avatar"
-import Button from "@material-ui/core/Button"
-import CssBaseline from "@material-ui/core/CssBaseline"
-import TextField from "@material-ui/core/TextField"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
-import Checkbox from "@material-ui/core/Checkbox"
-import Link from "@material-ui/core/Link"
-import Grid from "@material-ui/core/Grid"
 import Box from "@material-ui/core/Box"
-import Typography from "@material-ui/core/Typography"
-import { makeStyles } from "@material-ui/core/styles"
+import Button from "@material-ui/core/Button"
+import Checkbox from "@material-ui/core/Checkbox"
 import Container from "@material-ui/core/Container"
-
-import Loading from "../components/loading"
-
+import CssBaseline from "@material-ui/core/CssBaseline"
+import FormControlLabel from "@material-ui/core/FormControlLabel"
+import Grid from "@material-ui/core/Grid"
+import Link from "@material-ui/core/Link"
+import { makeStyles } from "@material-ui/core/styles"
+import TextField from "@material-ui/core/TextField"
+import Typography from "@material-ui/core/Typography"
+import React, { useState } from "react"
+// Store
+import { connect, useDispatch, useSelector } from "react-redux"
+// Route
+import { Redirect } from "react-router-dom"
 // library
 import swal from "sweetalert"
-
+import Loading from "../components/loading"
+import Auth from "../services/Auth"
 // Services
 import http from "../services/http"
-
-// Store
-import { connect, useSelector, useDispatch } from "react-redux"
-
 import jwt from "../services/jwt"
-
-import Auth from "../services/Auth"
+// Actions
+import { addAuth, addConfig, addToken } from "../store/actions"
 
 const token = new jwt()
 const instance = new Auth()
@@ -78,6 +73,7 @@ function SignIn() {
   // add style
   const classes = useStyles()
 
+  // use State
   const [open, setOpen] = useState(false)
 
   const [datos, setDatos] = useState({
@@ -85,34 +81,11 @@ function SignIn() {
     password: "",
   })
 
-  const addConfig = data => {
-    dispatch({
-      type: "ADD_CONFIG",
-      payload: { login: data },
-    })
-  }
-
-  const addToken = data => {
-    dispatch({
-      type: "ADD_TOKEN",
-      payload: data,
-    })
-  }
-
-  const addAuth = data => {
-    dispatch({
-      type: "ADD_CONFIG",
-      payload: { user: data },
-    })
-  }
-
+  // use Function information
   const handlerLoad = (valueDefault = false) => {
     console.log(`* ~ file: SignIn.js ~ line 112 ~ valueDefault`, valueDefault)
     setOpen(!open)
   }
-  useEffect(() => {}, [])
-
-  // send information
   const handleSubmit = event => {
     event.preventDefault()
     handlerLoad(true)
@@ -131,9 +104,9 @@ function SignIn() {
       .then(function (response) {
         console.log(response)
         handlerLoad()
-        addConfig(response.data)
-        addToken(response.data.token)
-        addAuth({ auth: true })
+        dispatch(addConfig(response.data))
+        dispatch(addToken(response.data.token))
+        dispatch(addAuth({ auth: true }))
         token.getToken()
         instance.getAuth()
         swal({

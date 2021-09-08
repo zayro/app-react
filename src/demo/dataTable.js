@@ -1,6 +1,5 @@
 import React from "react"
-
-import Table from "../components/react-table"
+import Table from "./react-table"
 
 function App() {
   const rows = [

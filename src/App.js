@@ -1,14 +1,12 @@
+import { orange } from "@material-ui/core/colors"
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 import React from "react"
-
-import RoutePath from "./route/index"
-import MenuNavbar from "./components/MenuNavbar"
-//import MenuNavbar from "./components/MenuNavbar_bootstrap"
-import { connect, useSelector } from "react-redux"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
-
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
-import { orange } from "@material-ui/core/colors"
+//import MenuNavbar from "./components/MenuNavbar_bootstrap"
+import { connect, useSelector } from "react-redux"
+import MenuNavbar from "./components/MenuNavbar"
+import RoutePath from "./route/index"
 
 const theme = createMuiTheme({
   palette: {

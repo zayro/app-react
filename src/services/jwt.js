@@ -1,5 +1,4 @@
 import jwt_decode from "jwt-decode"
-
 import LocalService from "../services/secureStorage"
 
 const instance = new LocalService()
@@ -27,16 +26,10 @@ export default class JwtService {
     }
   }
 
-  /**
-   *
-   * @param {Token} info
-   */
-
   getTokenDecode() {
     if (this.getToken() === null) {
       return false
     }
-
     return jwt_decode(this.getToken())
   }
 

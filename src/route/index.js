@@ -1,24 +1,17 @@
 import React from "react"
-import { Switch, Route, Redirect } from "react-router-dom"
-
-//import Home from "../components/home"
-
-import Welcome from "../components/welcome"
+import { Redirect, Route, Switch } from "react-router-dom"
 import ListUser from "../components/ListUsers"
-
+//import Home from "../components/home"
+import Welcome from "../components/welcome"
+import dataGrid from "../demo/dataGrid"
+import dataTable from "../demo/dataTable"
+import Auth from "../services/Auth"
+import jwt from "../services/jwt"
 // Views
 import Home from "../views/Home/Home"
+import BasicSearch from "../views/product/table"
 import SignIn from "../views/SignIn"
 import SignUp from "../views/SignUp"
-
-import dataGrid from "../views/dataGrid"
-import dataTable from "../views/dataTable"
-
-import BasicSearch from "../views/product/table"
-
-import jwt from "../services/jwt"
-
-import Auth from "../services/Auth"
 
 const token = new jwt()
 const instance = new Auth()

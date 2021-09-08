@@ -1,5 +1,6 @@
+import { Container } from "@material-ui/core"
 import React, { useEffect } from "react"
-import { connect, useSelector, useDispatch } from "react-redux"
+import { connect, useDispatch, useSelector } from "react-redux"
 
 function Welcome() {
   //Redux
@@ -26,33 +27,35 @@ function Welcome() {
   useEffect(() => {}, [])
 
   return (
-    <div>
-      <h1>Bienvenido</h1>
-      <p>hola mundo</p>
+    <Container maxWidth="md">
+      <div>
+        <h1>Bienvenido</h1>
+        <p>hola mundo</p>
 
-      <p>{JSON.stringify(menu$)}</p>
-      <ul>
-        {menu$.map(item => (
-          <li key={item.id}>
-            <a href={"#" + item.nombre} onClick={() => eliminarMenu(item.id)}>
-              {item.nombre}
-            </a>
-          </li>
-        ))}
-      </ul>
+        <p>{JSON.stringify(menu$)}</p>
+        <ul>
+          {menu$.map(item => (
+            <li key={item.id}>
+              <a href={"#" + item.nombre} onClick={() => eliminarMenu(item.id)}>
+                {item.nombre}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-      <hr></hr>
-      <button
-        onClick={() =>
-          dispatch({
-            type: "ADD_MENU",
-            payload: { id: 3, nombre: "ok" },
-          })
-        }
-      >
-        Increment counter
-      </button>
-    </div>
+        <hr></hr>
+        <button
+          onClick={() =>
+            dispatch({
+              type: "ADD_MENU",
+              payload: { id: 3, nombre: "ok" },
+            })
+          }
+        >
+          Increment counter
+        </button>
+      </div>
+    </Container>
   )
 }
 

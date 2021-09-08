@@ -14,6 +14,7 @@ import FormDialogProduct from "./formDialog"
 import { useUsers, postUsers, putUsers, deleteUsers } from "../../api/users"
 
 import Loading from "../../components/loading"
+import { Container } from "@material-ui/core"
 
 function BasicSearch() {
   const query = useUsers()
@@ -134,93 +135,95 @@ function BasicSearch() {
   }
 
   return (
-    <div style={{ marginTop: 20 }}>
-      <FormDialogProduct
-        open={open}
-        form={form}
-        datos={datos}
-        handleClose={handleClose}
-        handleSubmit={handleSubmit}
-        handleSubmitEdit={handleSubmitEdit}
-        handleInputChange={handleInputChange}
-      ></FormDialogProduct>
+    <Container maxWidth="lg">
+      <div style={{ marginTop: 20 }}>
+        <FormDialogProduct
+          open={open}
+          form={form}
+          datos={datos}
+          handleClose={handleClose}
+          handleSubmit={handleSubmit}
+          handleSubmitEdit={handleSubmitEdit}
+          handleInputChange={handleInputChange}
+        ></FormDialogProduct>
 
-      <MaterialTable
-        title="Basic Search Preview"
-        columns={[
-          { title: "Name", field: "id" },
-          { title: "Surname", field: "nombre" },
-        ]}
-        data={query.data.data}
-        actions={[
-          {
-            icon: "edit",
-            tooltip: "Edit",
-            onClick: (event, rowData) => {
-              console.log("You want to edit " + rowData.nombre)
-              handleClickOpen(
-                {
-                  ...datos,
-                  id: rowData.id,
-                  nombre: rowData.nombre,
-                },
-                "update"
-              )
+        <MaterialTable
+          title="Basic Search Preview"
+          columns={[
+            { title: "Name", field: "id" },
+            { title: "Surname", field: "nombre" },
+          ]}
+          data={query.data.data}
+          actions={[
+            {
+              icon: "edit",
+              tooltip: "Edit",
+              onClick: (event, rowData) => {
+                console.log("You want to edit " + rowData.nombre)
+                handleClickOpen(
+                  {
+                    ...datos,
+                    id: rowData.id,
+                    nombre: rowData.nombre,
+                  },
+                  "update"
+                )
+              },
             },
-          },
-          {
-            icon: "delete",
-            tooltip: "Delete",
-            onClick: (event, rowData) => {
-              console.log("You want to delete " + rowData.nombre)
-              handleClickDelete("prueba", { id: rowData.id })
+            {
+              icon: "delete",
+              tooltip: "Delete",
+              onClick: (event, rowData) => {
+                console.log("You want to delete " + rowData.nombre)
+                handleClickDelete("prueba", { id: rowData.id })
+              },
             },
-          },
-          {
-            // eslint-disable-next-line react/display-name
-            icon: "add",
-            isFreeAction: true,
-            onClick: (event, rowData) => {
-              handleClickOpen({}, "insert")
-              console.log("You want to delete " + rowData.nombre)
+            {
+              // eslint-disable-next-line react/display-name
+              icon: "add",
+              isFreeAction: true,
+              onClick: (event, rowData) => {
+                handleClickOpen({}, "insert")
+                console.log("You want to delete " + rowData.nombre)
+              },
             },
-          },
-          {
-            // eslint-disable-next-line react/display-name
-            icon: "update",
-            isFreeAction: true,
-            onClick: (event, rowData) => {
-              query.refetch()
-              console.log("You want to delete " + rowData.nombre)
+            {
+              // eslint-disable-next-line react/display-name
+              icon: "update",
+              isFreeAction: true,
+              onClick: (event, rowData) => {
+                query.refetch()
+                console.log("You want to delete " + rowData.nombre)
+              },
             },
-          },
-        ]}
-        options={{
-          exportButton: true,
-          search: true,
-          filtering: true,
-          sorting: true,
-        }}
-        localization={{
-          pagination: {
-            labelDisplayedRows: "{from}-{to} of {count}",
-            labelRowsSelect: "Registos",
-          },
-          toolbar: {
-            nRowsSelected: "{0} row(s) selected",
-          },
-          header: {
-            actions: "Eventos",
-          },
-          body: {
-            emptyDataSourceMessage: "No hay Registros",
-            filterRow: {
-              filterTooltip: "Filtro",
+          ]}
+          options={{
+            exportButton: true,
+            search: true,
+            filtering: true,
+            sorting: true,
+          }}
+          localization={{
+            pagination: {
+              labelDisplayedRows: "{from}-{to} of {count}",
+              labelRowsSelect: "Registos",
             },
-          },
-        }}
-      />
-    </div>
+            toolbar: {
+              nRowsSelected: "{0} row(s) selected",
+            },
+            header: {
+              actions: "Eventos",
+            },
+            body: {
+              emptyDataSourceMessage: "No hay Registros",
+              filterRow: {
+                filterTooltip: "Filtro",
+              },
+            },
+          }}
+        />
+      </div>
+    </Container>
   )
 }
 

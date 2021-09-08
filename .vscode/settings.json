@@ -19,5 +19,17 @@
   "prettier.jsxSingleQuote": true,
   "turboConsoleLog.quote": "`",
   "turboConsoleLog.insertEnclosingFunction": false,
-  "turboConsoleLog.logMessagePrefix": "*"
+  "turboConsoleLog.logMessagePrefix": "*",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+    //"source.fixAll": true,
+    //"fixAll.eslint": true,
+    //"addMissingImports":true,
+  },
+  "editor.snippetSuggestions": "inline",
+  "javascript.suggest.completeJSDocs": true,
+  "javascript.suggestionActions.enabled": true,
+  "javascript.referencesCodeLens.enabled": true,
+  "javascript.updateImportsOnFileMove.enabled": "prompt",
+  "javascript.suggest.autoImports": true
 }
