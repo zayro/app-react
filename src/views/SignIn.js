@@ -104,8 +104,10 @@ function SignIn() {
       .then(function (response) {
         console.log(response)
         handlerLoad()
-        dispatch(addConfig(response.data))
         dispatch(addToken(response.data.token))
+        delete response.data.token;
+        dispatch(addConfig(response.data))
+
         dispatch(addAuth({ auth: true }))
         token.getToken()
         instance.getAuth()

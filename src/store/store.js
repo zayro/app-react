@@ -1,7 +1,7 @@
 import { createStore } from "redux"
-import { reducer } from "./redux"
 import { devToolsEnhancer } from "redux-devtools-extension"
 import LocalService from "../services/secureStorage"
+import { reducer } from "./redux"
 const instance = new LocalService()
 
 const store = createStore(
@@ -20,7 +20,16 @@ store.subscribe(() => {
   if (instance.getJsonValue("dataInfo")) {
     console.log("%c update info Storage", "color: yellow; font-size: 14px")
     instance.setJsonValue("dataInfo", store.getState())
+  } else {
+     instance.setJsonValue("dataInfo", store.getState())
   }
+
+    /* Test */
+    console.log("%c update info Storage", "color: yellow; font-size: 14px")
+    instance.setJsonValueDefaul("testInfo", store.getState())
+    console.log(instance.getJsonValueDefault("testInfo"))
+
+
 })
 
 export default store

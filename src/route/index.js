@@ -34,7 +34,6 @@ const hasAccess = namePermission => {
   }
 }
 
-console.log("Auth.getAuth();", instance.getAuth())
 
 // eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -50,7 +49,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/",
+              pathname: "/login",
             }}
           />
         )
@@ -68,7 +67,7 @@ const RoutePath = () => (
       <Route exact path="/home" component={Home} />
       <Route path="/about" component={Welcome} />
       <Route path="/ListUser" component={ListUser} />
-      <Route path="/welcome" component={Welcome} />
+      <PrivateRoute path="/welcome" component={Welcome} />
       <Route path="/dataGrid" component={dataGrid} />
       <Route path="/dataTable" component={dataTable} />
       <PrivateRoute path="/BasicSearch" component={BasicSearch} />

@@ -18,5 +18,27 @@ const addAuth = data => {
     payload: { user: data },
   }
 }
+const reset_config = () => ({
+  type: "RESET_CONFIG"
+})
 
-export { addConfig, addToken, addAuth }
+const add_menu = data => ({
+  type: "ADD_MENU",
+  payload: data,
+})
+
+const delete_menu = data => ({
+  type: "DELETE_MENU",
+  payload: data,
+})
+
+const reset_menu = () => ({
+  type: "DELETE_MENU"
+})
+
+const reset_token = () => ({
+  type: "RESET_TOKEN"
+})
+
+export { addConfig, add_menu, delete_menu, reset_menu, reset_config, reset_token, addToken, addAuth }
+

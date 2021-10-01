@@ -9,8 +9,8 @@ let initialStateDefault = {
   token: "",
   menu: [
     {
-      id: 1,
-      nombre: "menu",
+      id: 0,
+      nombre: "",
     },
   ],
   config: {
@@ -66,6 +66,8 @@ const menu = (state = initialState.menu, action) => {
           }
         } else return post
       })
+    case "RESET_MENU":
+      return initialStateDefault.menu
     default:
       return state
   }
@@ -85,31 +87,22 @@ const config = (state = initialState.config, action) => {
           ? { ...data, editing: !data.editing }
           : data
       )
-    case "DELETE_ALL_CONFIG":
+    case "RESET_CONFIG":
       return initialStateDefault.config
     default:
       return state
   }
 }
-
 const token = (state = initialState.token, action) => {
   switch (action.type) {
     case "ADD_TOKEN":
       return action.payload
+    case "RESET_TOKEN":
+      return initialStateDefault.token
     default:
       return state
   }
 }
-// Actions
-const add_menu = data => ({
-  type: "ADD_MENU",
-  payload: data,
-})
-
-const delete_menu = data => ({
-  type: "DELETE_MENU",
-  payload: data,
-})
 
 const reducer = combineReducers({
   config,
@@ -117,4 +110,4 @@ const reducer = combineReducers({
   token,
 })
 
-export { reducer, add_menu, delete_menu, initialState }
+export { reducer, initialState }

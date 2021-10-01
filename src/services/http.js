@@ -1,8 +1,7 @@
 import axios from "axios"
-
 // import store from '@/store';
-
 import LocalService from "../services/secureStorage"
+
 
 const instance = new LocalService()
 
@@ -14,14 +13,14 @@ let http
 if (instance.getJsonValue("dataInfo")) {
   const token =
     typeof instance.getJsonValue("dataInfo").config.login !== "undefined"
-      ? instance.getJsonValue("dataInfo").config.login.token
+      ? instance.getJsonValue("dataInfo").token
       : ""
   http = axios.create({
     baseURL: URL,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      Authorization: `Bearer ${token} `,
+      Authorization: `Bearer ${token}`,
     },
   })
 } else {
