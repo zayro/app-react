@@ -19,9 +19,6 @@ const instance = new Auth()
 const hasAccess = namePermission => {
   //const permission = JSON.parse(token.getTokenDecode()).permissions
 
-  if (!instance.getAuth()) {
-    return false
-  }
   const permission = token.getTokenDecode().permissions
 
   switch (namePermission.path) {
@@ -61,6 +58,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 const RoutePath = () => (
   <div>
     <Switch>
+      { /* Production Routes */}
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={SignIn} />
       <Route exact path="/SignUp" component={SignUp} />
@@ -68,11 +66,13 @@ const RoutePath = () => (
       <Route path="/about" component={Welcome} />
       <Route path="/ListUser" component={ListUser} />
       <PrivateRoute path="/welcome" component={Welcome} />
-      <Route path="/dataGrid" component={dataGrid} />
-      <Route path="/dataTable" component={dataTable} />
       <PrivateRoute path="/BasicSearch" component={BasicSearch} />
 
-      <PrivateRoute path="/protected" component={ListUser} />
+      { /* Dev Routes */}
+      <Route path="/dataGrid" component={dataGrid} />
+      <Route path="/dataTable" component={dataTable} />
+
+
     </Switch>
   </div>
 )
