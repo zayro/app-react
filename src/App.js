@@ -1,38 +1,38 @@
-import { orange } from "@material-ui/core/colors"
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
-import React from "react"
-import { QueryClient, QueryClientProvider } from "react-query"
-import { ReactQueryDevtools } from "react-query/devtools"
-//import MenuNavbar from "./components/MenuNavbar_bootstrap"
-import { connect, useSelector } from "react-redux"
-import MenuNavbar from "./components/MenuNavbar"
-import RoutePath from "./route/index"
+import { orange } from '@material-ui/core/colors'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import React from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+// import MenuNavbar from "./components/MenuNavbar_bootstrap"
+import { connect, useSelector } from 'react-redux'
+import MenuNavbar from './components/MenuNavbar'
+import RoutePath from './route/index'
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#2C3E50",
+      main: '#2C3E50'
     },
     secondary: {
-      main: "#1ABC9C",
-    },
+      main: '#1ABC9C'
+    }
   },
   status: {
-    danger: orange,
-  },
+    danger: orange
+  }
 })
 
 const quertCliente = new QueryClient({
   defaultOptions: {
-    queries: { retry: 0, refetchOnWindowFocus: false },
-  },
+    queries: { retry: 0, refetchOnWindowFocus: false }
+  }
 })
-function App() {
+function App () {
   const config$ = useSelector(store => store.config)
   let menu
 
-  if (Object.prototype.hasOwnProperty.call(config$, "login")) {
-    menu = <MenuNavbar></MenuNavbar>
+  if (Object.prototype.hasOwnProperty.call(config$, 'login')) {
+    menu = <MenuNavbar> </MenuNavbar>
   }
   return (
     <ThemeProvider theme={theme}>
@@ -41,7 +41,7 @@ function App() {
 
         <RoutePath />
 
-        {<ReactQueryDevtools initialIsOpen={false} />}
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </ThemeProvider>
   )

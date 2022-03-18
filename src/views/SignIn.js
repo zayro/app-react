@@ -1,43 +1,43 @@
 // Material Ui
-import Avatar from "@material-ui/core/Avatar"
-import Box from "@material-ui/core/Box"
-import Button from "@material-ui/core/Button"
-import Checkbox from "@material-ui/core/Checkbox"
-import Container from "@material-ui/core/Container"
-import CssBaseline from "@material-ui/core/CssBaseline"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
-import Grid from "@material-ui/core/Grid"
-import Link from "@material-ui/core/Link"
-import { makeStyles } from "@material-ui/core/styles"
-import TextField from "@material-ui/core/TextField"
-import Typography from "@material-ui/core/Typography"
-import React, { useState } from "react"
+import Avatar from '@material-ui/core/Avatar'
+import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
+import Checkbox from '@material-ui/core/Checkbox'
+import Container from '@material-ui/core/Container'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Grid from '@material-ui/core/Grid'
+import Link from '@material-ui/core/Link'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import React, { useState } from 'react'
 // Store
-import { connect, useDispatch, useSelector } from "react-redux"
+import { connect, useDispatch, useSelector } from 'react-redux'
 // Route
-import { Redirect } from "react-router-dom"
+import { Redirect } from 'react-router-dom'
 // library
-import swal from "sweetalert"
-import Loading from "../components/loading"
-import Auth from "../services/Auth"
+import swal from 'sweetalert'
+import Loading from '../components/loading'
+import Auth from '../services/Auth'
 // Services
-import http from "../services/http"
-import jwt from "../services/jwt"
+import http from '../services/http'
+import jwt from '../services/jwt'
 // Actions
-import { addAuth, addConfig, addToken } from "../store/actions"
+import { addAuth, addConfig, addToken } from '../store/actions'
 
 const token = new jwt()
 const instance = new Auth()
 
-function Copyright() {
+function Copyright () {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+    <Typography variant='body2' color='textSecondary' align='center'>
+      {'Copyright © '}
+      <Link color='inherit' href='https://material-ui.com/'>
         Your Website
-      </Link>{" "}
+      </Link>{' '}
       {new Date().getFullYear()}
-      {"."}
+      {'.'}
     </Typography>
   )
 }
@@ -45,27 +45,27 @@ function Copyright() {
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   avatar: {
     margin: theme.spacing(1),
     width: theme.spacing(10),
     height: theme.spacing(10),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+    margin: theme.spacing(3, 0, 2)
+  }
 }))
 
-function SignIn() {
-  console.log("ingresando al componente")
+function SignIn () {
+  console.log('ingresando al componente')
   const config$ = useSelector(store => store.config)
 
   const dispatch = useDispatch()
@@ -77,13 +77,13 @@ function SignIn() {
   const [open, setOpen] = useState(false)
 
   const [datos, setDatos] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: ''
   })
 
   // use Function information
   const handlerLoad = (valueDefault = false) => {
-    console.log(`* ~ file: SignIn.js ~ line 112 ~ valueDefault`, valueDefault)
+    console.log('* ~ file: SignIn.js ~ line 112 ~ valueDefault', valueDefault)
     setOpen(!open)
   }
   const handleSubmit = event => {
@@ -93,30 +93,30 @@ function SignIn() {
     //setTimeout(() => {}, 9000)
     http
       .request({
-        method: "post",
+        method: 'post',
         url: `/login`,
         data: datos,
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
       })
       .then(function (response) {
         console.log(response)
         handlerLoad()
         dispatch(addToken(response.data.token))
-        delete response.data.token;
+        delete response.data.token
         dispatch(addConfig(response.data))
 
         dispatch(addAuth({ auth: true }))
         token.getToken()
         instance.getAuth()
         swal({
-          title: "Exitoso!",
+          title: 'Exitoso!',
           text: `ingreso exitosamente`,
-          icon: "success",
-          button: "cerrar",
-          timer: 3000,
+          icon: 'success',
+          button: 'cerrar',
+          timer: 3000
         })
 
         //document.getElementById("envio").reset()
@@ -125,15 +125,15 @@ function SignIn() {
         console.log(error)
         handlerLoad()
         swal({
-          title: "opps ",
+          title: 'opps ',
           text: `ocurrio un problema!`,
-          icon: "error",
-          button: "cerrar",
-          timer: 3000,
+          icon: 'error',
+          button: 'cerrar',
+          timer: 3000
         })
       })
 
-    console.log("enviando datos...", datos)
+    console.log('enviando datos...', datos)
   }
   // capture data to form
   const handleInputChange = event => {
@@ -141,59 +141,59 @@ function SignIn() {
     // console.log(event.target.value)
     setDatos({
       ...datos,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     })
   }
 
   if (config$.login) {
     console.log(config$.login.status)
-    return <Redirect to="/welcome" />
+    return <Redirect to='/welcome' />
   } else {
-    console.log("user not login")
+    console.log('user not login')
   }
 
   return (
-    <Container component="main">
+    <Container component='main'>
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}></Avatar>
-        <Typography component="h1" variant="h5">
+        <Avatar className={classes.avatar}> </Avatar>
+        <Typography component='h1' variant='h5'>
           Sign in
         </Typography>
         <form className={classes.form}>
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            id="username"
-            label="Email Address"
-            name="username"
-            autoComplete="username"
+            id='username'
+            label='Email Address'
+            name='username'
+            autoComplete='username'
             autoFocus
             onChange={handleInputChange}
           />
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
+            name='password'
+            label='Password'
+            type='password'
+            id='password'
+            autoComplete='current-password'
             onChange={handleInputChange}
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            control={<Checkbox value='remember' color='primary' />}
+            label='Remember me'
           />
           <Button
-            type="submit"
+            type='submit'
             fullWidth
-            variant="contained"
-            color="secondary"
+            variant='contained'
+            color='secondary'
             className={classes.submit}
             onClick={handleSubmit}
           >
@@ -201,13 +201,13 @@ function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href='#' variant='body2'>
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link href='#' variant='body2'>
+                "Don't have an account? Sign Up"
               </Link>
             </Grid>
           </Grid>
@@ -216,7 +216,7 @@ function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
-      <Loading openLoad={open}></Loading>
+      <Loading openLoad={open}> </Loading>
     </Container>
   )
 }
