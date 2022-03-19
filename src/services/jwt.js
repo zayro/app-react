@@ -1,60 +1,60 @@
-import jwt_decode from "jwt-decode"
-import LocalService from "../services/secureStorage"
+import jwtDecode from 'jwt-decode'
+import LocalService from '../services/secureStorage'
 
 const instance = new LocalService()
 /* var token = "eyJ0eXAiO.../// jwt token";
-var decoded = jwt_decode(token);
+var decoded = jwtDecode(token);
 
 console.log(decoded);
  */
 
 export default class JwtService {
   /**
-   * Obtine el token almacenado
+   * Get Token
    */
-  getToken() {
-    const dataInfo = instance.getJsonValue("dataInfo")
-    console.log(`* ~ file: jwt.js ~ line 18 ~ JwtService ~ dataInfo`, dataInfo)
+  getToken () {
+    const dataInfo = instance.getJsonValue('dataInfo')
+    console.log('* ~ file: jwt.js ~ line 18 ~ JwtService ~ dataInfo', dataInfo)
 
-    //dataInfo.hasOwnProperty("token")
-    //Object.prototype.hasOwnProperty.call(dataInfo, "token")
+    // dataInfo.hasOwnProperty("token")
+    // Object.prototype.hasOwnProperty.call(dataInfo, "token")
 
     if (dataInfo !== null) {
-      return dataInfo.token === "" ? null : dataInfo.token
+      return dataInfo.token === '' ? null : dataInfo.token
     } else {
       return null
     }
   }
 
-  getTokenDecode() {
+  getTokenDecode () {
     if (this.getToken() === null) {
       return false
     }
-    return jwt_decode(this.getToken())
+    return jwtDecode(this.getToken())
   }
 
   /**
-   * Almacena el token almacenado
+   * Save Token
    */
-  setToken(info) {
-    //localStorage.setItem("token", token)
-    const dataInfo = instance.getJsonValue("dataInfo")
+  setToken (info) {
+    // localStorage.setItem("token", token)
+    const dataInfo = instance.getJsonValue('dataInfo')
     const token = { token: info }
-    instance.setJsonValue("dataInfo", {
+    instance.setJsonValue('dataInfo', {
       ...dataInfo,
-      token,
+      token
     })
   }
 
   /**
-   * Valida el tiempo del token almacenado
+   * Valid of Token save
    */
-  getTokenExpirationDate() {
+  getTokenExpirationDate () {
     try {
       if (this.getToken() === null) {
         return null
       } else {
-        const decoded = jwt_decode(this.getToken())
+        const decoded = jwtDecode(this.getToken())
 
         if (decoded.exp === undefined) {
           return null
@@ -63,18 +63,18 @@ export default class JwtService {
         const date = new Date(0)
         date.setUTCSeconds(decoded.exp)
 
-        console.info("Token decoded :: ", decoded)
-        console.info("Token decoded :: ", decoded.exp)
+        console.info('Token decoded :: ', decoded)
+        console.info('Token decoded :: ', decoded.exp)
         console.info(
-          "Time Created Token :: ",
+          'Time Created Token :: ',
           new Date(decoded.iat * 1000).toLocaleString()
         )
         console.info(
-          "Time Expire Token :: ",
+          'Time Expire Token :: ',
           new Date(decoded.exp * 1000).toLocaleString()
         )
-        console.info("Time Actually :: ", new Date(Date.now()).toLocaleString())
-        console.info("Valid :: ", date.getTime() > new Date().getTime())
+        console.info('Time Actually :: ', new Date(Date.now()).toLocaleString())
+        console.info('Valid :: ', date.getTime() > new Date().getTime())
         return date
       }
     } catch (err) {
@@ -85,7 +85,7 @@ export default class JwtService {
   /**
    * Valida el token almacenado
    */
-  isTokenExpired() {
+  isTokenExpired () {
     const date = this.getTokenExpirationDate()
     if (date === null) {
       return false

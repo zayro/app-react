@@ -2,11 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-// components
-import App from './App'
 import './assets/style/index.css'
 import * as serviceWorker from './serviceWorker'
 import store from './store/store'
+// components
+import App from './views/App'
 
 // StrictMode (from version 16.3)
 

@@ -13,20 +13,18 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import React, { useState } from 'react'
 // Store
-import { connect, useDispatch, useSelector } from 'react-redux'
-// Route
-import { Redirect } from 'react-router-dom'
+import { connect, useDispatch } from 'react-redux'
 // library
 import swal from 'sweetalert'
 import Loading from '../components/loading'
 import Auth from '../services/Auth'
 // Services
 import http from '../services/http'
-import jwt from '../services/jwt'
+import Jwt from '../services/jwt'
 // Actions
 import { addAuth, addConfig, addToken } from '../store/actions'
 
-const token = new jwt()
+const token = new Jwt()
 const instance = new Auth()
 
 function Copyright () {
@@ -36,13 +34,12 @@ function Copyright () {
       <Link color='inherit' href='https://material-ui.com/'>
         Your Website
       </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      {new Date().getFullYear()}.
     </Typography>
   )
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -66,7 +63,6 @@ const useStyles = makeStyles(theme => ({
 
 function SignIn () {
   console.log('ingresando al componente')
-  const config$ = useSelector(store => store.config)
 
   const dispatch = useDispatch()
 
@@ -86,15 +82,15 @@ function SignIn () {
     console.log('* ~ file: SignIn.js ~ line 112 ~ valueDefault', valueDefault)
     setOpen(!open)
   }
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     handlerLoad(true)
 
-    //setTimeout(() => {}, 9000)
+    // setTimeout(() => {}, 9000)
     http
       .request({
         method: 'post',
-        url: `/login`,
+        url: '/login',
         data: datos,
         headers: {
           Accept: 'application/json',
@@ -113,20 +109,20 @@ function SignIn () {
         instance.getAuth()
         swal({
           title: 'Exitoso!',
-          text: `ingreso exitosamente`,
+          text: 'ingreso exitosamente',
           icon: 'success',
           button: 'cerrar',
           timer: 3000
         })
 
-        //document.getElementById("envio").reset()
+        // document.getElementById("envio").reset()
       })
       .catch(function (error) {
         console.log(error)
         handlerLoad()
         swal({
           title: 'opps ',
-          text: `ocurrio un problema!`,
+          text: 'ocurrio un problema!',
           icon: 'error',
           button: 'cerrar',
           timer: 3000
@@ -136,20 +132,13 @@ function SignIn () {
     console.log('enviando datos...', datos)
   }
   // capture data to form
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     // console.log(event.target.name)
     // console.log(event.target.value)
     setDatos({
       ...datos,
       [event.target.name]: event.target.value
     })
-  }
-
-  if (config$.login) {
-    console.log(config$.login.status)
-    return <Redirect to='/welcome' />
-  } else {
-    console.log('user not login')
   }
 
   return (
@@ -185,10 +174,7 @@ function SignIn () {
             autoComplete='current-password'
             onChange={handleInputChange}
           />
-          <FormControlLabel
-            control={<Checkbox value='remember' color='primary' />}
-            label='Remember me'
-          />
+          <FormControlLabel control={<Checkbox value='remember' color='primary' />} label='Remember me' />
           <Button
             type='submit'
             fullWidth

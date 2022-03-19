@@ -17,7 +17,7 @@
   "editor.cursorBlinking": "expand",
   "prettier.withNodeModules": true,
   "prettier.jsxSingleQuote": true,
-  "turboConsoleLog.quote": "`",
+  "turboConsoleLog.quote": "'",
   "turboConsoleLog.insertEnclosingFunction": false,
   "turboConsoleLog.logMessagePrefix": "*",
   "editor.codeActionsOnSave": {
@@ -33,5 +33,24 @@
   "javascript.updateImportsOnFileMove.enabled": "prompt",
   "javascript.suggest.autoImports": true,
   "standard.autoFixOnSave": true,
-  "standard.treatErrorsAsWarnings": true
+  "standard.treatErrorsAsWarnings": true,
+  "cSpell.language": "en,es",
+  "git.repositoryScanIgnoredFolders": ["node_modules", "vendor"],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "node_modules": true
+  },
+  "glean.useExportDefault": true,
+  "glean.jsFilesExtensions": "js",
+  "glean.switchToTarget": true,
+  "cSpell.customDictionaries": {
+    "custom-dictionary-workspace": {
+      "name": "custom-dictionary-workspace",
+      "path": "${workspaceFolder:frontend}/.cspell/custom-dictionary-workspace.txt",
+      "addWords": true,
+      "scope": "workspace"
+    }
+  }
 }
