@@ -1,6 +1,5 @@
 {
   "editor.cursorStyle": "underline-thin",
-  "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "prettier.eslintIntegration": true,

@@ -1,14 +1,13 @@
 import { orange } from '@material-ui/core/colors'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import React from 'react'
-import { QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
-import { connect, useSelector } from 'react-redux'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+import { Outlet, useRouter } from '@tanstack/react-location'
+import React, { useMemo, useState } from 'react'
 import MenuNavbar from '../components/MenuNavbar'
-import { UserContext } from '../context/User'
-import RoutePath from '../route/index'
+import { dataUser } from '../context/provider/dataUser.js'
+import { UserContext } from '../context/UserContext'
+import LocalService from '../services/secureStorage'
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#2C3E50'
@@ -22,37 +21,46 @@ const theme = createMuiTheme({
   }
 })
 
-const queryCliente = new QueryClient({
-  defaultOptions: {
-    queries: { retry: 0, refetchOnWindowFocus: false }
-  }
-})
 function App () {
-  const config$ = useSelector((store) => store.config)
-  let menu
+  const instance = new LocalService()
+  let dataStorage
 
-  if (Object.prototype.hasOwnProperty.call(config$, 'login')) {
-    menu = <MenuNavbar> </MenuNavbar>
+  if (instance.getJsonValue('dataInfo')) {
+    console.log('%c load info Storage', 'color: yellow; font-size: 14px')
+    dataStorage = instance.getJsonValue('dataInfo')
+  } else {
+    dataStorage = dataUser
+    instance.setJsonValue('dataInfo', dataStorage)
   }
+
+  const [info, setInfo] = useState(dataStorage)
+
+  const value = useMemo(
+    () => ({
+      info,
+      setInfo
+    }),
+    [info]
+  )
+
+  const router = useRouter()
   return (
-    <UserContext.Provider
-      value={{
-        dataUser: {},
-        dataConf: {},
-        author: 'Marlon Zayro Arias Vargas'
-      }}
-    >
-      <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryCliente}>
-          {menu}
+    <>
+      <div
+        className={`text-3xl duration-100 delay-0 opacity-0 ${!!router.pending ?? 'delay-500 duration-300 opacity-40'}`}
+      />
 
-          <RoutePath />
-
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </ThemeProvider>
-    </UserContext.Provider>
+      <UserContext.Provider value={value}>
+        <ThemeProvider theme={theme}>
+          <MenuNavbar> </MenuNavbar>
+          {
+            // Load Route
+          }
+          <Outlet />
+        </ThemeProvider>
+      </UserContext.Provider>
+    </>
   )
 }
 
-export default connect()(App)
+export default App

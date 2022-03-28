@@ -13,13 +13,11 @@ export default class JwtService {
    * Get Token
    */
   getToken () {
-    const dataInfo = instance.getJsonValue('dataInfo')
-    console.log('* ~ file: jwt.js ~ line 18 ~ JwtService ~ dataInfo', dataInfo)
-
-    // dataInfo.hasOwnProperty("token")
-    // Object.prototype.hasOwnProperty.call(dataInfo, "token")
-
-    if (dataInfo !== null) {
+    if (
+      instance.getJsonValue('dataInfo') &&
+      Object.prototype.hasOwnProperty.call(instance.getJsonValue('dataInfo'), 'token')
+    ) {
+      const dataInfo = instance.getJsonValue('dataInfo')
       return dataInfo.token === '' ? null : dataInfo.token
     } else {
       return null
@@ -65,14 +63,8 @@ export default class JwtService {
 
         console.info('Token decoded :: ', decoded)
         console.info('Token decoded :: ', decoded.exp)
-        console.info(
-          'Time Created Token :: ',
-          new Date(decoded.iat * 1000).toLocaleString()
-        )
-        console.info(
-          'Time Expire Token :: ',
-          new Date(decoded.exp * 1000).toLocaleString()
-        )
+        console.info('Time Created Token :: ', new Date(decoded.iat * 1000).toLocaleString())
+        console.info('Time Expire Token :: ', new Date(decoded.exp * 1000).toLocaleString())
         console.info('Time Actually :: ', new Date(Date.now()).toLocaleString())
         console.info('Valid :: ', date.getTime() > new Date().getTime())
         return date

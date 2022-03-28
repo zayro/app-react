@@ -4,6 +4,10 @@ module.exports = {
     es2021: true,
     node: true
   },
+  globals: {
+    localStorage: true,
+    fetch: true
+  },
   extends: ['plugin:react/recommended', 'prettier', 'standard'],
   parserOptions: {
     ecmaFeatures: {

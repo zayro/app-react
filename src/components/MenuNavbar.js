@@ -13,19 +13,14 @@ import Typography from '@material-ui/core/Typography'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import MenuIcon from '@material-ui/icons/Menu'
+import { Link } from '@tanstack/react-location'
 import clsx from 'clsx'
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
-// import MailIcon from "@material-ui/icons/Mail"
-// import Button from "@material-ui/core/Button"
-import Auth from '../services/Auth'
-import { reset_config, reset_token } from '../store/actions'
 
 const width = window.innerWidth > 0 ? 600 : 240
 const drawerWidth = width
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex'
   },
@@ -86,12 +81,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function MenuNavbar () {
-  const history = useHistory()
   const classes = useStyles()
   const theme = useTheme()
 
-  const auth = new Auth()
-  const dispatch = useDispatch()
+  const auth = {
+    tokenValid: true,
+    menu: [{ menu: 'nuevo', link: 'menu', icon: 'card' }]
+  }
 
   const [open, setOpen] = React.useState(false)
 
@@ -105,14 +101,11 @@ export default function MenuNavbar () {
 
   const singOff = () => {
     // auth.signout()
-    history.push('/login')
-    dispatch(reset_token())
-    dispatch(reset_config())
   }
 
   if (!auth.tokenValid) {
     console.log('* ~ file: MenuNavbar.js ~ line 115 ~ auth.tokenValid', auth.tokenValid)
-    history.push('/login')
+
     return false
   }
 
@@ -164,7 +157,7 @@ export default function MenuNavbar () {
         <Divider />
 
         <List>
-          {auth.tokenDecode.menu.map((item, i) => (
+          {auth.menu.map((item, i) => (
             <ListItem key={i} button onClick={() => setOpen(false)}>
               <ListItemIcon>
                 <Icon>{item.icon}</Icon>

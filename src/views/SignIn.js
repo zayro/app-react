@@ -11,21 +11,18 @@ import Link from '@material-ui/core/Link'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import React, { useState } from 'react'
-// Store
-import { connect, useDispatch } from 'react-redux'
+import React, { useContext, useState } from 'react'
+// Route
+import { Redirect } from 'react-router-dom'
 // library
 import swal from 'sweetalert'
 import Loading from '../components/loading'
-import Auth from '../services/Auth'
+import { UserContext } from '../context/UserContext'
 // Services
 import http from '../services/http'
 import Jwt from '../services/jwt'
-// Actions
-import { addAuth, addConfig, addToken } from '../store/actions'
 
 const token = new Jwt()
-const instance = new Auth()
 
 function Copyright () {
   return (
@@ -64,8 +61,6 @@ const useStyles = makeStyles((theme) => ({
 function SignIn () {
   console.log('ingresando al componente')
 
-  const dispatch = useDispatch()
-
   // add style
   const classes = useStyles()
 
@@ -77,17 +72,18 @@ function SignIn () {
     password: ''
   })
 
+  const { info, setInfo } = useContext(UserContext)
+
   // use Function information
   const handlerLoad = (valueDefault = false) => {
-    console.log('* ~ file: SignIn.js ~ line 112 ~ valueDefault', valueDefault)
-    setOpen(!open)
+    setOpen(valueDefault)
   }
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     handlerLoad(true)
 
     // setTimeout(() => {}, 9000)
-    http
+    await http
       .request({
         method: 'post',
         url: '/login',
@@ -99,14 +95,14 @@ function SignIn () {
       })
       .then(function (response) {
         console.log(response)
-        handlerLoad()
-        dispatch(addToken(response.data.token))
-        delete response.data.token
-        dispatch(addConfig(response.data))
+        handlerLoad(false)
 
-        dispatch(addAuth({ auth: true }))
+        console.log('* ~ file: SignIn.js ~ line 101 ~ response.data', response.data)
+
+        setInfo({ ...info, dataUser: response.data })
+
         token.getToken()
-        instance.getAuth()
+
         swal({
           title: 'Exitoso!',
           text: 'ingreso exitosamente',
@@ -115,14 +111,16 @@ function SignIn () {
           timer: 3000
         })
 
+        return <Redirect to={{ pathname: '/home' }} />
+
         // document.getElementById("envio").reset()
       })
       .catch(function (error) {
         console.log(error)
         handlerLoad()
         swal({
-          title: 'opps ',
-          text: 'ocurrio un problema!',
+          title: 'Ups ',
+          text: 'ocurrió un problema!',
           icon: 'error',
           button: 'cerrar',
           timer: 3000
@@ -207,4 +205,4 @@ function SignIn () {
   )
 }
 
-export default connect()(SignIn)
+export { SignIn }

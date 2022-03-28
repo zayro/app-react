@@ -5,18 +5,18 @@ import ListUser from '../components/ListUsers'
 import Welcome from '../components/welcome'
 import dataGrid from '../demo/dataGrid'
 import dataTable from '../demo/dataTable'
-import Auth from '../services/Auth'
+import { AuthGuard } from '../services/Auth'
 import Jwt from '../services/jwt'
 // Views
 import Home from '../views/Home/Home'
 import BasicSearch from '../views/product/table'
-import SignIn from '../views/SignIn'
+import { SignIn } from '../views/SignIn'
 import SignUp from '../views/SignUp'
 
 const token = new Jwt()
-const instance = new Auth()
+const instance = new AuthGuard()
 
-const hasAccess = namePermission => {
+const hasAccess = (namePermission) => {
   // const permission = JSON.parse(token.getTokenDecode()).permissions
 
   const permission = token.getTokenDecode().permissions
@@ -24,7 +24,7 @@ const hasAccess = namePermission => {
   switch (namePermission.path) {
     case '/BasicSearch': {
       const validHome = ['admin', 'user', 'developer', 'guest']
-      return validHome.some(element => permission.includes(element))
+      return validHome.some((element) => permission.includes(element))
     }
     default:
       return true
@@ -39,7 +39,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => (hasAccess(rest) ? <Component {...props} /> : <Redirect to={{ pathname: '/login' }} />)}
+      render={(props) => (hasAccess(rest) ? <Component {...props} /> : <Redirect to={{ pathname: '/login' }} />)}
     />
   )
 }
@@ -63,4 +63,17 @@ const RoutePath = () => (
     </Switch>
   </div>
 )
-export default RoutePath
+
+const routes = [
+  { path: '/', element: <Home /> },
+  { path: '/login', element: <SignIn /> },
+  { path: '/SignUp', element: <SignUp /> },
+  { path: '/welcome', element: <Welcome /> },
+  { path: '/BasicSearch', element: <BasicSearch /> },
+  { path: '/ListUser', element: <ListUser /> },
+  { path: '/dataGrid', element: <dataGrid /> },
+  { path: '/dataTable', element: <dataTable /> },
+  { path: '/optional', element: <h1>optional</h1> }
+]
+
+export { RoutePath, routes }

@@ -1,6 +1,6 @@
 import JwtService from '../services/jwt'
 const jwtValidate = new JwtService()
-class authGuard {
+class AuthGuard {
   // let isAuthenticated = false;
 
   constructor () {
@@ -31,4 +31,4 @@ class authGuard {
   }
 }
 
-export default authGuard
+export { AuthGuard }
