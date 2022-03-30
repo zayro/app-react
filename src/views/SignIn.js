@@ -11,18 +11,17 @@ import Link from '@material-ui/core/Link'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import React, { useContext, useState } from 'react'
 // Route
-import { Redirect } from 'react-router-dom'
+import { useNavigate } from '@tanstack/react-location'
+import React, { useContext, useState } from 'react'
 // library
 import swal from 'sweetalert'
 import Loading from '../components/loading'
 import { UserContext } from '../context/UserContext'
+import { AuthContext } from '../context/AuthContext.js'
 // Services
 import http from '../services/http'
-import Jwt from '../services/jwt'
-
-const token = new Jwt()
+import jwtDecode from 'jwt-decode'
 
 function Copyright () {
   return (
@@ -73,6 +72,9 @@ function SignIn () {
   })
 
   const { info, setInfo } = useContext(UserContext)
+  const { auth, setAuth } = useContext(AuthContext)
+
+  const navigate = useNavigate()
 
   // use Function information
   const handlerLoad = (valueDefault = false) => {
@@ -93,15 +95,21 @@ function SignIn () {
           'Content-Type': 'application/json'
         }
       })
-      .then(function (response) {
-        console.log(response)
+      .then(async (response) => {
         handlerLoad(false)
 
         console.log('* ~ file: SignIn.js ~ line 101 ~ response.data', response.data)
 
-        setInfo({ ...info, dataUser: response.data })
+        const userInfo = {}
 
-        token.getToken()
+        const infoDecode = jwtDecode(response.data.token)
+
+        userInfo.information = infoDecode.information
+        userInfo.menu = infoDecode.menu
+        userInfo.permissions = infoDecode.permissions
+
+        setInfo({ ...info, dataUser: infoDecode })
+        setAuth({ ...auth, role: infoDecode.role, auth: true })
 
         swal({
           title: 'Exitoso!',
@@ -111,7 +119,7 @@ function SignIn () {
           timer: 3000
         })
 
-        return <Redirect to={{ pathname: '/home' }} />
+        return navigate({ to: '/welcome', replace: true })
 
         // document.getElementById("envio").reset()
       })
@@ -126,8 +134,6 @@ function SignIn () {
           timer: 3000
         })
       })
-
-    console.log('enviando datos...', datos)
   }
   // capture data to form
   const handleInputChange = (event) => {

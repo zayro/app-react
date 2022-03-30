@@ -1,23 +1,32 @@
-import React, { createContext, useMemo, useState } from 'react'
+import React, { createContext, useMemo, useState, useEffect } from 'react'
 import { dataUser } from './provider/dataUser.js'
+import LocalService from '../services/secureStorage'
 
-export const UserContext = createContext(dataUser)
+const instance = new LocalService()
+let dataStorage
 
-export const UserProvider = (props) => {
-  const [info, setInfo] = useState(dataUser)
+if (instance.getJsonValue('dataInfo')) {
+  dataStorage = instance.getJsonValue('dataInfo')
+  console.log('%c load info Storage', 'color: yellow; font-size: 14px', dataStorage)
+  // Show instance.getJsonValue('dataInfo')
+} else {
+  console.log('%c new info Storage', 'color: green; font-size: 14px', dataStorage)
+  dataStorage = dataUser
+  instance.setJsonValue('dataInfo', dataStorage)
+}
 
-  /*
-  {
-        data: info,
-        updateAuthor: (name) => {
-          setInfo({ ...info, author: name })
-        }
-      }
-  */
+export const UserContext = createContext(dataStorage)
 
-  const value = useMemo(() => ({ info, setInfo }), [info])
+export const UserProvider = ({ children }) => {
+  const [info, setInfo] = useState(dataStorage)
 
-  return <UserContext.Provider value={value}>{props.children}</UserContext.Provider>
+  useEffect(() => {
+    console.log('*****************************', info)
+    instance.setJsonValue('dataInfo', info)
+    instance.setJsonValueDefault('dataInfoTest', info)
+  }, [info])
+
+  return <UserContext.Provider value={{ info, setInfo }}>{children}</UserContext.Provider>
 }
 
 export function UserProviderFix () {

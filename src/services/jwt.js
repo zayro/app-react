@@ -12,16 +12,38 @@ export default class JwtService {
   /**
    * Get Token
    */
+
+  getTokenPromise () {
+    return new Promise((resolve, reject) => {
+      let dataInfo
+      if (instance.getJsonValue('dataInfo')) {
+        dataInfo = instance.getJsonValue('dataInfo')
+        if (
+          Object.prototype.hasOwnProperty.call(dataInfo, 'dataUser') &&
+          Object.prototype.hasOwnProperty.call(dataInfo.dataUser, 'token')
+        ) {
+          resolve(dataInfo.dataUser.token)
+        } else {
+          reject(new Error('No token'))
+        }
+      } else {
+        reject(new Error('No  DataInfo'))
+      }
+    })
+  }
+
   getToken () {
-    if (
-      instance.getJsonValue('dataInfo') &&
-      Object.prototype.hasOwnProperty.call(instance.getJsonValue('dataInfo'), 'token')
-    ) {
-      const dataInfo = instance.getJsonValue('dataInfo')
-      return dataInfo.token === '' ? null : dataInfo.token
-    } else {
-      return null
+    let dataInfo
+    if (instance.getJsonValue('dataInfo')) {
+      dataInfo = instance.getJsonValue('dataInfo')
+      if (Object.prototype.hasOwnProperty.call(dataInfo, 'dataUser')) {
+        if (Object.prototype.hasOwnProperty.call(dataInfo.dataUser, 'token')) {
+          return dataInfo.dataUser.token
+        }
+      }
     }
+
+    return false
   }
 
   getTokenDecode () {

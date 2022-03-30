@@ -30,7 +30,7 @@ export class LocalService {
   }
 
   // Set the json data to local
-  setJsonValueDefaul (key, value) {
+  setJsonValueDefault (key, value) {
     window.localStorage.setItem(key, JSON.stringify(value))
   }
 
@@ -46,7 +46,7 @@ export class LocalService {
 
   // Clear the local
   getJsonValue (key) {
-    return this.secureStorage.getItem(key)
+    return this.secureStorage.getItem(key) ? this.secureStorage.getItem(key) : false
   }
 
   clearToken () {

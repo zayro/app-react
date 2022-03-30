@@ -1,13 +1,15 @@
-import { createHashHistory, ReactLocation, Router } from '@tanstack/react-location'
+import { ReactLocation, Router } from '@tanstack/react-location'
 import { ReactLocationDevtools } from '@tanstack/react-location-devtools'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import { routes } from './route/'
 import * as serviceWorker from './serviceWorker'
 // components
 import App from './views/App'
+import { AuthProvider, AuthContext } from './context/AuthContext.js'
+
+import { role } from './route/role'
 
 const queryCliente = new QueryClient({
   defaultOptions: {
@@ -17,20 +19,49 @@ const queryCliente = new QueryClient({
 
 // StrictMode (from version 16.3)
 
-const history = createHashHistory()
-const location = new ReactLocation({ history })
+// const history = createHashHistory()
+const location = new ReactLocation()
 
-ReactDOM.render(
-  <QueryClientProvider client={queryCliente}>
-    <Router defaultPendingElement={<div>Cargando .....</div>} routes={routes} location={location}>
-      <App />
-      <ReactLocationDevtools position='bottom-right' />
-    </Router>
+const Security = () => {
+  const { getAuth } = useContext(AuthContext)
+  let pathRoute
 
-    <ReactQueryDevtools initialIsOpen={false} />
-  </QueryClientProvider>,
-  document.getElementById('root')
-)
+  useEffect(() => {
+    console.log('**************************', getAuth)
+  }, [getAuth])
+
+  const getRole = getAuth.role.toLowerCase()
+
+  if (role[getRole]) {
+    pathRoute = role[getRole]()
+  } else {
+    pathRoute = role.default()
+  }
+
+  return (
+    <>
+      <Router defaultPendingElement={<div>Cargando .....</div>} routes={pathRoute} location={location}>
+        <App />
+        <ReactLocationDevtools position='bottom-right' />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </Router>
+    </>
+  )
+}
+
+const Main = () => {
+  return (
+    <>
+      <AuthProvider>
+        <QueryClientProvider client={queryCliente}>
+          <Security />
+        </QueryClientProvider>
+      </AuthProvider>
+    </>
+  )
+}
+
+ReactDOM.render(<Main />, document.getElementById('root'))
 
 /*
 const rootElement = document.getElementById('root')

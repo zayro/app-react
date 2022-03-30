@@ -1,9 +1,11 @@
 import { Container } from '@material-ui/core'
 import React, { useContext, useEffect } from 'react'
 import { UserContext } from '../context/UserContext'
+import { AuthContext } from '../context/AuthContext'
 
 function Welcome () {
   const { info, setInfo } = useContext(UserContext)
+  const { getAuth } = useContext(AuthContext)
 
   console.log('* ~ file: welcome.js ~ line 7 ~ value', info)
 
@@ -19,6 +21,7 @@ function Welcome () {
       <div>
         <h1>Bienvenido</h1>
         <p>hola mundo</p>
+        <p>hola {'' + getAuth.auth} </p>
 
         <button onClick={setAuthor}> cambiar </button>
 

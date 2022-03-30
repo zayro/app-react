@@ -20,7 +20,7 @@
   "turboConsoleLog.insertEnclosingFunction": false,
   "turboConsoleLog.logMessagePrefix": "*",
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    //"source.organizeImports": true
     //"source.fixAll": true,
     //"fixAll.eslint": true,
     //"addMissingImports":true,

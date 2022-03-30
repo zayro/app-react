@@ -1,64 +1,58 @@
-import React, { useEffect } from "react"
-import MaterialTable from "material-table"
-//import CircularProgress from "@material-ui/core/CircularProgress"
-//import LinearProgress from "@material-ui/core/LinearProgress"
-import { useMutation, useQueryClient } from "react-query"
-
-// Store
-import { connect } from "react-redux"
-
-// Dialog
-import FormDialogProduct from "./formDialog"
-
+import { Container } from '@material-ui/core'
+import MaterialTable from 'material-table'
+import React, { useEffect } from 'react'
+// import CircularProgress from "@material-ui/core/CircularProgress"
+// import LinearProgress from "@material-ui/core/LinearProgress"
+import { useMutation, useQueryClient } from 'react-query'
 // Api Users
-import { useUsers, postUsers, putUsers, deleteUsers } from "../../api/users"
+import { deleteUsers, postUsers, putUsers, useUsers } from '../../api/users'
+import Loading from '../../components/loading'
+// Dialog
+import FormDialogProduct from './formDialog'
 
-import Loading from "../../components/loading"
-import { Container } from "@material-ui/core"
-
-function BasicSearch() {
+function BasicSearch () {
   const query = useUsers()
 
   const queryClient = useQueryClient()
 
   const [open, setOpen] = React.useState(false)
 
-  const [form, setForm] = React.useState("")
+  const [form, setForm] = React.useState('')
 
   const [datos, setDatos] = React.useState({
-    id: "",
-    nombre: "",
+    id: '',
+    nombre: ''
   })
 
   const insetrMutation = useMutation(
-    data => {
+    (data) => {
       return postUsers(data)
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("users")
+        queryClient.invalidateQueries('users')
       },
       onError: () => {
-        console.error("Error al enviar: postUsers ")
-      },
+        console.error('Error al enviar: postUsers ')
+      }
     }
   )
 
-  const handleClickInsert = data => {
+  const handleClickInsert = (data) => {
     insetrMutation.mutate(data)
   }
 
   const deleteMutation = useMutation(
-    data => {
+    (data) => {
       return deleteUsers(data)
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("users")
+        queryClient.invalidateQueries('users')
       },
       onError: () => {
-        console.error("Error al enviar: postUsers ")
-      },
+        console.error('Error al enviar: postUsers ')
+      }
     }
   )
 
@@ -67,48 +61,48 @@ function BasicSearch() {
   }
 
   const EditMutation = useMutation(
-    data => {
+    (data) => {
       return putUsers(data)
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("users")
+        queryClient.invalidateQueries('users')
       },
       onError: () => {
-        console.error("Error al enviar: postUsers ")
-      },
+        console.error('Error al enviar: postUsers ')
+      }
     }
   )
 
-  const handleClickUpdate = data => {
+  const handleClickUpdate = (data) => {
     EditMutation.mutate(data)
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     handleClose()
-    console.log("enviando datos handleSubmit...", datos)
+    console.log('enviando datos handleSubmit...', datos)
     handleClickInsert(datos)
   }
 
-  const handleSubmitEdit = event => {
+  const handleSubmitEdit = (event) => {
     event.preventDefault()
     handleClose()
-    console.log("enviando datos handleSubmitEdit ...", datos)
+    console.log('enviando datos handleSubmitEdit ...', datos)
     handleClickUpdate(datos)
   }
   // capture data to form
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     // console.log(event.target.name)
     // console.log(event.target.value)
     setDatos({
       ...datos,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     })
   }
 
   const handleClickOpen = (info, typeForm) => {
-    //setDatos({ ...datos, nombre: "logo" })
+    // setDatos({ ...datos, nombre: "logo" })
     setDatos(info)
     setForm(typeForm)
     setOpen(true)
@@ -119,7 +113,7 @@ function BasicSearch() {
   }
 
   useEffect(() => {
-    console.log("Render Aplication v2")
+    console.log('Render Aplication v2')
   }, [])
 
   if (query.isError) {
@@ -127,15 +121,15 @@ function BasicSearch() {
   }
 
   if (query.isLoading) {
-    return <Loading openLoad={true}></Loading>
+    return <Loading openLoad />
   }
 
   if (query.isFetching) {
-    return <Loading openLoad={true}></Loading>
+    return <Loading openLoad />
   }
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth='lg'>
       <div style={{ marginTop: 20 }}>
         <FormDialogProduct
           open={open}
@@ -145,81 +139,81 @@ function BasicSearch() {
           handleSubmit={handleSubmit}
           handleSubmitEdit={handleSubmitEdit}
           handleInputChange={handleInputChange}
-        ></FormDialogProduct>
+        />
 
         <MaterialTable
-          title="Basic Search Preview"
+          title='Basic Search Preview'
           columns={[
-            { title: "Name", field: "id" },
-            { title: "Surname", field: "nombre" },
+            { title: 'Name', field: 'id' },
+            { title: 'Surname', field: 'nombre' }
           ]}
           data={query.data.data}
           actions={[
             {
-              icon: "edit",
-              tooltip: "Edit",
+              icon: 'edit',
+              tooltip: 'Edit',
               onClick: (event, rowData) => {
-                console.log("You want to edit " + rowData.nombre)
+                console.log('You want to edit ' + rowData.nombre)
                 handleClickOpen(
                   {
                     ...datos,
                     id: rowData.id,
-                    nombre: rowData.nombre,
+                    nombre: rowData.nombre
                   },
-                  "update"
+                  'update'
                 )
-              },
+              }
             },
             {
-              icon: "delete",
-              tooltip: "Delete",
+              icon: 'delete',
+              tooltip: 'Delete',
               onClick: (event, rowData) => {
-                console.log("You want to delete " + rowData.nombre)
-                handleClickDelete("prueba", { id: rowData.id })
-              },
+                console.log('You want to delete ' + rowData.nombre)
+                handleClickDelete('prueba', { id: rowData.id })
+              }
             },
             {
               // eslint-disable-next-line react/display-name
-              icon: "add",
+              icon: 'add',
               isFreeAction: true,
               onClick: (event, rowData) => {
-                handleClickOpen({}, "insert")
-                console.log("You want to delete " + rowData.nombre)
-              },
+                handleClickOpen({}, 'insert')
+                console.log('You want to delete ' + rowData.nombre)
+              }
             },
             {
               // eslint-disable-next-line react/display-name
-              icon: "update",
+              icon: 'update',
               isFreeAction: true,
               onClick: (event, rowData) => {
                 query.refetch()
-                console.log("You want to delete " + rowData.nombre)
-              },
-            },
+                console.log('You want to delete ' + rowData.nombre)
+              }
+            }
           ]}
           options={{
             exportButton: true,
             search: true,
             filtering: true,
-            sorting: true,
+            sorting: true
           }}
           localization={{
             pagination: {
-              labelDisplayedRows: "{from}-{to} of {count}",
-              labelRowsSelect: "Registos",
+              labelDisplayedRows: '{from}-{to} of {count}',
+              labelRowsSelect: 'Registos'
             },
             toolbar: {
-              nRowsSelected: "{0} row(s) selected",
+              nRowsSelected: '{0} row(s) selected'
             },
             header: {
-              actions: "Eventos",
+              actions: 'Eventos'
             },
             body: {
-              emptyDataSourceMessage: "No hay Registros",
+              emptyDataSourceMessage: 'No hay Registros',
               filterRow: {
-                filterTooltip: "Filtro",
-              },
-            },
+                filterTooltip: 'Filtro'
+              }
+            }
           }}
         />
       </div>
@@ -227,4 +221,4 @@ function BasicSearch() {
   )
 }
 
-export default connect()(BasicSearch)
+export default BasicSearch

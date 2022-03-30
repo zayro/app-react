@@ -1,70 +1,18 @@
 import React from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
+
 import ListUser from '../components/ListUsers'
-// import Home from "../components/home"
 import Welcome from '../components/welcome'
-import dataGrid from '../demo/dataGrid'
-import dataTable from '../demo/dataTable'
-import { AuthGuard } from '../services/Auth'
-import Jwt from '../services/jwt'
+
 // Views
 import Home from '../views/Home/Home'
 import BasicSearch from '../views/product/table'
 import { SignIn } from '../views/SignIn'
 import SignUp from '../views/SignUp'
-
-const token = new Jwt()
-const instance = new AuthGuard()
-
-const hasAccess = (namePermission) => {
-  // const permission = JSON.parse(token.getTokenDecode()).permissions
-
-  const permission = token.getTokenDecode().permissions
-
-  switch (namePermission.path) {
-    case '/BasicSearch': {
-      const validHome = ['admin', 'user', 'developer', 'guest']
-      return validHome.some((element) => permission.includes(element))
-    }
-    default:
-      return true
-  }
-}
+import { UserTable } from '../views/User/index'
 
 // eslint-disable-next-line react/prop-types
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  console.log('Auth.getAuth();', instance.getAuth())
-  console.log('rest', rest.path)
-  console.log('guard.check', token.getTokenDecode().permissions)
-  return (
-    <Route
-      {...rest}
-      render={(props) => (hasAccess(rest) ? <Component {...props} /> : <Redirect to={{ pathname: '/login' }} />)}
-    />
-  )
-}
 
-const RoutePath = () => (
-  <div>
-    <Switch>
-      {/* Production Routes */}
-      <Route exact path='/' component={Home} />
-      <Route exact path='/login' component={SignIn} />
-      <Route exact path='/SignUp' component={SignUp} />
-      <Route exact path='/home' component={Home} />
-      <Route path='/about' component={Welcome} />
-      <Route path='/ListUser' component={ListUser} />
-      <PrivateRoute path='/welcome' component={Welcome} />
-      <PrivateRoute path='/BasicSearch' component={BasicSearch} />
-
-      {/* Dev Routes */}
-      <Route path='/dataGrid' component={dataGrid} />
-      <Route path='/dataTable' component={dataTable} />
-    </Switch>
-  </div>
-)
-
-const routes = [
+const admin = [
   { path: '/', element: <Home /> },
   { path: '/login', element: <SignIn /> },
   { path: '/SignUp', element: <SignUp /> },
@@ -72,8 +20,14 @@ const routes = [
   { path: '/BasicSearch', element: <BasicSearch /> },
   { path: '/ListUser', element: <ListUser /> },
   { path: '/dataGrid', element: <dataGrid /> },
-  { path: '/dataTable', element: <dataTable /> },
-  { path: '/optional', element: <h1>optional</h1> }
+  { path: '/reactTable', element: <UserTable /> },
+  { path: '*', element: <h1>Page Not Found</h1> }
 ]
 
-export { RoutePath, routes }
+const develop = [
+  { path: '/', element: <Home /> },
+  { path: '/login', element: <SignIn /> },
+  { path: '*', element: <h1>Page Not Found</h1> }
+]
+
+export { admin, develop }
