@@ -8,8 +8,8 @@ export default function Subscribe () {
           <div className='col-md-8'>
             <h3 className='subscribe-title'>Subscribe For Updates</h3>
             <p className='subscribe-text'>
-              Join our 1000+ subscribers and get access to the latest tools,
-              freebies, product announcements and much more!
+              Join our 1000+ subscribers and get access to the latest tools, freebies, product announcements and much
+              more!
             </p>
           </div>
           <div className='col-md-4 subscribe-btn-container'>

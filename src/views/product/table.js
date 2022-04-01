@@ -5,13 +5,13 @@ import React, { useEffect } from 'react'
 // import LinearProgress from "@material-ui/core/LinearProgress"
 import { useMutation, useQueryClient } from 'react-query'
 // Api Users
-import { deleteUsers, postUsers, putUsers, useUsers } from '../../api/users'
+import { deleteUsers, postUsers, putUsers, getUserQuery } from '../../api/Users'
 import Loading from '../../components/loading'
 // Dialog
 import FormDialogProduct from './formDialog'
 
 function BasicSearch () {
-  const query = useUsers()
+  const query = getUserQuery()
 
   const queryClient = useQueryClient()
 

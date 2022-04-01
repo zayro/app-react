@@ -2,7 +2,8 @@ import React from 'react'
 import Home from '../views/Home/Home'
 import BasicSearch from '../views/product/table'
 import { SignIn } from '../views/SignIn'
-import SignUp from '../views/SignUp'
+import { SignUp } from '../views/SignUp'
+import { SignOut } from '../views/SignOut'
 import { UserTable } from '../views/User/index'
 import Welcome from '../components/welcome'
 import ListUser from '../components/ListUsers'
@@ -12,6 +13,7 @@ export const role = {
     { path: '/', element: <Home /> },
     { path: '/login', element: <SignIn /> },
     { path: '/SignUp', element: <SignUp /> },
+    { path: '/SignOut', element: <SignOut /> },
     { path: '/welcome', element: <Welcome /> },
     { path: '/BasicSearch', element: <BasicSearch /> },
     { path: '/ListUser', element: <ListUser /> },
@@ -23,6 +25,7 @@ export const role = {
     { path: '/', element: <Home /> },
     { path: '/login', element: <SignIn /> },
     { path: '/SignUp', element: <SignUp /> },
+    { path: '/SignOut', element: <SignOut /> },
     { path: '/welcome', element: <Welcome /> },
     { path: '/BasicSearch', element: <BasicSearch /> },
     { path: '/ListUser', element: <ListUser /> },
@@ -34,6 +37,7 @@ export const role = {
     { path: '/', element: <Home /> },
     { path: '/login', element: <SignIn /> },
     { path: '/SignUp', element: <SignUp /> },
+    { path: '/SignOut', element: <SignOut /> },
     { path: '*', element: <h1>Page Not Found</h1> }
   ]
 }

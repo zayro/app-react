@@ -49,9 +49,15 @@ export class LocalService {
     return this.secureStorage.getItem(key) ? this.secureStorage.getItem(key) : false
   }
 
-  clearToken () {
+  clearAll () {
     return this.secureStorage.clear()
   }
+
+  removeItem (item) {
+    this.secureStorage.removeItem(item)
+  }
+
+  // removes the entry 'data'
 }
 
 export default LocalService

@@ -21,12 +21,11 @@ function Copyright () {
         Your Website
       </Link>
       {new Date().getFullYear()}
-      {'.'}
     </Typography>
   )
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -46,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function SignUp () {
+export function SignUp () {
   const classes = useStyles()
 
   return (
@@ -114,13 +113,7 @@ export default function SignUp () {
               />
             </Grid>
           </Grid>
-          <Button
-            type='submit'
-            fullWidth
-            variant='contained'
-            color='primary'
-            className={classes.submit}
-          >
+          <Button type='submit' fullWidth variant='contained' color='primary' className={classes.submit}>
             Sign Up
           </Button>
           <Grid container justifyContent='flex-end'>

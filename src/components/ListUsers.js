@@ -1,10 +1,10 @@
 import React from 'react'
-import { useUsers } from '../api/useUsers'
+import { useUsers } from '../api/UserQuery'
 
 function ListUser () {
   const query = useUsers()
-  console.log(`:rocket: ~ file: ListUsers.js ~ line 6 ~ ListUser ~ query`, query)
-  console.log(`:rocket: ~ file: ListUsers.js ~ line 6 ~ ListUser ~ query.data`, query.data)
+  console.log(':rocket: ~ file: ListUsers.js ~ line 6 ~ ListUser ~ query', query)
+  console.log(':rocket: ~ file: ListUsers.js ~ line 6 ~ ListUser ~ query.data', query.data)
 
   if (query.isError) {
     return <div> Error Cargando la Lista</div>
@@ -18,7 +18,7 @@ function ListUser () {
     <div>
       holi world
       <div>{query.isFetching ? 'Background Updating...' : ' '}</div>
-      {query.data.data.map(res => (
+      {query.data.data.map((res) => (
         <li key={res.id}>{res.email}</li>
       ))}
     </div>

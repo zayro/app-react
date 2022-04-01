@@ -1,3 +1,5 @@
+// React
+import React, { useContext, useState } from 'react'
 // Material Ui
 import Avatar from '@material-ui/core/Avatar'
 import Box from '@material-ui/core/Box'
@@ -13,15 +15,17 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 // Route
 import { useNavigate } from '@tanstack/react-location'
-import React, { useContext, useState } from 'react'
-// library
-import swal from 'sweetalert'
-import Loading from '../components/loading'
+// Context
 import { UserContext } from '../context/UserContext'
 import { AuthContext } from '../context/AuthContext.js'
 // Services
 import http from '../services/http'
+import { login } from '../api/Auth'
+// library
+import swal from 'sweetalert'
 import jwtDecode from 'jwt-decode'
+// Components
+import Loading from '../components/loading'
 
 function Copyright () {
   return (
@@ -57,8 +61,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function SignIn () {
-  console.log('ingresando al componente')
+const SignIn = () => {
+  console.log('********************** ingresando al componente **********************')
 
   // add style
   const classes = useStyles()
@@ -84,17 +88,7 @@ function SignIn () {
     event.preventDefault()
     handlerLoad(true)
 
-    // setTimeout(() => {}, 9000)
-    await http
-      .request({
-        method: 'post',
-        url: '/login',
-        data: datos,
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        }
-      })
+    await login({ datos })
       .then(async (response) => {
         handlerLoad(false)
 

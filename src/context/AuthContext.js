@@ -4,7 +4,7 @@ import LocalService from '../services/secureStorage'
 
 const dataAuth = {
   auth: false,
-  role: 'guest'
+  role: 'default'
 }
 
 const instance = new LocalService()
@@ -17,6 +17,7 @@ if (instance.getJsonValue('acceso')) {
   console.log('%c new auth Storage', 'color: green; font-size: 14px', dataStorageAuth)
   dataStorageAuth = dataAuth
   instance.setJsonValue('acceso', dataStorageAuth)
+  instance.setJsonValueDefault('accesoTest', dataStorageAuth)
 }
 
 export const AuthContext = createContext(dataStorageAuth)

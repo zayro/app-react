@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { useQuery } from 'react-query'
-// Load the full build.
+// Load Services
 import http from '../services/http'
 
 // const url = "https://reqres.in/api/users"
@@ -9,16 +9,6 @@ const url = '/general/select/prueba'
 const getUsers = async () => {
   const { data } = await http.get(url)
   return data
-}
-
-// eslint-disable-next-line no-unused-vars
-const postUserss = async () => {
-  const sentInfo = {
-    insert: 'prueba',
-    values: [{ id: '12', nombre: 'zayro' }]
-  }
-
-  return await http.post('/general/insert', sentInfo)
 }
 
 const postUsers = async (data) => {
@@ -54,7 +44,7 @@ const deleteUsers = async (deleteCondition) => {
   return await http.delete('/general/delete', sentInfo)
 }
 
-const useUsers = () => {
+const useGetUserQuery = () => {
   return useQuery('users', getUsers, {
     // staleTime: 60 * 1000, // 1 minute persistencia de datos
     // retryDelay: 4000,
@@ -63,4 +53,4 @@ const useUsers = () => {
   })
 }
 
-export { useUsers, postUsers, putUsers, deleteUsers }
+export { useGetUserQuery as getUserQuery, getUsers, postUsers, putUsers, deleteUsers }

@@ -13,9 +13,16 @@ import Typography from '@material-ui/core/Typography'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import MenuIcon from '@material-ui/icons/Menu'
-import { Link } from '@tanstack/react-location'
+
 import clsx from 'clsx'
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../context/UserContext'
+import { AuthContext } from '../context/AuthContext'
+
+// Route
+import { Link, useNavigate } from '@tanstack/react-location'
+// localstorage
+import LocalService from '../services/secureStorage'
 
 const width = window.innerWidth > 0 ? 600 : 240
 const drawerWidth = width
@@ -81,13 +88,12 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function MenuNavbar () {
+  const storage = new LocalService()
+  const { info, setInfo } = useContext(UserContext)
+  const { getAuth, setAuth } = useContext(AuthContext)
   const classes = useStyles()
   const theme = useTheme()
-
-  const auth = {
-    tokenValid: true,
-    menu: [{ menu: 'nuevo', link: 'menu', icon: 'card' }]
-  }
+  const navigate = useNavigate()
 
   const [open, setOpen] = React.useState(false)
 
@@ -100,14 +106,23 @@ export default function MenuNavbar () {
   }
 
   const singOff = () => {
-    // auth.signout()
+    console.log('**************** SHUTDOWN APP****************')
+    setInfo({ ...info, dataUser: {} })
+    setAuth({ ...getAuth, auth: false, role: 'default' })
+    storage.removeItem('acceso')
+
+    navigate({ to: '/', replace: true })
   }
 
-  if (!auth.tokenValid) {
-    console.log('* ~ file: MenuNavbar.js ~ line 115 ~ auth.tokenValid', auth.tokenValid)
+  const auth = { menu: [{ menu: '', link: '', icon: '' }] }
 
-    return false
+  if (getAuth.auth) {
+    auth.menu = info.dataUser.menu
+  } else {
+    return <></>
   }
+
+  console.log('* ~ file: MenuNavbar.js ~ line 118 ~ auth', auth)
 
   return (
     <div className={classes.root}>
