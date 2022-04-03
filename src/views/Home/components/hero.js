@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Hero () {
+const Hero = () => {
   return (
     <section id='hero'>
       <div className='hero-container'>
@@ -14,7 +14,7 @@ export default function Hero () {
             <span className='rotating'>beautiful graphics, functional websites, working mobile apps</span>
           </h2>
           <div className='actions'>
-            <a href='#about' className='btn-get-started'>
+            <a href='/login' className='btn-get-started'>
               Login
             </a>
             <a href='#services' className='btn-services'>
@@ -26,3 +26,5 @@ export default function Hero () {
     </section>
   )
 }
+
+export default Hero

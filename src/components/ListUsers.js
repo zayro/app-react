@@ -1,8 +1,8 @@
 import React from 'react'
-import { useUsers } from '../api/UserQuery'
+import { useUsersQuery } from '../api/UserQuery'
 
 function ListUser () {
-  const query = useUsers()
+  const query = useUsersQuery()
   console.log(':rocket: ~ file: ListUsers.js ~ line 6 ~ ListUser ~ query', query)
   console.log(':rocket: ~ file: ListUsers.js ~ line 6 ~ ListUser ~ query.data', query.data)
 

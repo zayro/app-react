@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff'
@@ -17,7 +17,7 @@ Loading.propTypes = {
   // handlerLoad: PropTypes.func,
 }
 
-export default function Loading ({ openLoad }) {
+function Loading ({ openLoad }) {
   const classes = useStyles()
   // const [open, setOpen] = React.useState(false)
 
@@ -39,3 +39,5 @@ export default function Loading ({ openLoad }) {
     </div>
   )
 }
+
+export default React.memo(Loading)

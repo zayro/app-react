@@ -1,5 +1,5 @@
 // React
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // Material Ui
 import Avatar from '@material-ui/core/Avatar'
 import Box from '@material-ui/core/Box'
@@ -15,29 +15,15 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 // Route
 import { useNavigate } from '@tanstack/react-location'
-// Context
-import { UserContext } from '../context/UserContext'
-import { AuthContext } from '../context/AuthContext.js'
-// Services
-import http from '../services/http'
-import { login } from '../api/Auth'
-// library
-import swal from 'sweetalert'
-import jwtDecode from 'jwt-decode'
+
+// Hook
+import useAuthHook from '../hook/AuthHook'
+
 // Components
 import Loading from '../components/loading'
+import { Copyright } from '../components/Copyright'
 
-function Copyright () {
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  )
-}
+import { constant } from '../i18n/es'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -62,72 +48,29 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const SignIn = () => {
-  console.log('********************** ingresando al componente **********************')
+  const { login, isLoginLoading, getAuth } = useAuthHook()
 
   // add style
   const classes = useStyles()
-
-  // use State
-  const [open, setOpen] = useState(false)
 
   const [datos, setDatos] = useState({
     username: '',
     password: ''
   })
 
-  const { info, setInfo } = useContext(UserContext)
-  const { auth, setAuth } = useContext(AuthContext)
-
   const navigate = useNavigate()
 
-  // use Function information
-  const handlerLoad = (valueDefault = false) => {
-    setOpen(valueDefault)
-  }
-  const handleSubmit = async (event) => {
+  useEffect(() => {
+    console.log('********************** ingresando al componente SignIn **********************')
+
+    if (getAuth?.auth) {
+      navigate({ to: '/welcome', replace: true })
+    }
+  }, [getAuth])
+
+  const handleSubmit = (event) => {
     event.preventDefault()
-    handlerLoad(true)
-
-    await login({ datos })
-      .then(async (response) => {
-        handlerLoad(false)
-
-        console.log('* ~ file: SignIn.js ~ line 101 ~ response.data', response.data)
-
-        const userInfo = {}
-
-        const infoDecode = jwtDecode(response.data.token)
-
-        userInfo.information = infoDecode.information
-        userInfo.menu = infoDecode.menu
-        userInfo.permissions = infoDecode.permissions
-
-        setInfo({ ...info, dataUser: infoDecode })
-        setAuth({ ...auth, role: infoDecode.role, auth: true })
-
-        swal({
-          title: 'Exitoso!',
-          text: 'ingreso exitosamente',
-          icon: 'success',
-          button: 'cerrar',
-          timer: 3000
-        })
-
-        return navigate({ to: '/welcome', replace: true })
-
-        // document.getElementById("envio").reset()
-      })
-      .catch(function (error) {
-        console.log(error)
-        handlerLoad()
-        swal({
-          title: 'Ups ',
-          text: 'ocurrió un problema!',
-          icon: 'error',
-          button: 'cerrar',
-          timer: 3000
-        })
-      })
+    login({ datos })
   }
   // capture data to form
   const handleInputChange = (event) => {
@@ -181,7 +124,7 @@ const SignIn = () => {
             className={classes.submit}
             onClick={handleSubmit}
           >
-            Send
+            {constant.BUTTON.send}
           </Button>
           <Grid container>
             <Grid item xs>
@@ -200,7 +143,7 @@ const SignIn = () => {
       <Box mt={8}>
         <Copyright />
       </Box>
-      <Loading openLoad={open}> </Loading>
+      <Loading openLoad={isLoginLoading}> </Loading>
     </Container>
   )
 }

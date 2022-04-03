@@ -7,13 +7,14 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import * as serviceWorker from './serviceWorker'
 // components
 import App from './views/App'
+// context
 import { AuthProvider, AuthContext } from './context/AuthContext.js'
-
+// roue
 import { role } from './route/role'
 
 const queryCliente = new QueryClient({
   defaultOptions: {
-    queries: { retry: 0, refetchOnWindowFocus: false }
+    //     queries: { retry: 0, refetchOnWindowFocus: false }
   }
 })
 
@@ -27,7 +28,7 @@ const Security = () => {
   let pathRoute
 
   useEffect(() => {
-    console.log('**************************', getAuth)
+    console.log('*********** Security ***************', getAuth)
   }, [getAuth])
 
   const getRole = getAuth.role.toLowerCase()

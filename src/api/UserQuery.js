@@ -2,16 +2,14 @@ import axios from 'axios'
 import { useQuery } from 'react-query'
 
 const getUsers = async () => {
-  setTimeout(async () => {
-    const { data } = await axios.get('https://reqres.in/api/users?page=2')
-    return data
-  }, 90500)
+  const { data } = await axios.get('https://reqres.in/api/users?page=2')
+  return data
 }
 
-const useUsers = () => {
+const useUsersQuery = () => {
   return useQuery('users', getUsers, {
-    staleTime: 1000,
-    notifyOnChangePropsExclusions: ['isStale']
+    notifyOnChangePropsExclusions: ['isStale'],
+    staleTime: 1000 * 60 * 1
   })
 }
-export { useUsers }
+export { useUsersQuery }

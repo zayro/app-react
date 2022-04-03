@@ -1,7 +1,7 @@
 // Load Services
 import http from '../services/http'
 
-const login = async ({ datos }) => {
+const loginService = async ({ datos }) => {
   return await http.request({
     method: 'post',
     url: '/login',
@@ -13,4 +13,4 @@ const login = async ({ datos }) => {
   })
 }
 
-export { login }
+export { loginService }

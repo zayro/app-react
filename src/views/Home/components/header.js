@@ -6,10 +6,6 @@ export default function Header () {
     <header id='header'>
       <div className='container'>
         <div id='logo' className='pull-left'>
-          {/*             <a href="#hero">
-              <img src="Home/img/logo.png" alt="" title / >
-            </a> */}
-          {/* Descomenta abajo si prefieres usar una imagen de texto */}
           <h3>WebApp</h3>
         </div>
         <nav id='nav-menu-container'>

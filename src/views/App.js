@@ -2,8 +2,9 @@ import React from 'react'
 import { orange } from '@material-ui/core/colors'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { Outlet, useRouter } from '@tanstack/react-location'
+// component
 import MenuNavbar from '../components/MenuNavbar'
-
+// provider
 import { UserProvider } from '../context/UserContext'
 
 const theme = createTheme({

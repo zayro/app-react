@@ -13,12 +13,11 @@ import Typography from '@material-ui/core/Typography'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import MenuIcon from '@material-ui/icons/Menu'
-
 import clsx from 'clsx'
 import React, { useContext } from 'react'
+// Context
 import { UserContext } from '../context/UserContext'
 import { AuthContext } from '../context/AuthContext'
-
 // Route
 import { Link, useNavigate } from '@tanstack/react-location'
 // localstorage
@@ -122,8 +121,6 @@ export default function MenuNavbar () {
     return <></>
   }
 
-  console.log('* ~ file: MenuNavbar.js ~ line 118 ~ auth', auth)
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -182,6 +179,8 @@ export default function MenuNavbar () {
               </Link>
             </ListItem>
           ))}
+          <Link to='ListUser'>ListUsers</Link>
+          <Link to='welcome'>Welcome</Link>
         </List>
 
         {/* {JSON.stringify(auth.tokenDecode.menu)} */}
