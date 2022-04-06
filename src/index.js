@@ -18,8 +18,6 @@ const queryCliente = new QueryClient({
   }
 })
 
-// StrictMode (from version 16.3)
-
 // const history = createHashHistory()
 const location = new ReactLocation()
 

@@ -1,25 +1,12 @@
 import React from 'react'
-import { orange } from '@material-ui/core/colors'
-import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+
 import { Outlet, useRouter } from '@tanstack/react-location'
 // component
 import MenuNavbar from '../components/MenuNavbar'
 // provider
 import { UserProvider } from '../context/UserContext'
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#2C3E50'
-    },
-    secondary: {
-      main: '#1ABC9C'
-    }
-  },
-  status: {
-    danger: orange
-  }
-})
+// Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App () {
   const router = useRouter()
@@ -28,13 +15,8 @@ function App () {
   return (
     <>
       <UserProvider>
-        <ThemeProvider theme={theme}>
-          <MenuNavbar> </MenuNavbar>
-          {
-            // Load Route
-          }
-          <Outlet />
-        </ThemeProvider>
+        <MenuNavbar> </MenuNavbar>
+        <Outlet />
       </UserProvider>
     </>
   )

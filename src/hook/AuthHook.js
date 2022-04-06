@@ -44,6 +44,8 @@ export default function useAuthHook () {
             button: 'cerrar',
             timer: 3000
           })
+
+          document.body.style.backgroundImage = 'none'
         })
         .catch((err) => {
           setState({ loading: false, error: true, auth: false })
