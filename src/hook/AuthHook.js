@@ -31,7 +31,7 @@ export default function useAuthHook () {
           userInfo.permissions = infoDecode.permissions
 
           setState({ loading: false, error: false, auth: true })
-          setInfo({ ...info, dataUser: infoDecode })
+          setInfo({ ...info, dataUser: infoDecode, dataConf: { token: response.data.token } })
           setAuth({
             role: infoDecode.role,
             auth: true

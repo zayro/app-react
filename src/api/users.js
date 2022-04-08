@@ -6,6 +6,8 @@ import http from '../services/http'
 // const url = "https://reqres.in/api/users"
 const url = '/general/select/prueba'
 
+// Request
+
 const getUsers = async () => {
   const { data } = await http.get(url)
   return data
@@ -46,7 +48,7 @@ const deleteUsers = async (deleteCondition) => {
 
 const useGetUserQuery = () => {
   return useQuery('users', getUsers, {
-    // staleTime: 60 * 1000, // 1 minute persistencia de datos
+    staleTime: 60 * 1000 * 5 // 1 minute persistencia de datos
     // retryDelay: 4000,
     // initialData: [],
     // notifyOnChangePropsExclusions: ["isStale"],

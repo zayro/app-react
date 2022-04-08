@@ -13,9 +13,9 @@ let token
 if (instance.getJsonValue('dataInfo')) {
   console.log(instance.getJsonValue('dataInfo'))
 
-  if (Object.prototype.hasOwnProperty.call(instance.getJsonValue('dataInfo'), 'token')) {
+  if (Object.prototype.hasOwnProperty.call(instance.getJsonValue('dataInfo'), 'dataConf')) {
+    token = instance.getJsonValue('dataInfo').dataConf?.token
     console.log('existe token')
-    token = ''
 
     http = axios.create({
       baseURL: URL,
@@ -75,7 +75,10 @@ http.interceptors.response.use(
   },
   (error) => {
     // Do something with response error
-    console.log(' *********** Handler Error *********** ')
+    console.error(' *********** Handler Error *********** ')
+    if (error.response.status === 401) {
+      window.location.href = '/SignOut'
+    }
 
     return Promise.reject(error)
   }

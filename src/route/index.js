@@ -6,9 +6,9 @@ import Welcome from '../components/welcome'
 // Views
 import Home from '../views/Home/Home'
 import BasicSearch from '../views/product/table'
-import { SignIn } from '../views/SignIn'
+import { SignIn } from '../views/SignIn/SignIn'
 import { SignUp } from '../views/SignUp'
-import { UserTable } from '../views/User/index'
+import { UserTable } from '../demo/User/index'
 
 // eslint-disable-next-line react/prop-types
 

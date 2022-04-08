@@ -14,7 +14,7 @@ import { role } from './route/role'
 
 const queryCliente = new QueryClient({
   defaultOptions: {
-    //     queries: { retry: 0, refetchOnWindowFocus: false }
+    queries: { retry: 0, refetchOnWindowFocus: false }
   }
 })
 

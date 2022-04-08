@@ -1,12 +1,14 @@
 import React from 'react'
 import Home from '../views/Home/Home'
-import BasicSearch from '../views/product/table'
-import { SignIn } from '../views/SignIn'
-import { SignUp } from '../views/SignUp'
-import { SignOut } from '../views/SignOut'
-import { UserTable } from '../views/User/index'
+
 import Welcome from '../components/welcome'
 import ListUser from '../components/ListUsers'
+
+// Pages
+import BasicSearch from '../views/products/table'
+import { SignIn } from '../views/SignIn/SignIn'
+import { SignUp } from '../views/SignUp'
+import { SignOut } from '../views/SignOut'
 
 import { Error404 } from '../views/404/404'
 
@@ -20,7 +22,7 @@ export const role = {
     { path: '/BasicSearch', element: <BasicSearch /> },
     { path: '/ListUser', element: <ListUser /> },
     { path: '/dataGrid', element: <dataGrid /> },
-    { path: '/reactTable', element: <UserTable /> },
+
     { path: '*', element: <Error404 /> }
   ],
   developer: () => [
@@ -32,7 +34,7 @@ export const role = {
     { path: '/BasicSearch', element: <BasicSearch /> },
     { path: '/ListUser', element: <ListUser /> },
     { path: '/dataGrid', element: <dataGrid /> },
-    { path: '/reactTable', element: <UserTable /> },
+
     { path: '*', element: <Error404 /> }
   ],
   default: () => [

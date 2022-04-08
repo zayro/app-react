@@ -5,14 +5,14 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from '@tanstack/react-location'
 
 // Hook
-import useAuthHook from '../hook/AuthHook'
+import useAuthHook from '../../hook/AuthHook'
 
-import './index.css'
+import './SignIn.css'
 
 // Components
-import Loading from '../components/loading'
+import Loading from '../../components/loading'
 
-import { constant } from '../i18n/es'
+import { constant } from '../../i18n/es'
 
 const SignIn = () => {
   const { login, isLoginLoading, getAuth } = useAuthHook()
@@ -30,7 +30,7 @@ const SignIn = () => {
     if (getAuth?.auth) {
       navigate({ to: '/welcome', replace: true })
     }
-  }, [getAuth])
+  }, [getAuth, navigate])
 
   const handleSubmit = (event) => {
     event.preventDefault()

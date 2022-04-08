@@ -10,7 +10,6 @@ function SignOut () {
 
   setInfo({ ...info, dataUser: {} })
   setAuth({ ...getAuth, role: {}, auth: false })
-  window.localStorage.clear()
 
   const navigate = useNavigate()
 
