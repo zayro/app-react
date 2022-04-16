@@ -130,7 +130,7 @@ export const Error404 = () => {
           <div className='error-message'>
             <h2>Not Found.</h2>
             <p>
-              <span>This page doesn't exist.</span>
+              <span>This page doesn&#39;t exist.</span>
             </p>
           </div>
         </div>

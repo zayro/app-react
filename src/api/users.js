@@ -47,8 +47,9 @@ const deleteUsers = async (deleteCondition) => {
 }
 
 const useGetUserQuery = () => {
-  return useQuery('users', getUsers, {
+  return useQuery(['users'], getUsers, {
     staleTime: 60 * 1000 * 5 // 1 minute persistencia de datos
+    // cacheTime: 10
     // retryDelay: 4000,
     // initialData: [],
     // notifyOnChangePropsExclusions: ["isStale"],

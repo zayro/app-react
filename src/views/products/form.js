@@ -47,6 +47,7 @@ function FormDialogProduct ({ open, form, datos, handleClose, handleSubmitEdit }
               type='text'
               name='nombre'
               id='nombre'
+              className='form-control'
               placeholder={errors.nombre?.type === 'required' ? 'Este campo es requerido *' : 'Digite Campo'}
             />
           </Modal.Body>

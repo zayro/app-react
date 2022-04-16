@@ -4,16 +4,24 @@ import { AuthContext } from '../context/AuthContext'
 // Route
 import { useNavigate } from '@tanstack/react-location'
 
-function SignOut () {
-  const { info, setInfo } = React.useContext(UserContext)
-  const { getAuth, setAuth } = React.useContext(AuthContext)
+// Provider
+import { dataUser } from '../context/provider/dataUser'
 
-  setInfo({ ...info, dataUser: {} })
-  setAuth({ ...getAuth, role: {}, auth: false })
+function SignOut () {
+  const { setInfo } = React.useContext(UserContext)
+  const { getAuth, setAuth } = React.useContext(AuthContext)
 
   const navigate = useNavigate()
 
-  navigate({ to: '/', replace: true })
+  React.useEffect(() => {
+    console.log('********************** ingresando al componente SignOut **********************')
+    setInfo(dataUser)
+    setAuth({ auth: false, role: 'default' })
+
+    if (!getAuth?.auth) {
+      navigate({ to: '/login', replace: true })
+    }
+  }, [getAuth, navigate])
 
   return (
     <>

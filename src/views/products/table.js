@@ -1,15 +1,16 @@
 import React, { useEffect, useCallback } from 'react'
 
-import { useMutation, useQueryClient } from 'react-query'
+// import { useQueryClient } from 'react-query'
 // Api Users
-import { deleteUsers, postUsers, putUsers, getUserQuery, EditMutation } from '../../api/Users'
+import { deleteUsers, postUsers, putUsers, getUserQuery } from '../../api/Users'
 import Loading from '../../components/loading'
 // Dialog
 import FormDialogProduct from './form'
 
 import $ from 'jquery'
-import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css'
+
 import 'datatables.net'
+import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css'
 import 'datatables.net-bs5/js/dataTables.bootstrap5.min.js'
 import 'datatables.net-buttons-bs5'
 import 'datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css'
@@ -19,6 +20,8 @@ import 'datatables.net-scroller-bs5'
 import 'datatables.net-select-bs5'
 import 'datatables.net-buttons/js/buttons.html5.min.js'
 import 'datatables.net-buttons/js/buttons.print.min.js'
+import 'datatables.net-buttons/js/buttons.colVis.min.js'
+import 'datatables.net-buttons/js/buttons.flash.min.js'
 import 'datatables.net-staterestore-bs5'
 
 /*
@@ -29,8 +32,6 @@ $.DataTable = require('datatables.net')
 function BasicSearch () {
   const query = getUserQuery()
 
-  const queryClient = useQueryClient()
-
   const [open, setOpen] = React.useState(false)
 
   const [form, setForm] = React.useState('')
@@ -40,58 +41,34 @@ function BasicSearch () {
     nombre: ''
   })
 
-  const insertMutation = useMutation(
-    (data) => {
-      return postUsers(data)
-    },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries('users')
-      },
-      onError: (e) => {
-        console.error('Error al enviar: postUsers ', e)
-      }
-    }
-  )
-
   const handleClickInsert = (data) => {
-    insertMutation.mutate(data)
-  }
-
-  const deleteMutation = useMutation(
-    (data) => {
-      return deleteUsers(data)
-    },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries('users')
-      },
-      onError: () => {
+    postUsers(data)
+      .then(() => {
+        query.refetch()
+      })
+      .catch(() => {
         console.error('Error al enviar: postUsers ')
-      }
-    }
-  )
+      })
+  }
 
   const handleClickDelete = (table, where) => {
-    deleteMutation.mutate({ table, where })
+    deleteUsers({ table, where })
+      .then(() => {
+        query.refetch()
+      })
+      .catch(() => {
+        console.error('Error al enviar: postUsers ')
+      })
   }
 
-  const EditMutation = useMutation(
-    (data) => {
-      return putUsers(data)
-    },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries('users')
-      },
-      onError: () => {
-        console.error('Error al enviar: postUsers ')
-      }
-    }
-  )
-
   const handleClickUpdate = (data) => {
-    EditMutation.mutate(data)
+    putUsers(data)
+      .then(() => {
+        query.refetch()
+      })
+      .catch(() => {
+        console.error('Error al enviar: postUsers ')
+      })
   }
 
   const handleSubmit = (event) => {
@@ -136,7 +113,7 @@ function BasicSearch () {
             visible: true,
             searchable: false,
             className: 'dt-center',
-            width: '80px',
+            // width: '80px',
             render: function (data, type, full) {
               return `
             <div class="text-center">
@@ -168,11 +145,11 @@ function BasicSearch () {
         colReorder: true,
         fixedHeader: true,
         scrollY: 500,
-
         dom:
           "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
           "<'row'<'col-sm-12'tr>>" +
           "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>",
+        // dom: 'Bfrtilp',
         buttons: [
           {
             extend: 'copy',
@@ -190,6 +167,14 @@ function BasicSearch () {
           {
             extend: 'csv',
             className: 'btn '
+          },
+          {
+            extend: 'pdf',
+            className: 'btn '
+          },
+          {
+            extend: 'pdfHtml5',
+            messageTop: 'PDF created by PDFMake with Buttons for DataTables.'
           },
           {
             text: '<a><i  class="fa fa-print"></i><a/> Documento',

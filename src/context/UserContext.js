@@ -1,6 +1,8 @@
-import React, { createContext, useMemo, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { dataUser } from './provider/dataUser.js'
 import LocalService from '../services/secureStorage'
+
+import PropTypes from 'prop-types'
 
 const instance = new LocalService()
 let dataStorage
@@ -16,6 +18,7 @@ if (instance.getJsonValue('dataInfo')) {
 }
 
 export const UserContext = createContext(dataStorage)
+UserContext.displayName = 'UserContext'
 
 export const UserProvider = ({ children }) => {
   const [info, setInfo] = useState(dataStorage)
@@ -29,10 +32,15 @@ export const UserProvider = ({ children }) => {
   return <UserContext.Provider value={{ info, setInfo }}>{children}</UserContext.Provider>
 }
 
-export function UserProviderFix () {
+UserProvider.propTypes = {
+  children: PropTypes.node.isRequired
+}
+
+/* export function UserProviderFix () {
   const [info, setInfo] = useState([])
 
   const value = useMemo(() => ({ info, setInfo }), [info])
 
   return <UserContext.Provider value={value} />
 }
+ */

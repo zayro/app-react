@@ -2,6 +2,8 @@ import React, { createContext, useState, useEffect } from 'react'
 
 import LocalService from '../services/secureStorage'
 
+import PropTypes from 'prop-types'
+
 const dataAuth = {
   auth: false,
   role: 'default'
@@ -21,6 +23,7 @@ if (instance.getJsonValue('acceso')) {
 }
 
 export const AuthContext = createContext(dataStorageAuth)
+AuthContext.displayName = 'AuthContext'
 
 export const AuthProvider = ({ children }) => {
   const [getAuth, setAuth] = useState(dataStorageAuth)
@@ -32,4 +35,8 @@ export const AuthProvider = ({ children }) => {
   }, [getAuth])
 
   return <AuthContext.Provider value={{ getAuth, setAuth }}>{children}</AuthContext.Provider>
+}
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired
 }

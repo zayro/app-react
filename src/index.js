@@ -1,7 +1,7 @@
 import { ReactLocation, Router } from '@tanstack/react-location'
 import { ReactLocationDevtools } from '@tanstack/react-location-devtools'
 import React, { useContext, useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import * as serviceWorker from './serviceWorker'
@@ -60,12 +60,9 @@ const Main = () => {
   )
 }
 
-ReactDOM.render(<Main />, document.getElementById('root'))
-
-/*
-const rootElement = document.getElementById('root')
-ReactDOM.render(<App />, rootElement)
-*/
+const container = document.getElementById('root')
+const root = createRoot(container)
+root.render(<Main />)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

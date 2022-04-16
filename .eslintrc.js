@@ -13,7 +13,5 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: ['react'],
-  rules: {
-    'multiline-ternary': 'never'
-  }
+  rules: {}
 }
