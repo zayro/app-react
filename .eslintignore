@@ -4,4 +4,6 @@
 
 mongoDB/*
 build/*
-public/*
+public/**
+src/lib/**
+src/lib/**/*.js

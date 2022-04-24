@@ -16,7 +16,9 @@ function App () {
     <>
       <UserProvider>
         <MenuNavbar> </MenuNavbar>
-        <Outlet />
+        <div className='container-fluid mt-5 pt-5'>
+          <Outlet />
+        </div>
       </UserProvider>
     </>
   )

@@ -9,9 +9,12 @@ import BasicSearch from '../views/products/table'
 import { SignIn } from '../views/SignIn/SignIn'
 import { SignUp } from '../views/SignUp'
 import { SignOut } from '../views/SignOut'
+import { ConfigUser } from '../views/Admin/ConfigUser/ConfigUser'
 
+// Pages General
 import { Error404 } from '../views/404/404'
 
+// NOTE - This is the main navigation object
 export const role = {
   admin: () => [
     { path: '/', element: <Home /> },
@@ -22,6 +25,7 @@ export const role = {
     { path: '/BasicSearch', element: <BasicSearch /> },
     { path: '/ListUser', element: <ListUser /> },
     { path: '/dataGrid', element: <dataGrid /> },
+    { path: '/config', element: <ConfigUser /> },
 
     { path: '*', element: <Error404 /> }
   ],
@@ -34,6 +38,7 @@ export const role = {
     { path: '/BasicSearch', element: <BasicSearch /> },
     { path: '/ListUser', element: <ListUser /> },
     { path: '/dataGrid', element: <dataGrid /> },
+    { path: '/config', element: <ConfigUser /> },
 
     { path: '*', element: <Error404 /> }
   ],

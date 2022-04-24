@@ -5,6 +5,9 @@ import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import * as serviceWorker from './serviceWorker'
+
+import './style/global.css'
+
 // components
 import App from './views/App'
 // context

@@ -77,3 +77,14 @@ This section has moved here: <https://facebook.github.io/create-react-app/docs/t
 - `sass ./style.scss ./style.css`
 
 - <https://ed.team/blog/personaliza-el-scroll-de-tu-web-solo-con-css>
+
+## React Design
+
+- <https://ant.design>
+- <https://blueprintjs.com/>
+- <https://react-bootstrap.netlify.app/getting-started/introduction>
+- <https://react.semantic-ui.com/usage>
+- <http://react-toolbox.io/#/>
+- <https://evergreen.segment.com/introduction/getting-started>
+- <https://rsuitejs.com/components/uploader/>
+- <https://www.primefaces.org/designer/primereact>

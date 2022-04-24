@@ -1,4 +1,4 @@
-jQuery(document).ready(function ($) {
+$(document).ready(function ($) {
   // Preloader
   $(window).on('load', function () {
     $('#preloader')

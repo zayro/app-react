@@ -13,5 +13,6 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: ['react'],
-  rules: {}
+  ignorePatterns: ['./src/lib/**/*.js', '**/vendor/*.js'],
+  rules: { 'react/no-unescaped-entities': 0 }
 }

@@ -1,5 +1,7 @@
 import Navbar from 'react-bootstrap/Navbar'
 
+import Avatar from '@mui/material/Avatar'
+import Stack from '@mui/material/Stack'
 import { Container, Offcanvas, Nav } from 'react-bootstrap'
 import React, { useContext, useState } from 'react'
 // Icon
@@ -15,6 +17,35 @@ import LocalService from '../services/secureStorage'
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+function stringToColor (string) {
+  let hash = 0
+  let i
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash)
+  }
+
+  let color = '#'
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff
+    color += `00${value.toString(16)}`.slice(-2)
+  }
+  /* eslint-enable no-bitwise */
+
+  return color
+}
+
+function stringAvatar (name) {
+  return {
+    sx: {
+      bgcolor: stringToColor(name)
+    },
+    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
+  }
+}
 
 export default function MenuNavbar () {
   const storage = new LocalService()
@@ -47,14 +78,14 @@ export default function MenuNavbar () {
 
   return (
     <>
-      <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+      <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark' fixed='top'>
         <Container fluid>
           <Nav.Link onClick={handleShow} className='d-inline-block  align-top'>
             <span style={{ color: 'white', fontSize: '20px' }}>
               <MdMenu />
             </span>
           </Nav.Link>
-          <Navbar.Brand href='#home'>App React</Navbar.Brand>
+          <Navbar.Brand href='#home'>App </Navbar.Brand>
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
 
           <Navbar.Collapse id='responsive-navbar-nav'>
@@ -78,11 +109,24 @@ export default function MenuNavbar () {
             placement='start'
             show={show}
             onHide={handleClose}
+            className='shadow-sm  bg-body rounded'
           >
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title id='offcanvasNavbarLabel'>
-                <p className='text-center'> Menu</p>
-              </Offcanvas.Title>
+              <Offcanvas.Title id='offcanvasNavbarLabel'>{/*  <p className='text-center'> Menu</p> */}</Offcanvas.Title>
+
+              <Stack direction='column' justifyContent='center' alignItems='center' spacing={2}>
+                <p className='text-center'>
+                  <strong>{/* Menu */}</strong>
+                </p>
+                <div className='mx-auto text-center'>
+                  <Avatar
+                    {...stringAvatar(information.first_name + ' ' + information.last_name)}
+                    sx={{ width: 100, height: 100 }}
+                  />
+                </div>
+                <p>{information.first_name + ' ' + information.last_name}</p>
+                <hr />
+              </Stack>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className='justify-content-end flex-grow-1 pe-3'>
