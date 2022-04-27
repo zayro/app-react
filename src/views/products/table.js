@@ -3,7 +3,7 @@ import React, { useEffect, useCallback } from 'react'
 // import { useQueryClient } from 'react-query'
 // Api Users
 import { deleteUsers, postUsers, putUsers, getUserQuery } from '../../api/Users'
-import Loading from '../../components/loading'
+import { Loading } from '../../components/loading'
 // Dialog
 import FormDialogProduct from './form'
 

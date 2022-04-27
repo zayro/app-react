@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Outlet, useRouter } from '@tanstack/react-location'
 // component
 import MenuNavbar from '../components/MenuNavbar'
+import { Loading } from '../components/loading'
 // provider
 import { UserProvider } from '../context/UserContext'
 // Bootstrap
@@ -12,13 +13,28 @@ function App () {
   const router = useRouter()
   console.log('* ~ file: App.js ~ line 26 ~ router', router)
 
+  const [onlineStatus, setOnlineStatus] = useState(false)
+  console.log('* ~ onlineStatus', onlineStatus)
+
+  useEffect(() => {
+    window.addEventListener('offline', () => {
+      setOnlineStatus(true)
+    })
+    window.addEventListener('online', () => {
+      setOnlineStatus(false)
+    })
+
+    window.addEventListener('resize', () => {
+      console.log(window.innerWidth, window.innerHeight)
+    })
+  }, [])
+
   return (
     <>
+      <Loading openLoad={onlineStatus} color='#FFFFFF' text='Not Internet Disconected App' bgcolor='rgba(0, 0, 0, 1)' />
       <UserProvider>
         <MenuNavbar> </MenuNavbar>
-        <div className='container-fluid mt-5 pt-5'>
-          <Outlet />
-        </div>
+        <Outlet />
       </UserProvider>
     </>
   )

@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import * as serviceWorker from './serviceWorker'
 
-import './style/global.css'
+import { Loading } from './components/loading'
 
 // components
 import App from './views/App'
@@ -42,7 +42,16 @@ const Security = () => {
 
   return (
     <>
-      <Router defaultPendingElement={<div>Cargando .....</div>} routes={pathRoute} location={location}>
+      <Router
+        defaultPendingElement={
+          <div className='container'>
+            {' Cargando ...'}
+            <Loading openLoad />
+          </div>
+        }
+        routes={pathRoute}
+        location={location}
+      >
         <App />
         <ReactLocationDevtools position='bottom-right' />
         <ReactQueryDevtools initialIsOpen={false} />

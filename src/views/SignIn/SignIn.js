@@ -10,7 +10,7 @@ import useAuthHook from '../../hook/AuthHook'
 import './SignIn.css'
 
 // Components
-import Loading from '../../components/loading'
+import { Loading } from '../../components/loading'
 
 import { constant } from '../../i18n/es'
 

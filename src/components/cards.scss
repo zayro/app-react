@@ -1,0 +1,115 @@
+:root {
+    --bs-blue: #03a9f4;
+    --bs-indigo: #25476a;
+    --bs-purple: #ab47bc;
+    --bs-pink: #f06292;
+    --bs-red: #df5645;
+    --bs-orange: #fa9f1b;
+    --bs-yellow: #ffe405;
+    --bs-green: #9fcc2e;
+    --bs-teal: #26a69a;
+    --bs-cyan: #0dcaf0;
+    --bs-white: #fff;
+    --bs-gray: #cbd0d8;
+    --bs-gray-dark: #9ea2a8;
+    --bs-gray-100: #f9fafc;
+    --bs-gray-200: #f3f5f9;
+    --bs-gray-300: #edf1f6;
+    --bs-gray-400: #e7ecf3;
+    --bs-gray-500: #e1e7f0;
+    --bs-gray-600: #cbd0d8;
+    --bs-gray-700: #b4b9c0;
+    --bs-gray-800: #9ea2a8;
+    --bs-gray-900: #878b90;
+    --bs-primary: #25476a;
+    --bs-secondary: #26a69a;
+    --bs-success: #9fcc2e;
+    --bs-info: #03a9f4;
+    --bs-warning: #fa9f1b;
+    --bs-danger: #df5645;
+    --bs-light: #e1e7f0;
+    --bs-dark: #373c43;
+    --bs-primary-rgb: 37, 71, 106;
+    --bs-secondary-rgb: 38, 166, 154;
+    --bs-success-rgb: 159, 204, 46;
+    --bs-info-rgb: 3, 169, 244;
+    --bs-warning-rgb: 250, 159, 27;
+    --bs-danger-rgb: 223, 86, 69;
+    --bs-light-rgb: 225, 231, 240;
+    --bs-dark-rgb: 55, 60, 67;
+    --bs-white-rgb: 255, 255, 255;
+    --bs-black-rgb: 55, 60, 67;
+    --bs-body-rgb: 117, 134, 143;
+    --bs-font-sans-serif: "Poppins", "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-font-size: 0.75rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+    --bs-body-color: #75868f;
+    --bs-body-bg: #edf1f6;
+}
+
+.fondo {
+    background-color: #edf1f6;
+}
+
+.card-img-widget {
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    display: inline-block;
+    text-decoration: inherit;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.card {
+    box-shadow: 0 1rem 1rem -0.75rem rgb(105 96 215 / 18%);
+}
+
+.card:not([class*="border-"]) {
+    border: 0;
+}
+
+.progress {
+    display: flex;
+    height: 0.5rem;
+    overflow: hidden;
+    font-size: 0.5625rem;
+    background-color: rgba(55, 60, 67, 0.075);
+    border-radius: 0.4375rem;
+    box-shadow: inset 0 1px 2px rgba(55, 60, 67, 0.075);
+}
+
+.progress-md {
+    height: 0.25rem;
+}
+
+.btn-link {
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: #026e9f;
+    text-decoration: underline;
+}
+
+.btn-link:focus {
+    text-decoration: underline;
+}
+
+.btn-link.disabled,
+.btn-link:disabled {
+    color: #cbd0d8;
+}
+
+.dropdown-item {
+    border-radius: 0.21875rem;
+    margin-bottom: 0.15rem;
+}
