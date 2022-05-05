@@ -4,7 +4,6 @@ import React, { useContext, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import * as serviceWorker from './serviceWorker'
 
 import { Loading } from './components/loading'
 
@@ -14,6 +13,9 @@ import App from './views/App'
 import { AuthProvider, AuthContext } from './context/AuthContext.js'
 // roue
 import { role } from './route/role'
+
+// serviceWorker
+import * as serviceWorkerRegistration from './serviceWorkerRegistration.js'
 
 const queryCliente = new QueryClient({
   defaultOptions: {
@@ -53,8 +55,13 @@ const Security = () => {
         location={location}
       >
         <App />
-        <ReactLocationDevtools position='bottom-right' />
-        <ReactQueryDevtools initialIsOpen={false} />
+
+        {process.env.ENVIRONMEN === 'development' ?? (
+          <>
+            <ReactLocationDevtools position='bottom-right' />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </>
+        )}
       </Router>
     </>
   )
@@ -76,7 +83,15 @@ const container = document.getElementById('root')
 const root = createRoot(container)
 root.render(<Main />)
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister()
+serviceWorkerRegistration.register({
+  onUpdate: async (registration) => {
+    // Corremos este código si hay una nueva versión de nuestra app
+    // Detalles en: https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
+    if (registration && registration.waiting) {
+      await registration.unregister()
+      registration.waiting.postMessage({ type: 'SKIP_WAITING' })
+      // Des-registramos el SW para recargar la página y obtener la nueva versión. Lo cual permite que el navegador descargue lo nuevo y que invalida la cache que tenía previamente.
+      window.location.reload()
+    }
+  }
+})

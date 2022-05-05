@@ -1,9 +1,10 @@
+import React, { useContext, useState, useEffect } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 
 import Avatar from '@mui/material/Avatar'
 import Stack from '@mui/material/Stack'
 import { Container, Offcanvas, Nav } from 'react-bootstrap'
-import React, { useContext, useState } from 'react'
+
 // Icon
 import { MdMenu, MdKeyboardArrowRight } from 'react-icons/md'
 import { RiShutDownLine } from 'react-icons/ri'
@@ -54,8 +55,43 @@ export default function MenuNavbar () {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+  const [isReadyForInstall, setIsReadyForInstall] = useState(false)
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    console.log('* ~ isReadyForInstall', isReadyForInstall)
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+      // Prevent the mini-infobar from appearing on mobile.
+      event.preventDefault() // Prevents prompt display
+      console.log('👍', 'beforeinstallprompt', event)
+      // Stash the event so it can be triggered later.
+
+      window.deferredPrompt = event
+      // Remove the 'hidden' class from the install button container.
+      setIsReadyForInstall(true)
+    })
+  }, [])
+  async function downloadApp () {
+    console.log('👍', 'butInstall-clicked')
+    const promptEvent = window.deferredPrompt
+    if (!promptEvent) {
+      // The deferred prompt isn't available.
+      console.log('oops, no prompt event guardado en window', 'The deferred prompt isnt available.')
+      return
+    }
+    // Show the install prompt.
+    promptEvent.prompt()
+    // Log the result
+    const result = await promptEvent.userChoice
+    console.log('👍', 'userChoice', result)
+    // Reset the deferred prompt variable, since
+    // prompt() can only be called once.
+    window.deferredPrompt = null
+    // Hide the install button.
+    setIsReadyForInstall(false)
+  }
 
   const singOff = () => {
     console.log('**************** SHUTDOWN APP****************')
@@ -90,8 +126,9 @@ export default function MenuNavbar () {
 
           <Navbar.Collapse id='responsive-navbar-nav'>
             <Nav className='me-auto'>
-              <Nav.Link href='#features'>Features</Nav.Link>
-              <Nav.Link href='#pricing'>Pricing</Nav.Link>
+              {/* <Nav.Link href='#features'>Welcome</Nav.Link>
+              <Nav.Link href='#pricing'>Pricing</Nav.Link> */}
+              <button onClick={downloadApp}> Install </button>
             </Nav>
             <Nav>
               <Nav.Link onClick={singOff} className='d-inline-block align-top'>

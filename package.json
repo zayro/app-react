@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -41,6 +42,7 @@
     "react": "^18.0.0",
     "react-bootstrap": "^2.2.2",
     "react-datepicker": "^4.7.0",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^18.0.0",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.29.0",
@@ -64,7 +66,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:env": "env-cmd -f ./.env npm run build",
+    "start:env": "env-cmd -f ./.env.dev npm run start"
   },
   "eslintConfig": {
     "extends": "react-app",
@@ -89,6 +93,7 @@
   },
   "devDependencies": {
     "@tanstack/react-location-devtools": "^3.4.4",
+    "env-cmd": "^10.1.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^16.0.3",
@@ -99,6 +104,11 @@
     "redux-devtools": "^3.5.0",
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.50.0",
-    "standard": "^16.0.4"
+    "standard": "^16.0.4",
+    "workbox-core": "^6.5.3",
+    "workbox-expiration": "^6.5.3",
+    "workbox-precaching": "^6.5.3",
+    "workbox-routing": "^6.5.3",
+    "workbox-strategies": "^6.5.3"
   }
 }

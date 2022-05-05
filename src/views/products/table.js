@@ -23,6 +23,9 @@ import 'datatables.net-buttons/js/buttons.print.min.js'
 import 'datatables.net-buttons/js/buttons.colVis.min.js'
 import 'datatables.net-buttons/js/buttons.flash.min.js'
 import 'datatables.net-staterestore-bs5'
+import 'jszip/dist/jszip.min.js'
+import 'pdfmake/build/pdfmake.min.js'
+import 'pdfmake/build/vfs_fonts.js'
 
 /*
 const $ = require('jquery')

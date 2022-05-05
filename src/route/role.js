@@ -11,6 +11,11 @@ import { SignUp } from '../views/SignUp'
 import { SignOut } from '../views/SignOut'
 import { ConfigUser } from '../views/Admin/ConfigUser/ConfigUser'
 
+// Components
+import { Panels } from '../components/Panels'
+import { Cards } from '../components/Cards'
+import { Buttons } from '../components/Buttons'
+
 // Pages General
 import { Error404 } from '../views/404/404'
 
@@ -39,6 +44,9 @@ export const role = {
     { path: '/ListUser', element: <ListUser /> },
     { path: '/dataGrid', element: <dataGrid /> },
     { path: '/config', element: <ConfigUser /> },
+    { path: '/Panels', element: <Panels /> },
+    { path: '/Cards', element: <Cards /> },
+    { path: '/Buttons', element: <Buttons /> },
 
     { path: '*', element: <Error404 /> }
   ],

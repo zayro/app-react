@@ -1,3 +1,4 @@
+import React from 'react'
 import { styled, Button } from '@mui/material'
 
 export const ButtonError = styled(Button)({
@@ -25,3 +26,69 @@ export const ButtonError = styled(Button)({
     boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
   }
 })
+
+export const Buttons = () => {
+  return (
+    <>
+      <div className='container-fluid mt-5 pt-5 fondo'>
+        <div className='row mb-5'>
+          <div className='col-md-3 mb-3'>
+            <button type='button' className='btn btn-primary'>
+              Primary
+            </button>
+            <button type='button' className='btn btn-secondary'>
+              Secondary
+            </button>
+            <button type='button' className='btn btn-success'>
+              Success
+            </button>
+            <button type='button' className='btn btn-danger'>
+              Danger
+            </button>
+            <button type='button' className='btn btn-warning'>
+              Warning
+            </button>
+            <button type='button' className='btn btn-info'>
+              Info
+            </button>
+            <button type='button' className='btn btn-light'>
+              Light
+            </button>
+            <button type='button' className='btn btn-dark'>
+              Dark
+            </button>
+            <button type='button' className='btn btn-link'>
+              Link
+            </button>
+          </div>
+          <div className='col-md-3 mb-3'>
+            <button type='button' className='btn btn-outline-primary'>
+              Primary
+            </button>
+            <button type='button' className='btn btn-outline-secondary'>
+              Secondary
+            </button>
+            <button type='button' className='btn btn-outline-success'>
+              Success
+            </button>
+            <button type='button' className='btn btn-outline-danger'>
+              Danger
+            </button>
+            <button type='button' className='btn btn-outline-warning'>
+              Warning
+            </button>
+            <button type='button' className='btn btn-outline-info'>
+              Info
+            </button>
+            <button type='button' className='btn btn-outline-light'>
+              Light
+            </button>
+            <button type='button' className='btn btn-outline-dark'>
+              Dark
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
