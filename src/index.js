@@ -30,6 +30,11 @@ const Security = () => {
   const { getAuth } = useContext(AuthContext)
   let pathRoute
 
+  const environment = process.env.NODE_ENV
+
+  console.log('*********** ENVIRONMENT ***************', process.env.REACT_APP_ENVIRONMENT)
+  console.log('*********** ENVIRONMENT ***************', process.env.NODE_ENV)
+
   useEffect(() => {
     console.log('*********** Security ***************', getAuth)
   }, [getAuth])
@@ -56,7 +61,7 @@ const Security = () => {
       >
         <App />
 
-        {process.env.ENVIRONMEN === 'development' ?? (
+        {environment === 'development' && (
           <>
             <ReactLocationDevtools position='bottom-right' />
             <ReactQueryDevtools initialIsOpen={false} />
@@ -83,15 +88,10 @@ const container = document.getElementById('root')
 const root = createRoot(container)
 root.render(<Main />)
 
-serviceWorkerRegistration.register({
-  onUpdate: async (registration) => {
-    // Corremos este código si hay una nueva versión de nuestra app
-    // Detalles en: https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
-    if (registration && registration.waiting) {
-      await registration.unregister()
-      registration.waiting.postMessage({ type: 'SKIP_WAITING' })
-      // Des-registramos el SW para recargar la página y obtener la nueva versión. Lo cual permite que el navegador descargue lo nuevo y que invalida la cache que tenía previamente.
-      window.location.reload()
-    }
-  }
-})
+console.log('* ~ process.env.ENVIRONMENT ', process.env.NODE_ENV)
+
+if (process.env.NODE_ENV !== 'development' && typeof process.env.NODE_ENV !== 'undefined') {
+  serviceWorkerRegistration.register()
+} else {
+  serviceWorkerRegistration.unregister()
+}

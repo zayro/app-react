@@ -8,5 +8,6 @@ public/**
 public/*.js
 src/lib/**
 src/lib/**/*.js
-src/serviceWorker.js
-
+src/service-worker.js
+node_modules/*
+bower_components/*

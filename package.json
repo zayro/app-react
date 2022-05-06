@@ -9,9 +9,9 @@
     "@material-ui/icons": "^4.5.1",
     "@mui/material": "^5.6.1",
     "@tanstack/react-location": "^3.7.4",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
     "animate.css": "^4.1.1",
     "axios": "^0.21.1",
     "bootstrap": "^5.1.3",
@@ -67,8 +67,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:env": "env-cmd -f ./.env npm run build",
-    "start:env": "env-cmd -f ./.env.dev npm run start"
+    "build:env": "env-cmd --verbose -f .env npm run build",
+    "start:env": "env-cmd --verbose -f .env.dev npm run start"
   },
   "eslintConfig": {
     "extends": "react-app",
@@ -80,7 +80,7 @@
     "public/**",
     "public/*.js",
     "src/lib/**/*.js",
-    "src/serviceWorker.js"
+    "src/service-worker.js"
   ],
   "standard": {
     "ignore": [
@@ -99,6 +99,9 @@
       "last 1 safari version"
     ]
   },
+  "overrides": {
+    "autoprefixer": "10.4.5"
+  },
   "devDependencies": {
     "@tanstack/react-location-devtools": "^3.4.4",
     "env-cmd": "^10.1.0",
@@ -113,10 +116,17 @@
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.50.0",
     "standard": "^16.0.4",
-    "workbox-core": "^6.5.3",
-    "workbox-expiration": "^6.5.3",
-    "workbox-precaching": "^6.5.3",
-    "workbox-routing": "^6.5.3",
-    "workbox-strategies": "^6.5.3"
+    "workbox-background-sync": "^5.1.4",
+    "workbox-broadcast-update": "^5.1.4",
+    "workbox-cacheable-response": "^5.1.4",
+    "workbox-core": "^5.1.4",
+    "workbox-expiration": "^5.1.4",
+    "workbox-google-analytics": "^5.1.4",
+    "workbox-navigation-preload": "^5.1.4",
+    "workbox-precaching": "^5.1.4",
+    "workbox-range-requests": "^5.1.4",
+    "workbox-routing": "^5.1.4",
+    "workbox-strategies": "^5.1.4",
+    "workbox-streams": "^5.1.4"
   }
 }

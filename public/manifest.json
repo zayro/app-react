@@ -123,6 +123,12 @@
       "sizes": "192x192"
     },
     {
+      "src": "img/icons/ios/192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
       "src": "img/icons/ios/256.png",
       "type": "image/png",
       "sizes": "256x256"

@@ -8,12 +8,12 @@ import Hero from './components/hero'
 import Services from './components/Services'
 import Subscribe from './components/Subscribe'
 import Team from './components/Team'
+import { Helmet } from 'react-helmet'
 
 import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 window.$ = $
-// import { Helmet } from 'react-helmet'
 
 export function AddLibrary (urlOfTheLibrary) {
   const script = document.createElement('script')
@@ -37,6 +37,7 @@ export default function Home () {
     AddCss(process.env.PUBLIC_URL + '/Home/lib/bootstrap/css/bootstrap.min.css')
 
     AddLibrary(process.env.PUBLIC_URL + '/Home/lib/jquery/jquery.min.js')
+    AddLibrary(process.env.PUBLIC_URL + '/Home/lib/bootstrap/js/bootstrap.min.js')
     AddLibrary(process.env.PUBLIC_URL + '/Home/lib/superfish/hoverIntent.js')
     AddLibrary(process.env.PUBLIC_URL + '/Home/lib/superfish/superfish.min.js')
     AddLibrary(process.env.PUBLIC_URL + '/Home/lib/morphext/morphext.min.js')
@@ -55,6 +56,11 @@ export default function Home () {
   }, [])
   return (
     <>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Home</title>
+        <meta name='Description' content='Content Maint' />
+      </Helmet>
       <div id='preloader' />
       {/* =============  Hero Section  =============== */}
       <Hero />

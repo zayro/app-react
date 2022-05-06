@@ -11,7 +11,7 @@
   "editor.wordWrap": "wordWrapColumn",
   "editor.renderWhitespace": "all",
   "files.associations": {
-    "src/*.js": "javascriptreact"
+    "*.js": "javascriptreact"
   },
   "editor.cursorBlinking": "expand",
   "prettier.withNodeModules": true,

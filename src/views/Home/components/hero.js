@@ -4,7 +4,11 @@ const Hero = () => {
   const [isReadyForInstall, setIsReadyForInstall] = useState(false)
 
   useEffect(() => {
-    console.log('* ~ isReadyForInstall', isReadyForInstall)
+    window.addEventListener('appinstalled', (event) => {
+      console.log('👍', 'appinstalled', event)
+      // Clear the deferredPrompt so it can be garbage collected
+      window.deferredPrompt = null
+    })
 
     window.addEventListener('beforeinstallprompt', (event) => {
       // Prevent the mini-infobar from appearing on mobile.
@@ -57,9 +61,12 @@ const Hero = () => {
             <a href='#services' className='btn-services'>
               SignUp
             </a>
-            <a href='#services' className='btn-services'>
-              {isReadyForInstall && <button onClick={downloadApp}> Install </button>}
-            </a>
+
+            {isReadyForInstall && (
+              <a href='#services' className='btn-services'>
+                <button onClick={downloadApp}> Install </button>
+              </a>
+            )}
           </div>
         </div>
       </div>
