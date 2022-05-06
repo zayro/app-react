@@ -77,8 +77,16 @@
     }
   },
   "eslintIgnore": [
-    "src/lib/**/*.js"
+    "public/**",
+    "public/*.js",
+    "src/lib/**/*.js",
+    "src/serviceWorker.js"
   ],
+  "standard": {
+    "ignore": [
+      "public/*.js"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",

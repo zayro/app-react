@@ -1,0 +1,5 @@
+build/*
+public/**
+src/lib/**
+src/lib/**/*.js
+src/serviceWorker.js

@@ -5,5 +5,8 @@
 mongoDB/*
 build/*
 public/**
+public/*.js
 src/lib/**
 src/lib/**/*.js
+src/serviceWorker.js
+

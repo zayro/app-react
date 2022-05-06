@@ -15,7 +15,7 @@ import { AuthProvider, AuthContext } from './context/AuthContext.js'
 import { role } from './route/role'
 
 // serviceWorker
-import * as serviceWorkerRegistration from './serviceWorkerRegistration.js'
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 
 const queryCliente = new QueryClient({
   defaultOptions: {

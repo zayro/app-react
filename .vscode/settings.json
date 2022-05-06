@@ -11,7 +11,7 @@
   "editor.wordWrap": "wordWrapColumn",
   "editor.renderWhitespace": "all",
   "files.associations": {
-    "*.js": "javascriptreact"
+    "src/*.js": "javascriptreact"
   },
   "editor.cursorBlinking": "expand",
   "prettier.withNodeModules": true,
@@ -51,5 +51,8 @@
       "addWords": true,
       "scope": "workspace"
     }
-  }
+  },
+  "errorLens.excludePatterns": ["[\"public/*.js\"]", "[\"public/*.{js}\"]"],
+  "errorLens.excludeBySource": ["[\"public\"]"],
+  "errorLens.exclude": ["[\"public\"]"]
 }

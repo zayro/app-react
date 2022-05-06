@@ -90,4 +90,7 @@ This section has moved here: <https://facebook.github.io/create-react-app/docs/t
 - <https://www.primefaces.org/designer/primereact>
 
 
-npx localtunnel --port 8000
+- npx localtunnel --port 8000
+- vercel
+- workbox wizard
+- workbox generateSW workbox-config.js
