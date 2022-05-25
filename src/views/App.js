@@ -25,13 +25,23 @@ function App () {
     })
 
     window.addEventListener('resize', () => {
-      console.log(window.innerWidth, window.innerHeight)
+      console.log('innerWidth', window.innerWidth, 'innerHeight', window.innerHeight)
     })
+
+    window.onload = function () {
+      console.log(' window.onload ')
+    }
   }, [])
 
   return (
     <>
-      <Loading openLoad={onlineStatus} color='#FFFFFF' text='Not Internet Disconected App' bgcolor='rgba(0, 0, 0, 1)' />
+      <Loading
+        openLoad={onlineStatus}
+        color='#FFFFFF'
+        text='Not Internet Disconected App'
+        bgcolor='rgba(0, 0, 0, 1)'
+        handlerLoad={setOnlineStatus}
+      />
       <UserProvider>
         <MenuNavbar> </MenuNavbar>
         <Outlet />

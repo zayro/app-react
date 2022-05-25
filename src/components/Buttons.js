@@ -30,9 +30,9 @@ export const ButtonError = styled(Button)({
 export const Buttons = () => {
   return (
     <>
-      <div className='container-fluid mt-5 pt-5 fondo'>
-        <div className='row mb-5'>
-          <div className='col-md-3 mb-3'>
+      <div className='container-fluid mt-5 pt-5  justify-content-md-center '>
+        <div className='row justify-content-md-center mb-5'>
+          <div className='md-6 mb-6 lg-12'>
             <button type='button' className='btn btn-primary'>
               Primary
             </button>
@@ -61,7 +61,8 @@ export const Buttons = () => {
               Link
             </button>
           </div>
-          <div className='col-md-3 mb-3'>
+          <hr />
+          <div className='md-6 mb-6 lg-12'>
             <button type='button' className='btn btn-outline-primary'>
               Primary
             </button>

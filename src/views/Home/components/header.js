@@ -1,12 +1,13 @@
-import { Link } from '@tanstack/react-location'
 import React from 'react'
+import { Link } from '@tanstack/react-location'
+import 'csshake/dist/csshake.min.css'
 
 export default function Header () {
   return (
     <header id='header'>
       <div className='container'>
         <div id='logo' className='pull-left'>
-          <h3>WebApp</h3>
+          <h3 className='shake-slow text-white '>WebApp</h3>
         </div>
         <nav id='nav-menu-container'>
           <ul className='nav-menu'>

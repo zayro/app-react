@@ -88,8 +88,6 @@ const container = document.getElementById('root')
 const root = createRoot(container)
 root.render(<Main />)
 
-console.log('* ~ process.env.ENVIRONMENT ', process.env.NODE_ENV)
-
 if (process.env.NODE_ENV !== 'development' && typeof process.env.NODE_ENV !== 'undefined') {
   serviceWorkerRegistration.register()
 } else {

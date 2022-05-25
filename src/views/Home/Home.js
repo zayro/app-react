@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import About from './components/About'
 import Briefcase from './components/Briefcase'
 import Contact from './components/Contact'
@@ -30,12 +30,14 @@ export function AddCss (urlOfTheLibrary) {
 }
 
 export default function Home () {
+  const [timeOut, setTimeOut] = useState(true)
+
   useEffect(() => {
-    /* eslint-disable */
+    // Add Library Css
     AddCss(process.env.PUBLIC_URL + '/Home/lib/animate-css/animate.min.css')
     AddCss(process.env.PUBLIC_URL + '/Home/css/style.css')
-    AddCss(process.env.PUBLIC_URL + '/Home/lib/bootstrap/css/bootstrap.min.css')
-
+    // AddCss(process.env.PUBLIC_URL + '/Home/lib/bootstrap/css/bootstrap.min.css')
+    // Add Library Js
     AddLibrary(process.env.PUBLIC_URL + '/Home/lib/jquery/jquery.min.js')
     AddLibrary(process.env.PUBLIC_URL + '/Home/lib/bootstrap/js/bootstrap.min.js')
     AddLibrary(process.env.PUBLIC_URL + '/Home/lib/superfish/hoverIntent.js')
@@ -46,22 +48,25 @@ export default function Home () {
     AddLibrary(process.env.PUBLIC_URL + '/Home/lib/easing/easing.js')
     AddLibrary(process.env.PUBLIC_URL + '/Home/js/custom.js')
 
-    $('#preloader')
-      .delay(100)
-      .fadeOut('slow', function () {
-        $(this).remove()
-      })
-
     // END
   }, [])
+
+  setTimeout(() => {
+    setTimeOut(false)
+  }, 2000)
+
+  if (timeOut) {
+    return <div id='preloaderPage' />
+  }
+  console.log('* ~ timeOut', timeOut)
   return (
     <>
       <Helmet>
         <meta charSet='utf-8' />
         <title>Home</title>
-        <meta name='Description' content='Content Maint' />
+        <meta name='Description' content='Content Main' />
       </Helmet>
-      <div id='preloader' />
+      {/* <div id='preloader' /> */}
       {/* =============  Hero Section  =============== */}
       <Hero />
       {/* =============  Section Header  =============== */}

@@ -7,12 +7,13 @@ import { useNavigate } from '@tanstack/react-location'
 // Hook
 import useAuthHook from '../../hook/AuthHook'
 
-import './SignIn.css'
-
 // Components
 import { Loading } from '../../components/loading'
 
 import { constant } from '../../i18n/es'
+
+// Css
+import './SignIn.css'
 
 const SignIn = () => {
   const { login, isLoginLoading, getAuth } = useAuthHook()
@@ -53,11 +54,11 @@ const SignIn = () => {
   return (
     <div className='container'>
       <div className='container-login'>
-        <div className=' card-login shadow-lg p-3 mb-5 bg-body rounded'>
+        <div className='card-login p-3 mb-5 rounded'>
           <div className='card'>
             <img src='img/profile/avatar/user_256x256.png' alt='...' className='card-img-login' width={150} />
             <div className='card-body'>
-              <h2 className='card-title'>Sign In</h2>
+              <h3 className='card-title'>Sign In</h3>
               <form>
                 <div className='form-group'>
                   <label>Email address</label>
@@ -81,12 +82,12 @@ const SignIn = () => {
                     onChange={handleInputChange}
                   />
                 </div>
-                <hr />
-
-                <div className='d-grid gap-2'>
-                  <button type='submit' className='btn btn-primary' onClick={handleSubmit}>
-                    {constant.BUTTON.send}
-                  </button>
+                <div className='form-group'>
+                  <div className='d-grid gap-2'>
+                    <button type='submit' className='btn btn-primary' onClick={handleSubmit}>
+                      {constant.BUTTON.send}
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

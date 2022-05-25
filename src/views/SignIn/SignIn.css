@@ -18,3 +18,14 @@
   text-transform: uppercase;
   text-align: center;
 }
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: bold;
+  font-size: 14px;
+  padding-bottom: 3px;
+  text-transform: capitalize;
+}

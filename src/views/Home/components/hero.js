@@ -63,8 +63,8 @@ const Hero = () => {
             </a>
 
             {isReadyForInstall && (
-              <a href='#services' className='btn-services'>
-                <button onClick={downloadApp}> Install </button>
+              <a href='#' className='btn-services' onClick={downloadApp}>
+                Install
               </a>
             )}
           </div>

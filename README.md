@@ -88,7 +88,15 @@ This section has moved here: <https://facebook.github.io/create-react-app/docs/t
 - <https://evergreen.segment.com/introduction/getting-started>
 - <https://rsuitejs.com/components/uploader/>
 - <https://www.primefaces.org/designer/primereact>
-
+- <https://favicon.io/favicon-converter/>
+- <https://www.pwabuilder.com/imageGenerator>
+- <https://lasfi.to/tutorial/como-crear-pwa-con-react>
+- <https://loading.io/>
+- <https://htmlcolorcodes.com/es/>
+- <https://express.adobe.com/es-ES/sp/projects>
+- <https://www.airtable.com/>
+- <https://www.adalo.com/cloneables/coaching-app>
+- <https://maskable.app/editor>
 
 - npx localtunnel --port 8000
 - vercel

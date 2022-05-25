@@ -1,7 +1,7 @@
-import { CircularProgress, Backdrop, Typography, Stack } from '@mui/material'
-
 import PropTypes from 'prop-types'
 import React from 'react'
+
+import { CircularProgress, Backdrop, Typography, Stack } from '@mui/material'
 
 import '../style/spinner.scss'
 
@@ -9,13 +9,11 @@ Loading.propTypes = {
   openLoad: PropTypes.bool.isRequired,
   text: PropTypes.string,
   color: PropTypes.string,
-  bgcolor: PropTypes.string
-  // handlerLoad: PropTypes.func,
+  bgcolor: PropTypes.string,
+  handlerLoad: PropTypes.func
 }
 
-function Loading ({ openLoad = true, text = ' Loading', color = '#fff', bgcolor = 'rgba(0, 0, 0, 1)' }) {
-  // const [open, setOpen] = React.useState(false)
-
+function Loading ({ openLoad = true, text = ' Loading', color = '#fff', bgcolor = 'rgba(0, 0, 0, 1)', handlerLoad }) {
   return (
     <Backdrop
       sx={{
@@ -24,23 +22,16 @@ function Loading ({ openLoad = true, text = ' Loading', color = '#fff', bgcolor 
         zIndex: (theme) => theme.zIndex.drawer + 1
       }}
       open={openLoad}
-      /*   onClick={() => {
-          handlerLoad(false)
-        }} */
+      onClick={() => {
+        handlerLoad(false)
+      }}
     >
       <Stack spacing={2} justifyContent='center' alignItems='center'>
-        <CircularProgress color='inherit' />
+        <CircularProgress color='inherit' size={80} />
 
         <Typography gutterBottom variant='h4' component='div' sx={{ padding: '10px' }}>
           {text}
         </Typography>
-
-        <div className='loadingio-spinner-ripple-o8jy0gehvnd'>
-          <div className='ldio-4czjy03rmfu'>
-            <div />
-            <div />
-          </div>
-        </div>
       </Stack>
     </Backdrop>
   )
