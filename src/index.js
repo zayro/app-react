@@ -13,7 +13,6 @@ import App from './views/App'
 import { AuthProvider, AuthContext } from './context/AuthContext.js'
 // roue
 import { role } from './route/role'
-
 // serviceWorker
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 

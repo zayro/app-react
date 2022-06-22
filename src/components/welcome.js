@@ -13,7 +13,7 @@ import { Loading } from './loading'
 import { useQueryClient } from 'react-query'
 
 import './cards.scss'
-import '../style/global.css'
+import '../assets/style/global.css'
 
 function Welcome () {
   const { info } = useContext(UserContext)

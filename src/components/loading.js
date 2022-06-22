@@ -3,7 +3,7 @@ import React from 'react'
 
 import { CircularProgress, Backdrop, Typography, Stack } from '@mui/material'
 
-import '../style/spinner.scss'
+import '../assets/style/spinner.scss'
 
 Loading.propTypes = {
   openLoad: PropTypes.bool.isRequired,

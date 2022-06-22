@@ -9,18 +9,12 @@ import Services from './components/Services'
 import Subscribe from './components/Subscribe'
 import Team from './components/Team'
 import { Helmet } from 'react-helmet'
+import { AddLibrary } from '../../tools/Addlibrary.js'
 
 import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 window.$ = $
-
-export function AddLibrary (urlOfTheLibrary) {
-  const script = document.createElement('script')
-  script.src = urlOfTheLibrary
-  script.async = true
-  document.body.appendChild(script)
-}
 
 export function AddCss (urlOfTheLibrary) {
   const link = document.createElement('link')

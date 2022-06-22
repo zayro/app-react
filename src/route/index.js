@@ -5,7 +5,7 @@ import Welcome from '../components/welcome'
 
 // Views
 import Home from '../views/Home/Home'
-import BasicSearch from '../views/product/table'
+import BasicSearch from '../demo/product/table'
 import { SignIn } from '../views/SignIn/SignIn'
 import { SignUp } from '../views/SignUp'
 import { UserTable } from '../demo/User/index'

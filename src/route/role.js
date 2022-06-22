@@ -6,6 +6,7 @@ import ListUser from '../components/ListUsers'
 
 // Pages
 import BasicSearch from '../views/products/table'
+import { Web } from '../views/page/index'
 import { SignIn } from '../views/SignIn/SignIn'
 import { SignUp } from '../views/SignUp'
 import { SignOut } from '../views/SignOut'
@@ -52,6 +53,7 @@ export const role = {
   ],
   default: () => [
     { path: '/', element: <Home /> },
+    { path: '/web', element: <Web /> },
     { path: '/login', element: <SignIn /> },
     { path: '/SignUp', element: <SignUp /> },
     { path: '/SignOut', element: <SignOut /> },
