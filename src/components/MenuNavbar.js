@@ -16,9 +16,6 @@ import { Link, useNavigate } from '@tanstack/react-location'
 // localstorage
 import LocalService from '../services/secureStorage'
 
-// Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css'
-
 function stringToColor (string) {
   let hash = 0
   let i

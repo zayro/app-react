@@ -11,11 +11,6 @@ import Team from './components/Team'
 import { Helmet } from 'react-helmet'
 import { AddLibrary } from '../../tools/Addlibrary.js'
 
-import $ from 'jquery'
-import 'bootstrap/dist/css/bootstrap.min.css'
-
-window.$ = $
-
 export function AddCss (urlOfTheLibrary) {
   const link = document.createElement('link')
   link.href = urlOfTheLibrary
