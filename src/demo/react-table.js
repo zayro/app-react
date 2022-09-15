@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react'
 import { useAsyncDebounce, useGlobalFilter, usePagination, useFilters, useTable, useSortBy } from 'react-table'
 

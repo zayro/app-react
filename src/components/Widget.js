@@ -9,98 +9,102 @@ import { BiComment } from 'react-icons/bi'
 export const Widget = () => {
   return (
     <>
-      <div className='col-sm-6 col-xl-2'>
-        {/* Stat widget */}
-        <div className='card bg-danger text-white text-center'>
-          <div className='p-3 text-center'>
-            <i className='demo-psi-speech-bubble-3 text-white text-opacity-50 display-3 my-4' />
-            <div className='display-4'>83</div>
-            <p>Comments</p>
-            <small className='lh-1'>74 Unapproved Comments</small>
-          </div>
-        </div>
-        {/* END : Stat widget */}
-      </div>
-
-      <div className='col-sm-6 col-xl-2'>
-        {/* Stat widget */}
-        <div className='card mb-1'>
-          <div className='px-3 py-4 bg-dark text-white text-center rounded'>
-            <i className='demo-psi-folder-with-document text-white text-opacity-50 display-4 my-3' />
-          </div>
-          <div className='p-3 text-center'>
-            <span className='h1 fw-light'>
-              <span className='h3 align-middle'>$</span>728
-            </span>
-            <p>Earnings</p>
-            <small className='lh-1'>2,675 Last 30 days earning</small>
-          </div>
-        </div>
-        {/* END : Stat widget */}
-      </div>
-
-      <div className='col-md-6'>
-        {/* Stat widget */}
-        <div className='card bg-secondary text-white mb-3 mb-xl-3'>
-          <div className='card-body py-3'>
-            <div className='d-flex align-items-center mb-3'>
-              <div className='flex-shrink-0'>
-                <IoLocationOutline style={{ color: 'white', width: '4rem', height: '4rem' }} />
-              </div>
-              <div className='flex-grow-1 ms-4'>
-                <h5 className='h2 mb-0'>314,675</h5>
-                <p className='text-white text-opacity-50 mb-0'>Visit Today</p>
+      <div className='container-fluid mt-5 pt-5'>
+        <div className='row'>
+          <div className='col-md-6'>
+            <div className='card bg-danger text-white text-center'>
+              <div className='p-3 text-center'>
+                <i className='demo-psi-speech-bubble-3 text-white text-opacity-50 display-3 my-4' />
+                <div className='display-4'>83</div>
+                <p>Comments</p>
+                <small className='lh-1'>74 Unapproved Comments</small>
               </div>
             </div>
-            <div className='progress progress-md mb-2'>
-              <div
-                className='progress-bar  bg-white '
-                role='progressbar'
-                style={{ width: '35%' }}
-                aria-valuenow={35}
-                aria-valuemin={0}
-                aria-valuemax={100}
-              />
-            </div>
-            <p className='text-white text-opacity-75 mb-0'>
-              <strong>35%</strong> Higher than yesterday{' '}
-            </p>
           </div>
-        </div>
-        {/* END : Stat widget */}
-        {/* Stat widget */}
-        <div className='card bg-primary text-white mb-3 mb-xl-3'>
-          <div className='card-body py-3'>
-            <div className='d-flex align-items-center mb-3'>
-              <div className='flex-shrink-0'>
-                <IoLocationOutline style={{ color: 'white', width: '4rem', height: '4rem' }} />
+
+          <div className='col-sm-6'>
+            {/* Stat widget */}
+            <div className='card mb-1'>
+              <div className='px-3 py-4 bg-dark text-white text-center rounded'>
+                <i className='demo-psi-folder-with-document text-white text-opacity-50 display-4 my-3' />
               </div>
-              <div className='flex-grow-1 ms-4'>
-                <h5 className='h2 mb-0'>5,345</h5>
-                <p className='text-white text-opacity-50 mb-0'>Items Sold</p>
+              <div className='p-3 text-center'>
+                <span className='h1 fw-light'>
+                  <span className='h3 align-middle'>$</span>728
+                </span>
+                <p>Earnings</p>
+                <small className='lh-1'>2,675 Last 30 days earning</small>
               </div>
             </div>
-            <div className='progress progress-md mb-2'>
-              <div
-                className='progress-bar bg-white '
-                role='progressbar'
-                style={{ width: '80%' }}
-                aria-valuenow={80}
-                aria-valuemin={0}
-                aria-valuemax={100}
-              />
-            </div>
-
-            <p className='text-white text-opacity-75 mb-0'>
-              <strong>954</strong> Sales in this month
-            </p>
+            {/* END : Stat widget */}
           </div>
         </div>
-        {/* END : Stat widget */}
-      </div>
 
-      <div className='col-12 col-xl-3'>
-        <div className='row g-xl-1'>
+        <div className='row'>
+          <div className='col-md-6'>
+            {/* Stat widget */}
+            <div className='card bg-secondary text-white mb-3 mb-xl-3'>
+              <div className='card-body py-3'>
+                <div className='d-flex align-items-center mb-3'>
+                  <div className='flex-shrink-0'>
+                    <IoLocationOutline style={{ color: 'white', width: '4rem', height: '4rem' }} />
+                  </div>
+                  <div className='flex-grow-1 ms-4'>
+                    <h5 className='h2 mb-0'>314,675</h5>
+                    <p className='text-white text-opacity-50 mb-0'>Visit Today</p>
+                  </div>
+                </div>
+                <div className='progress progress-md mb-2'>
+                  <div
+                    className='progress-bar  bg-white '
+                    role='progressbar'
+                    style={{ width: '35%' }}
+                    aria-valuenow={35}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                  />
+                </div>
+                <p className='text-white text-opacity-75 mb-0'>
+                  <strong>35%</strong> Higher than yesterday{' '}
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* END : Stat widget */}
+          <div className='col-md-6'>
+            {/* Stat widget */}
+            <div className='card bg-primary text-white mb-3 mb-xl-3'>
+              <div className='card-body py-3'>
+                <div className='d-flex align-items-center mb-3'>
+                  <div className='flex-shrink-0'>
+                    <IoLocationOutline style={{ color: 'white', width: '4rem', height: '4rem' }} />
+                  </div>
+                  <div className='flex-grow-1 ms-4'>
+                    <h5 className='h2 mb-0'>5,345</h5>
+                    <p className='text-white text-opacity-50 mb-0'>Items Sold</p>
+                  </div>
+                </div>
+                <div className='progress progress-md mb-2'>
+                  <div
+                    className='progress-bar bg-white '
+                    role='progressbar'
+                    style={{ width: '80%' }}
+                    aria-valuenow={80}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                  />
+                </div>
+
+                <p className='text-white text-opacity-75 mb-0'>
+                  <strong>954</strong> Sales in this month
+                </p>
+              </div>
+            </div>
+            {/* END : Stat widget */}
+          </div>
+        </div>
+
+        <div className='row'>
           <div className='col-sm-6'>
             {/* Tile */}
             <div className='card bg-primary text-white mb-3 mb-xl-1'>
@@ -142,13 +146,11 @@ export const Widget = () => {
             {/* END : Tile */}
           </div>
         </div>
-      </div>
 
-      <div className='col-12 col-xl-5'>
         <div className='row'>
-          <div className='col-md-6'>
-            {/* Stat widget */}
-            <div className='card mb-3 mb-xl-3'>
+
+          <div className='col-6'>
+            <div className='card mb-3 mt-3 '>
               <div className='card-body py-3'>
                 <div className='d-flex align-items-center'>
                   <div className='flex-shrink-0'>
@@ -159,27 +161,33 @@ export const Widget = () => {
                     </div>
                   </div>
                   <div className='flex-grow-1 ms-3'>
+                  <div className='card-body'>
                     <h5 className='h2 mb-0'>241</h5>
                     <p className='mb-0'>Registered User</p>
+                  </div>
                   </div>
                 </div>
               </div>
             </div>
-            {/* END : Stat widget */}
-            {/* Stat widget */}
-            <div className='card mb-3 mb-xl-3'>
+          </div>
+
+          <div className='col-6'>
+            <div className='card mb-3 mt-3 '>
               <div className='d-flex align-items-stretch'>
                 <div className='d-flex align-items-center justify-content-center flex-shrink-0 bg-danger px-4 text-white rounded-start'>
                   <BiComment style={{ color: 'white', width: '3rem', height: '3rem' }} />
                 </div>
                 <div className='flex-grow-1 py-3 ms-3'>
+                <div className='card-body'>
                   <h5 className='h2 mb-0 text-danger'>379</h5>
-                  <p className='mb-0'>Comments</p>
+                  <p className='mb-0'>Comments.</p>
+                </div>
                 </div>
               </div>
             </div>
-            {/* END : Stat widget */}
-            {/* Stat widget */}
+          </div>
+
+          <div className='col-12'>
             <div className='card bg-info text-white mb-3 mb-xl-3'>
               <div className='card-body py-3 d-flex align-items-stretch'>
                 <div className='d-flex align-items-center justify-content-center flex-shrink-0 rounded-start'>
@@ -191,8 +199,8 @@ export const Widget = () => {
                 </div>
               </div>
             </div>
-            {/* END : Stat widget */}
           </div>
+
         </div>
       </div>
     </>

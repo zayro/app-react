@@ -39,11 +39,11 @@ export const Cards = () => {
 
   return (
     <>
-      <div className='container-fluid mt-5 pt-5 fondo'>
+      <div className='container-fluid mt-5 pt-5  '>
         <div className='row mb-5'>
-          <div className='col-md-3 mb-3'>
+          <div className='col-md-4 mb-3'>
             <Fade in={show} unmountOnExit>
-              <Card elevation={5} sx={{ maxWidth: 600, maxHeight: 600 }}>
+              <Card elevation={5}>
                 <CardHeader
                   action={
                     <IconButton aria-label='settings' onClick={handleClose}>
@@ -51,7 +51,6 @@ export const Cards = () => {
                     </IconButton>
                   }
                 />
-
                 <CardContent>
                   <Stack direction='column' justifyContent='center' alignItems='center' spacing={2}>
                     <Avatar
@@ -66,10 +65,10 @@ export const Cards = () => {
                       Lizards are a widespread group of squamate reptiles
                     </Typography>
                   </Stack>
-                  <Divider sx={{ marginTop: '20px' }} />
+                  <Divider sx={{ marginTop: '5px' }} />
                 </CardContent>
 
-                <Stack direction='row' justifyContent='center' alignItems='center' spacing={6}>
+                <Stack direction='row' justifyContent='center' alignItems='center' spacing={4}>
                   <Button color='error'>Cancel</Button>
 
                   <Button color='success'>Success</Button>
@@ -78,7 +77,7 @@ export const Cards = () => {
             </Fade>
           </div>
 
-          <div className='col-md-3 mb-3'>
+          <div className='col-md-4 mb-3'>
             <div className='card mb-3 bg-white shadow bg-body rounded'>
               <div className='position-relative py-5 px-3 text-center bg-primary text-white rounded-top'>
                 <a href='#' className='h5 stretched-link btn-link'>
@@ -96,7 +95,7 @@ export const Cards = () => {
                   />
                 </div>
               </div>
-              <Container style={{ paddingBottom: '10px', maxWidth: 500, minWidth: 400, maxHeight: 600 }}>
+              <Container style={{ paddingBottom: '10px' }}>
                 <ListGroup variant='flush'>
                   <ListGroup.Item action>
                     <IoPersonAddOutline /> User Detail
@@ -115,8 +114,8 @@ export const Cards = () => {
             </div>
           </div>
 
-          <div className='col-md-3 mb-3'>
-            <div className='card mb-3 bg-white shadow bg-body rounded'>
+          <div className='col-md-4 mb-3'>
+            <div className='card mb-2 bg-white shadow bg-body rounded'>
               <div className='position-relative py-5 px-3 text-center bg-primary text-white rounded-top'>
                 <a href='#' className='h5 stretched-link btn-link'>
                   Ralph West
@@ -133,54 +132,47 @@ export const Cards = () => {
                   />
                 </div>
               </div>
-              <ol
-                className='list-group list-group-borderless mt-4'
-                style={{ paddingBottom: '10px', maxWidth: 500, minWidth: 400, maxHeight: 600 }}
-              >
-                <li className='list-group-item d-flex justify-content-between align-items-start'>
-                  <div className='me-auto'>
-                    <div className='h6 text-head mb-1'>Project completed</div>
-                    <small>Lorem ipsum dolor sit.</small>
-                  </div>
-                  <span className='badge bg-warning rounded-pill'>14</span>
-                </li>
-                <li className='list-group-item d-flex justify-content-between align-items-start'>
-                  <div className='me-auto'>
-                    <div className='h6 text-head mb-1'>Resource usage</div>
-                    <small>Lorem ipsum dolor sit.</small>
-                  </div>
-                  <span className='badge bg-info rounded-pill'>25%</span>
-                </li>
-                <li className='list-group-item d-flex justify-content-between align-items-start'>
-                  <div className='me-auto'>
-                    <div className='h6 text-head mb-1'>Earning</div>
-                    <small>Lorem ipsum dolor sit.</small>
-                  </div>
-                  <span className='badge bg-success rounded-pill'>$ 4,900</span>
-                </li>
-              </ol>
+              <div style={{ padding: '0 10px 5px 10px' }}>
+                <ol className='list-group list-group-borderless mt-4'>
+                  <li className='list-group-item d-flex justify-content-between align-items-start'>
+                    <div className='me-auto'>
+                      <div className='h6 text-head mb-1'>Project completed</div>
+                      <small>Lorem ipsum dolor sit.</small>
+                    </div>
+                    <span className='badge bg-warning rounded-pill'>14</span>
+                  </li>
+                  <li className='list-group-item d-flex justify-content-between align-items-start'>
+                    <div className='me-auto'>
+                      <div className='h6 text-head mb-1'>Resource usage</div>
+                      <small>Lorem ipsum dolor sit.</small>
+                    </div>
+                    <span className='badge bg-info rounded-pill'>25%</span>
+                  </li>
+                </ol>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div className='col-md-3 mb-3'>
-            <Card elevation={5} sx={{ maxWidth: 600, maxHeight: 600 }}>
+        <div className='row mb-5'>
+          <div className='col-md-4 mb-3'>
+            <Card elevation={5}>
               <Container
                 style={{
                   backgroundColor: '#03A9F4',
-                  height: 250,
-                  padding: '20px'
+                  padding: '12px'
                 }}
               >
                 <Stack direction='row' justifyContent='space-betwen' alignItems='center' spacing={2}>
                   <Avatar
                     alt='Remy Sharp'
                     sx={{
-                      width: 90,
-                      height: 90
+                      width: 60,
+                      height: 60
                     }}
                     src={process.env.PUBLIC_URL + '/img/profile/avatar/822726_user_512x512.png'}
                   />
-                  <Typography gutterBottom variant='h5' component='div' sx={{ color: 'white' }}>
+                  <Typography gutterBottom variant='h6' component='div' sx={{ color: 'white' }}>
                     Michael Brown
                   </Typography>
                 </Stack>
@@ -190,7 +182,7 @@ export const Cards = () => {
                   justifyContent='center'
                   alignItems='center'
                   spacing={5}
-                  sx={{ paddingTop: '40px' }}
+                  sx={{ paddingTop: '10px' }}
                 >
                   <Stack direction='column' justifyContent='center' alignItems='center' spacing={0.5}>
                     <HiOutlineMail style={{ color: 'white', width: 30, height: 30 }} />
@@ -209,10 +201,8 @@ export const Cards = () => {
               </Container>
             </Card>
           </div>
-        </div>
 
-        <div className='row mt-5'>
-          <div className='col-sm-6 col-xl-2'>
+          <div className='col-md-4 col-xl-4'>
             <div className='card bg-secondary text-white mb-3'>
               <div className='card-body'>
                 {/* Profile picture and short information */}
@@ -254,6 +244,101 @@ export const Cards = () => {
                 {/* END : Options buttons */}
               </div>
             </div>
+          </div>
+
+          <div className='col-sm-4 col-xl-4'>
+            {/* User widget */}
+            <div className='card bg-info text-white mb-3'>
+              <div className='card-body'>
+                {/* Profile picture and short information */}
+                <div className='d-flex align-items-center position-relative py-3'>
+                  <div className='flex-shrink-0'>
+                    <img
+                      className='img-md rounded-circle'
+                      src={process.env.PUBLIC_URL + '/img/profile/avatar/747397_people_512x512.png'}
+                      alt='Profile Picture'
+                      loading='lazy'
+                      width='80px'
+                    />
+                  </div>
+                  <div className='flex-grow-1 ms-3'>
+                    <a href='#' className='h5 stretched-link btn-link'>
+                      Lisa May
+                    </a>
+                    <p className='m-0'>Sales Manager</p>
+                  </div>
+                </div>
+                <small className='d-none'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, ipsa?</small>
+                {/* END : Profile picture and short information */}
+                {/* Options buttons */}
+                <div className='pt-3 text-center'>
+                  <div className='d-flex justify-content-center gap-3'>
+                    <HiOutlinePhoneMissedCall className='d-block fs-3 mb-2' style={{ color: 'white' }} />
+
+                    <HiOutlineMail className='d-block fs-3 mb-2' style={{ color: 'white' }} />
+
+                    <IoInformationCircleOutline className='d-block fs-3 mb-2' style={{ color: 'white' }} />
+                  </div>
+                </div>
+                {/* END : Options buttons */}
+              </div>
+            </div>
+            {/* END : User widget */}
+
+          </div>
+
+        </div>
+
+        <div className='row mt-5'>
+
+          <div className='col-md-4'>
+            {/* User widget */}
+            <div className='card mb-3'>
+              <div className='card-body'>
+                {/* Profile picture and short information */}
+                <div className='text-center position-relative'>
+                  <div className='pt-2 pb-3'>
+                    <img
+                      className='img-lg rounded-circle'
+                      src={process.env.PUBLIC_URL + '/img/profile/avatar/747397_people_512x512.png'}
+                      alt='Profile Picture'
+                      loading='lazy'
+                      width='80px'
+                    />
+                  </div>
+                  <a href='#' className='h5 stretched-link btn-link'>
+                    Donald Brown
+                  </a>
+                  <p className='text-muted'>Web and Graphic designer</p>
+                </div>
+                <div className='d-flex justify-content-center gap-2'>
+                  <button type='button' className='btn btn-light'>
+                    Send Mail
+                  </button>
+                  <button type='button' className='btn btn-primary'>
+                    Follow
+                  </button>
+                </div>
+                {/* END : Profile picture and short information */}
+                {/* Social media buttons */}
+                <div className='mt-4 pt-3 d-flex justify-content-around border-top'>
+                  <div className='text-center'>
+                    <h4 className='mb-1'>1,345</h4>
+                    <small className='text-muted'>Following</small>
+                  </div>
+                  <div className='text-center'>
+                    <h4 className='mb-1'>23k</h4>
+                    <small className='text-muted'>Followers</small>
+                  </div>
+                  <div className='text-center'>
+                    <h4 className='mb-1'>278</h4>
+                    <small className='text-muted'>Posts</small>
+                  </div>
+                </div>
+                {/* END : Social media buttons */}
+              </div>
+            </div>
+            {/* END : User widget */}
           </div>
 
           <div className='col-sm-6 col-md-4 col-xl-3 mb-3'>
@@ -357,93 +442,6 @@ export const Cards = () => {
                 {/* END : Social media buttons */}
               </div>
             </div>
-          </div>
-
-          <div className='col-sm-6 col-xl-4'>
-            {/* User widget */}
-            <div className='card bg-info text-white mb-3'>
-              <div className='card-body'>
-                {/* Profile picture and short information */}
-                <div className='d-flex align-items-center position-relative py-3'>
-                  <div className='flex-shrink-0'>
-                    <img
-                      className='img-md rounded-circle'
-                      src={process.env.PUBLIC_URL + '/img/profile/avatar/747397_people_512x512.png'}
-                      alt='Profile Picture'
-                      loading='lazy'
-                      width='80px'
-                    />
-                  </div>
-                  <div className='flex-grow-1 ms-3'>
-                    <a href='#' className='h5 stretched-link btn-link'>
-                      Lisa May
-                    </a>
-                    <p className='m-0'>Sales Manager</p>
-                  </div>
-                </div>
-                <small className='d-none'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem, ipsa?</small>
-                {/* END : Profile picture and short information */}
-                {/* Options buttons */}
-                <div className='pt-3 text-center'>
-                  <div className='d-flex justify-content-center gap-3'>
-                    <HiOutlinePhoneMissedCall className='d-block fs-3 mb-2' style={{ color: 'white' }} />
-
-                    <HiOutlineMail className='d-block fs-3 mb-2' style={{ color: 'white' }} />
-
-                    <IoInformationCircleOutline className='d-block fs-3 mb-2' style={{ color: 'white' }} />
-                  </div>
-                </div>
-                {/* END : Options buttons */}
-              </div>
-            </div>
-            {/* END : User widget */}
-            {/* User widget */}
-            <div className='card mb-3'>
-              <div className='card-body'>
-                {/* Profile picture and short information */}
-                <div className='text-center position-relative'>
-                  <div className='pt-2 pb-3'>
-                    <img
-                      className='img-lg rounded-circle'
-                      src={process.env.PUBLIC_URL + '/img/profile/avatar/747397_people_512x512.png'}
-                      alt='Profile Picture'
-                      loading='lazy'
-                      width='80px'
-                    />
-                  </div>
-                  <a href='#' className='h5 stretched-link btn-link'>
-                    Donald Brown
-                  </a>
-                  <p className='text-muted'>Web and Graphic designer</p>
-                </div>
-                <div className='d-flex justify-content-center gap-2'>
-                  <button type='button' className='btn btn-light'>
-                    Send Mail
-                  </button>
-                  <button type='button' className='btn btn-primary'>
-                    Follow
-                  </button>
-                </div>
-                {/* END : Profile picture and short information */}
-                {/* Social media buttons */}
-                <div className='mt-4 pt-3 d-flex justify-content-around border-top'>
-                  <div className='text-center'>
-                    <h4 className='mb-1'>1,345</h4>
-                    <small className='text-muted'>Following</small>
-                  </div>
-                  <div className='text-center'>
-                    <h4 className='mb-1'>23k</h4>
-                    <small className='text-muted'>Followers</small>
-                  </div>
-                  <div className='text-center'>
-                    <h4 className='mb-1'>278</h4>
-                    <small className='text-muted'>Posts</small>
-                  </div>
-                </div>
-                {/* END : Social media buttons */}
-              </div>
-            </div>
-            {/* END : User widget */}
           </div>
         </div>
       </div>

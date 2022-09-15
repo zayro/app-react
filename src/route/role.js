@@ -16,6 +16,7 @@ import { ConfigUser } from '../views/Admin/ConfigUser/ConfigUser'
 import { Panels } from '../components/Panels'
 import { Cards } from '../components/Cards'
 import { Buttons } from '../components/Buttons'
+import { Widget } from '../components/Widget'
 
 // Pages General
 import { Error404 } from '../views/404/404'
@@ -48,6 +49,7 @@ export const role = {
     { path: '/Panels', element: <Panels /> },
     { path: '/Cards', element: <Cards /> },
     { path: '/Buttons', element: <Buttons /> },
+    { path: '/Widgets', element: <Widget /> },
 
     { path: '*', element: <Error404 /> }
   ],

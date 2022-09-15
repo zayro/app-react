@@ -1,6 +1,6 @@
 {
   "editor.cursorStyle": "underline-thin",
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.formatOnType": true,
   "prettier.eslintIntegration": true,
   "emmet.includeLanguages": {
@@ -19,12 +19,6 @@
   "turboConsoleLog.quote": "'",
   "turboConsoleLog.insertEnclosingFunction": false,
   "turboConsoleLog.logMessagePrefix": "*",
-  "editor.codeActionsOnSave": {
-    //"source.organizeImports": true
-    //"source.fixAll": true,
-    //"fixAll.eslint": true,
-    //"addMissingImports":true,
-  },
   "editor.snippetSuggestions": "inline",
   "javascript.suggest.completeJSDocs": true,
   "javascript.suggestionActions.enabled": true,
@@ -54,5 +48,17 @@
   },
   "errorLens.excludePatterns": ["[\"public/*.js\"]", "[\"public/*.{js}\"]"],
   "errorLens.excludeBySource": ["[\"public\"]"],
-  "errorLens.exclude": ["[\"public\"]"]
+  "errorLens.exclude": [
+    "[\"public\"]"
+  ],
+  "inlineFold.supportedLanguages": [
+    "html",
+    "svelte",
+    "vue",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "react"
+  ]
 }

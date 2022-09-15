@@ -7,7 +7,7 @@ import { Loading } from '../components/loading'
 // provider
 import { UserProvider } from '../context/UserContext'
 // Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App () {
   const router = useRouter()
